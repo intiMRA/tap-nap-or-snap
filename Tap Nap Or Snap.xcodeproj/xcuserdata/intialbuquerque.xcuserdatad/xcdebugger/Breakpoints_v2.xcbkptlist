@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "94767D8C-921D-4B44-9667-5B03A3C8FFC5"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C335341E-1138-41B6-9905-CA9930A7F476"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2E2DCAE-7577-4097-B0A1-FF478D0647A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "314E6CA0-99B4-45F6-956D-A58F41DCD03B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E21C5D6-3AB4-4F01-BC40-E7BC282C91B5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5E21C5D6-3AB4-4F01-BC40-E7BC282C91B5 - 75541020ff5590d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.login(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "5E21C5D6-3AB4-4F01-BC40-E7BC282C91B5 - 561012a3e940be91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.login(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "2152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FD5AEB41-D76C-48B7-B2FD-A805E4900135"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FD5AEB41-D76C-48B7-B2FD-A805E4900135 - 75541020ff559016"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.login(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "700">
+               </Location>
+               <Location
+                  uuid = "FD5AEB41-D76C-48B7-B2FD-A805E4900135 - 561012a3e940be57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.login(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "1924">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D76AAD1-18E6-4B6D-BF10-79FF8366CB31"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B2A353F-A8A5-4DDE-AA03-D97FBDA1B734"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "login(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "007EF78D-B8A1-4F58-9D1F-48430CC1F0DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "logInError(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B4F2B83-DDFB-43A6-B8EE-AFB57FEF24EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "logInUserAlreadySignedIn()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECA4D3C7-EFE7-4CAB-9B1F-716269F32C4F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "logInUserAlreadySignedIn()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "354C8EB4-C51F-46E2-900B-5330B0C28AC5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "logInUserAlreadySignedIn()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "354C8EB4-C51F-46E2-900B-5330B0C28AC5 - 6af56b1aef4df0d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.logInUserAlreadySignedIn() -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "1488">
+               </Location>
+               <Location
+                  uuid = "354C8EB4-C51F-46E2-900B-5330B0C28AC5 - 1f894af343beddbb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.logInUserAlreadySignedIn() -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F09B29F-EBB7-4393-8F04-BA7723F0F2E2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "logInUserAlreadySignedIn()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0F09B29F-EBB7-4393-8F04-BA7723F0F2E2 - 30530a987a1a5657"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.logInUserAlreadySignedIn() -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1080">
+               </Location>
+               <Location
+                  uuid = "0F09B29F-EBB7-4393-8F04-BA7723F0F2E2 - 6af56b1aef4df054"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.logInUserAlreadySignedIn() -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "2216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BC029FF-BE6F-43BF-9196-245BC7B2BA32"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "signUp(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D119D2F1-A30C-45DB-B264-F756DA03CB28"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "signUp(email:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A541B52-9FBD-4708-A98E-DF89B658F2FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "signUp(email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5A541B52-9FBD-4708-A98E-DF89B658F2FD - 9a04cfc1d5254344"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.signUp(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "1212">
+               </Location>
+               <Location
+                  uuid = "5A541B52-9FBD-4708-A98E-DF89B658F2FD - 7ca0b6d983e7e5c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.signUp(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "796">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E644CE1B-D548-42F1-B5A1-B9CB001D15F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/Network/LoginAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "signUp(email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E644CE1B-D548-42F1-B5A1-B9CB001D15F6 - 9a04cfc1d525439a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.signUp(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "984">
+               </Location>
+               <Location
+                  uuid = "E644CE1B-D548-42F1-B5A1-B9CB001D15F6 - 7ca0b6d983e7e519"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 ((Swift.Result&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; Combine.Future&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt; in Tap_Nap_Or_Snap.LogInAPI.signUp(email: Swift.String, password: Swift.String) -&gt; Combine.AnyPublisher&lt;Tap_Nap_Or_Snap.LogInModel, Tap_Nap_Or_Snap.LogInError&gt;"
+                  moduleName = "Tap Nap Or Snap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intialbuquerque/projects/Tap%20Nap%20Or%20Snap/Tap%20Nap%20Or%20Snap/Network/LoginAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "568">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD484BAB-D455-4E99-A4D7-1F9D1CAF0B0F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/LogIn/LogInViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "signup()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FBE2A07-3A55-4FD0-A9CB-00B52385BD89"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tap Nap Or Snap/LogIn/LogInViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "signup()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

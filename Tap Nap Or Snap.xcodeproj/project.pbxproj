@@ -7,18 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
+		354A89BF27E1C8EF00078008 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BE27E1C8EE00078008 /* Store.swift */; };
+		354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89C127E1CA9B00078008 /* LoginAPI.swift */; };
+		354A89C527E1CB8400078008 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 354A89C427E1CB8400078008 /* FirebaseAuth */; };
+		354A89C727E1CB8400078008 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 354A89C627E1CB8400078008 /* FirebaseFirestore */; };
+		354A89CA27E1CC6900078008 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 354A89C927E1CC6800078008 /* Localizable.strings */; };
+		354A89CC27E1CC9700078008 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89CB27E1CC9700078008 /* String+Localizable.swift */; };
+		354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89CD27E1CD7900078008 /* Collection+Safe.swift */; };
+		354A89D127E1D58000078008 /* Image+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89D027E1D58000078008 /* Image+Custom.swift */; };
+		354A89D327E1D6E300078008 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89D227E1D6E200078008 /* LogInViewModel.swift */; };
 		35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */; };
-		35BEC79927E1A5C300E3A23D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* ContentView.swift */; };
+		35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* LogInView.swift */; };
 		35BEC79B27E1A5C500E3A23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35BEC79A27E1A5C500E3A23D /* Assets.xcassets */; };
 		35BEC79E27E1A5C600E3A23D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35BEC79D27E1A5C600E3A23D /* Preview Assets.xcassets */; };
+		35BEC7A727E1A94100E3A23D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35BEC7A627E1A94100E3A23D /* Colors.xcassets */; };
+		35BEC7A927E1ABCE00E3A23D /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC7A827E1ABCE00E3A23D /* Color+Custom.swift */; };
+		35BEC7B127E1C3D700E3A23D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35BEC7B027E1C3D700E3A23D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		354A89BE27E1C8EE00078008 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		354A89C127E1CA9B00078008 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		354A89C927E1CC6800078008 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		354A89CB27E1CC9700078008 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
+		354A89CD27E1CD7900078008 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
+		354A89D027E1D58000078008 /* Image+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Custom.swift"; sourceTree = "<group>"; };
+		354A89D227E1D6E200078008 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		35BEC79327E1A5C300E3A23D /* Tap Nap Or Snap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tap Nap Or Snap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tap_Nap_Or_SnapApp.swift; sourceTree = "<group>"; };
-		35BEC79827E1A5C300E3A23D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		35BEC79827E1A5C300E3A23D /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		35BEC79A27E1A5C500E3A23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35BEC79D27E1A5C600E3A23D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		35BEC7A627E1A94100E3A23D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		35BEC7A827E1ABCE00E3A23D /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
+		35BEC7B027E1C3D700E3A23D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,15 +50,59 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354A89C527E1CB8400078008 /* FirebaseAuth in Frameworks */,
+				354A89C727E1CB8400078008 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		354A89BA27E1C78E00078008 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				354A89BB27E1C7B500078008 /* TabView.swift */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		354A89BD27E1C8BD00078008 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				354A89BE27E1C8EE00078008 /* Store.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		354A89C027E1CA7C00078008 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				354A89C127E1CA9B00078008 /* LoginAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		354A89C827E1CC1A00078008 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				354A89C927E1CC6800078008 /* Localizable.strings */,
+				354A89CB27E1CC9700078008 /* String+Localizable.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		354A89CF27E1CD8700078008 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				354A89CD27E1CD7900078008 /* Collection+Safe.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		35BEC78A27E1A5C200E3A23D = {
 			isa = PBXGroup;
 			children = (
+				35BEC7B027E1C3D700E3A23D /* GoogleService-Info.plist */,
 				35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */,
 				35BEC79427E1A5C300E3A23D /* Products */,
 			);
@@ -51,9 +119,14 @@
 		35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */ = {
 			isa = PBXGroup;
 			children = (
+				354A89CF27E1CD8700078008 /* Utils */,
+				354A89C827E1CC1A00078008 /* Resources */,
+				354A89C027E1CA7C00078008 /* Network */,
+				354A89BD27E1C8BD00078008 /* Store */,
+				354A89BA27E1C78E00078008 /* TabView */,
+				35BEC7A527E1A92200E3A23D /* Assets */,
+				35BEC7A427E1A5E400E3A23D /* LogIn */,
 				35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */,
-				35BEC79827E1A5C300E3A23D /* ContentView.swift */,
-				35BEC79A27E1A5C500E3A23D /* Assets.xcassets */,
 				35BEC79C27E1A5C600E3A23D /* Preview Content */,
 			);
 			path = "Tap Nap Or Snap";
@@ -65,6 +138,26 @@
 				35BEC79D27E1A5C600E3A23D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		35BEC7A427E1A5E400E3A23D /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				35BEC79827E1A5C300E3A23D /* LogInView.swift */,
+				354A89D227E1D6E200078008 /* LogInViewModel.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		35BEC7A527E1A92200E3A23D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				35BEC79A27E1A5C500E3A23D /* Assets.xcassets */,
+				35BEC7A627E1A94100E3A23D /* Colors.xcassets */,
+				35BEC7A827E1ABCE00E3A23D /* Color+Custom.swift */,
+				354A89D027E1D58000078008 /* Image+Custom.swift */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +176,10 @@
 			dependencies = (
 			);
 			name = "Tap Nap Or Snap";
+			packageProductDependencies = (
+				354A89C427E1CB8400078008 /* FirebaseAuth */,
+				354A89C627E1CB8400078008 /* FirebaseFirestore */,
+			);
 			productName = "Tap Nap Or Snap";
 			productReference = 35BEC79327E1A5C300E3A23D /* Tap Nap Or Snap.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +208,9 @@
 				Base,
 			);
 			mainGroup = 35BEC78A27E1A5C200E3A23D;
+			packageReferences = (
+				354A89C327E1CB8300078008 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 35BEC79427E1A5C300E3A23D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +225,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354A89CA27E1CC6900078008 /* Localizable.strings in Resources */,
+				35BEC7A727E1A94100E3A23D /* Colors.xcassets in Resources */,
+				35BEC7B127E1C3D700E3A23D /* GoogleService-Info.plist in Resources */,
 				35BEC79E27E1A5C600E3A23D /* Preview Assets.xcassets in Resources */,
 				35BEC79B27E1A5C500E3A23D /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +240,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35BEC79927E1A5C300E3A23D /* ContentView.swift in Sources */,
+				354A89BF27E1C8EF00078008 /* Store.swift in Sources */,
+				35BEC7A927E1ABCE00E3A23D /* Color+Custom.swift in Sources */,
+				35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */,
+				354A89BC27E1C7B500078008 /* TabView.swift in Sources */,
+				354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */,
 				35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */,
+				354A89D327E1D6E300078008 /* LogInViewModel.swift in Sources */,
+				354A89D127E1D58000078008 /* Image+Custom.swift in Sources */,
+				354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */,
+				354A89CC27E1CC9700078008 /* String+Localizable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +452,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		354A89C327E1CB8300078008 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		354A89C427E1CB8400078008 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 354A89C327E1CB8300078008 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		354A89C627E1CB8400078008 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 354A89C327E1CB8300078008 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35BEC78B27E1A5C200E3A23D /* Project object */;
 }
