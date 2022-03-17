@@ -15,6 +15,7 @@ struct Tap_Nap_Or_SnapApp: App {
         WindowGroup {
             NavigationView {
                 LogInView()
+                    .navigationBarTitleDisplayMode(.inline)
             }
         }
     }

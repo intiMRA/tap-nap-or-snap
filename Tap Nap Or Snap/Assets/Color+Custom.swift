@@ -22,7 +22,7 @@ enum ColorOpacity: Double {
 enum ColorNames: String {
     case background = "Background"
     case text = "Text"
-    
+    case bar = "Bar"
     func color(opacity: ColorOpacity = .hundred) -> Color {
         Color(self.rawValue)
             .opacity(opacity.rawValue)

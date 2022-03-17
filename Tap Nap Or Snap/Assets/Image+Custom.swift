@@ -10,6 +10,10 @@ import SwiftUI
 
 enum ImageNames: String {
     case tomoeNage = "TomoeNage"
+    case dead = "Dead"
+    case medal = "Medal"
+    case user = "User"
+    case add = "Add"
     
     func image() -> Image {
         Image(self.rawValue)
