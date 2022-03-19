@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+
+class TappedViewModel: ObservableObject {
+    @Published var navigateToNewSub = false
+    
+    func showNewSub() {
+        self.navigateToNewSub = true
+    }
+}

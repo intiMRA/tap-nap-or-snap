@@ -14,6 +14,7 @@ enum ImageNames: String {
     case medal = "Medal"
     case user = "User"
     case add = "Add"
+    case trash = "Trash"
     
     func image() -> Image {
         Image(self.rawValue)
