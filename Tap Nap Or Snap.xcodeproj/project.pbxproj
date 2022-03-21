@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452A27E708F90074EF2C /* ImagePickerView.swift */; };
+		3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */; };
 		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
 		354A89BF27E1C8EF00078008 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BE27E1C8EE00078008 /* Store.swift */; };
 		354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89C127E1CA9B00078008 /* LoginAPI.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3517452A27E708F90074EF2C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsAPI.swift; sourceTree = "<group>"; };
 		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		354A89BE27E1C8EE00078008 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		354A89C127E1CA9B00078008 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
@@ -70,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3517452927E708CD0074EF2C /* Image picker */ = {
+			isa = PBXGroup;
+			children = (
+				3517452A27E708F90074EF2C /* ImagePickerView.swift */,
+			);
+			path = "Image picker";
+			sourceTree = "<group>";
+		};
 		354A89BA27E1C78E00078008 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				354A89C127E1CA9B00078008 /* LoginAPI.swift */,
+				3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -151,6 +164,7 @@
 		35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */ = {
 			isa = PBXGroup;
 			children = (
+				3517452927E708CD0074EF2C /* Image picker */,
 				354A946C27E5BA5A00E966B2 /* add sub */,
 				354A945F27E315E100E966B2 /* TappedView */,
 				354A89CF27E1CD8700078008 /* Utils */,
@@ -276,6 +290,7 @@
 			files = (
 				354A946327E3161100E966B2 /* TappedView.swift in Sources */,
 				354A89BF27E1C8EF00078008 /* Store.swift in Sources */,
+				3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */,
 				35BEC7A927E1ABCE00E3A23D /* Color+Custom.swift in Sources */,
 				35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */,
 				354A89BC27E1C7B500078008 /* TabView.swift in Sources */,
@@ -290,6 +305,7 @@
 				354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */,
 				354A89CC27E1CC9700078008 /* String+Localizable.swift in Sources */,
 				354A946927E32A2B00E966B2 /* TabItemsViewModel.swift in Sources */,
+				3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

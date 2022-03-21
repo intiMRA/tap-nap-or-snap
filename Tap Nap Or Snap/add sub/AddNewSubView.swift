@@ -13,7 +13,7 @@ struct AddNewSubView: View {
     
     var body: some View {
         VStack {
-            TextField("Persons Name", text: $viewModel.name)
+            LoginTextField("Persons Name", text: $viewModel.name)
             Button(action: viewModel.presentSubsList) {
                 if let sub = viewModel.sub {
                     Text(sub.name)
@@ -24,6 +24,14 @@ struct AddNewSubView: View {
         }
         .padding(.horizontal, 16)
         .navigationTitle("New Tap")
+        .onReceive(viewModel.$dismissView) { value in
+            if value {
+                (UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.rootViewController?.dismiss(animated: true)
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
         .sheet(isPresented: $viewModel.showSubsList, onDismiss: { }) {
             subsList
                 .padding(.horizontal, 16)
@@ -34,12 +42,14 @@ struct AddNewSubView: View {
     @ViewBuilder
     var subsList: some View {
         VStack {
-            HStack {
-                Text("Armbar")
-                Spacer()
-                Button(action: {}) {
-                    ImageNames.trash.image()
-                        .frame(width: 24, height: 24)
+            ForEach(0 ..< viewModel.listOfSubs.count, id: \.self) { index in
+                HStack {
+                    Text(viewModel.listOfSubs[index])
+                    Spacer()
+                    Button(action: {}) {
+                        ImageNames.trash.image()
+                            .frame(width: 24, height: 24)
+                    }
                 }
             }
             Button(action: viewModel.presentCreateSubView) {
@@ -54,7 +64,7 @@ struct AddNewSubView: View {
         .sheet(isPresented: $viewModel.showCreateSubView, onDismiss: {}) {
             createNewSub
                 .padding(.horizontal, 16)
-                .padding(.top, 20)
+                .padding(.top, 200)
 
         }
     }
@@ -62,19 +72,45 @@ struct AddNewSubView: View {
     @ViewBuilder
     var createNewSub: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(action: {}) {
-                    Text("save")
+            
+//            Button(action: viewModel.presentCreateImagePickerView) {
+//                submissionImage
+//            }
+            
+            LoginTextField("Submission Name", text: $viewModel.newSubName)
+            
+            Button(action: {
+                Task {
+                    await viewModel.saveSubmission()
+                }
+            }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(ColorNames.bar.color())
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    
+                    Text("submit")
                         .foregroundColor(.cyan)
                 }
             }
             
-            ImageNames.add.image()
-                .frame(width: 100, height: 100)
-                .contentShape(RoundedRectangle(cornerRadius: 5))
-                .border(Color.black, width: 1)
             Spacer()
+        }
+//        .sheet(isPresented: $viewModel.showImagePicker) {
+//            ImagePicker(image: $viewModel.inputImage)
+//        }
+    }
+    
+    @ViewBuilder
+    var submissionImage: some View {
+        if let image = viewModel.inputImage {
+            Image(uiImage: image)
+                .resizable()
+                .frame(width: 100, height: 100)
+        } else {
+            Rectangle()
+                .fill(.gray)
+                .frame(width: 100, height: 100)
         }
     }
 }
