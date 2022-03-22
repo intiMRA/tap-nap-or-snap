@@ -82,7 +82,13 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func setChosenSub(_ submission: Submission) {
-        chosenSub = submission
-        self.showSubsList = false
+        DispatchQueue.main.async {
+            self.chosenSub = submission
+            self.showSubsList = false
+        }
+    }
+    
+    func saveWholeSub() async {
+        
     }
 }

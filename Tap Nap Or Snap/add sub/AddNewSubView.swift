@@ -21,6 +21,21 @@ struct AddNewSubView: View {
                     Text("Add sub")
                 }
             }
+            
+            Button(action: {
+                Task {
+                    await viewModel.saveWholeSub()
+                }
+            }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(ColorNames.bar.color())
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    
+                    Text("submit")
+                        .foregroundColor(.cyan)
+                }
+            }
         }
         .padding(.horizontal, 16)
         .navigationTitle("New Tap")
