@@ -15,7 +15,7 @@ struct AddNewSubView: View {
         VStack {
             LoginTextField("Persons Name", text: $viewModel.name)
             Button(action: viewModel.presentSubsList) {
-                if let sub = viewModel.sub {
+                if let sub = viewModel.chosenSub {
                     Text(sub.name)
                 } else {
                     Text("Add sub")
@@ -24,12 +24,17 @@ struct AddNewSubView: View {
         }
         .padding(.horizontal, 16)
         .navigationTitle("New Tap")
-        .onReceive(viewModel.$dismissView) { value in
-            if value {
+        .onReceive(viewModel.$dismissState) { value in
+            switch value {
+            case .screen:
                 (UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.rootViewController?.dismiss(animated: true)
                 DispatchQueue.main.async {
                     presentationMode.wrappedValue.dismiss()
                 }
+            case .sheets:
+                (UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.rootViewController?.dismiss(animated: true)
+            case .none:
+                break
             }
         }
         .sheet(isPresented: $viewModel.showSubsList, onDismiss: { }) {
@@ -44,8 +49,13 @@ struct AddNewSubView: View {
         VStack {
             ForEach(0 ..< viewModel.listOfSubs.count, id: \.self) { index in
                 HStack {
-                    Text(viewModel.listOfSubs[index])
-                    Spacer()
+                    Button(action: {
+                        viewModel.setChosenSub(viewModel.listOfSubs[index])
+                    }) {
+                        Text(viewModel.listOfSubs[index].name)
+                        Spacer()
+                    }
+                    
                     Button(action: {}) {
                         ImageNames.trash.image()
                             .frame(width: 24, height: 24)
@@ -81,7 +91,7 @@ struct AddNewSubView: View {
             
             Button(action: {
                 Task {
-                    await viewModel.saveSubmission()
+                    await viewModel.saveNewSubmission()
                 }
             }) {
                 ZStack {

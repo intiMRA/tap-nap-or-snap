@@ -10,7 +10,8 @@ import Combine
 import FirebaseFirestore
 
 protocol SubmissionsAPIProtocol {
-    
+    func addNewSubToList(submissionName: String) async throws
+    func getSubsList() -> AnyPublisher<[Submission], Error>
 }
 
 class SubmissionsAPI: SubmissionsAPIProtocol {
@@ -38,7 +39,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         try await self.fireStore.collection("users").document(uid).setData(["subMissionList": newList], merge: true)
     }
     
-    func getSubsList() -> AnyPublisher<[String], Error> {
+    func getSubsList() -> AnyPublisher<[Submission], Error> {
         Deferred {
             Future { promise in
                 Task {
@@ -58,7 +59,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
                             return
                         }
                
-                        promise(.success(list))
+                        promise(.success(list.map { Submission(name: $0) }))
                     } catch {
                         promise(.failure(NSError()))
                     }

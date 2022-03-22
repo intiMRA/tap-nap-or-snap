@@ -9,17 +9,21 @@ import Foundation
 import UIKit
 import Combine
 
+enum DismissState {
+    case sheets, screen
+}
+
 class AddNewSubViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var name = ""
     @Published var newSubName = ""
-    @Published var sub: Submission?
+    @Published var chosenSub: Submission?
     @Published var showSubsList = false
     @Published var showCreateSubView = false
     @Published var showImagePicker = false
-    @Published var dismissView = false
+    @Published var dismissState: DismissState?
     @Published var inputImage: UIImage?
-    @Published var listOfSubs = [String]()
+    @Published var listOfSubs = [Submission]()
     let api = SubmissionsAPI()
     
     init() {
@@ -53,21 +57,32 @@ class AddNewSubViewModel: ObservableObject {
         self.showImagePicker = true
     }
     
-    func dismissViews() {
-        self.showSubsList = false
-        self.showCreateSubView = false
-        self.showImagePicker = false
-        self.dismissView = true
+    func dismissSheets() {
+        self.dismissState = .sheets
     }
     
-    func saveSubmission() async {
+    func dismissScreen() {
+        self.dismissState = .screen
+    }
+    
+    func saveNewSubmission() async {
         do {
+            guard !newSubName.isEmpty else {
+                return
+            }
+            
             try await api.addNewSubToList(submissionName: newSubName)
+            setChosenSub(Submission(name: newSubName))
             DispatchQueue.main.async {
-                self.dismissViews()
+                self.dismissSheets()
             }
         } catch {
             print(error)
         }
+    }
+    
+    func setChosenSub(_ submission: Submission) {
+        chosenSub = submission
+        self.showSubsList = false
     }
 }
