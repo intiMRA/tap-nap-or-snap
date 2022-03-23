@@ -12,11 +12,11 @@ struct AddNewSubView: View {
     @StateObject var viewModel = AddNewSubViewModel()
     
     var body: some View {
-        VStack {
-            LoginTextField("Persons Name", text: $viewModel.name)
+        VStack(spacing: 20) {
+            LoginTextField("Who I tapped", text: $viewModel.name)
             Button(action: viewModel.presentSubsList) {
                 if let sub = viewModel.chosenSub {
-                    Text(sub.name)
+                    Text(sub)
                 } else {
                     Text("Add sub")
                 }
@@ -67,7 +67,7 @@ struct AddNewSubView: View {
                     Button(action: {
                         viewModel.setChosenSub(viewModel.listOfSubs[index])
                     }) {
-                        Text(viewModel.listOfSubs[index].name)
+                        Text(viewModel.listOfSubs[index])
                         Spacer()
                     }
                     

@@ -13,9 +13,12 @@ struct TappedView: View {
         ZStack(alignment: .topLeading) {
             NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView() }, label: { EmptyView() })
             ScrollView {
-                VStack {
-                    ForEach(0...100, id:\.self) { number in
-                        Text("number\(number)")
+                VStack(alignment: .leading) {
+                    ForEach(viewModel.peopleTapped) { sub in
+                        VStack(alignment: .leading) {
+                            Text("person who got tapped: \(sub.personName ?? "")")
+                            Text("submission: \(sub.subName)")
+                        }
                     }
                 }
             }

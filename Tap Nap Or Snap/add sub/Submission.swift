@@ -7,6 +7,13 @@
 
 import Foundation
 
-struct Submission {
-    let name : String
+struct Submission: Identifiable {
+    let id: String
+    let subName : String
+    let personName: String?
+    init(id: String, subName: String, personName: String? = nil) {
+        self.id = id
+        self.subName = subName
+        self.personName = personName
+    }
 }

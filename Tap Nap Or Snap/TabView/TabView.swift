@@ -53,16 +53,16 @@ struct TabItemsView: View {
                 }
                 .tag(ViewSelection.gotTapped)
             
-            Text("people")
-                .tabItem {
-                    VStack {
-                        ImageNames.user.image()
-                            .renderingMode(.template)
-                       
-                        Text("people")
-                    }
-                }
-                .tag(ViewSelection.people)
+//            Text("people")
+//                .tabItem {
+//                    VStack {
+//                        ImageNames.user.image()
+//                            .renderingMode(.template)
+//                       
+//                        Text("people")
+//                    }
+//                }
+//                .tag(ViewSelection.people)
         }
         .accentColor(ColorNames.text.color())
         }

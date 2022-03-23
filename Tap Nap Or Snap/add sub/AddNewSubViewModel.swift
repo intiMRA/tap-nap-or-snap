@@ -17,13 +17,13 @@ class AddNewSubViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var name = ""
     @Published var newSubName = ""
-    @Published var chosenSub: Submission?
+    @Published var chosenSub: String?
     @Published var showSubsList = false
     @Published var showCreateSubView = false
     @Published var showImagePicker = false
     @Published var dismissState: DismissState?
     @Published var inputImage: UIImage?
-    @Published var listOfSubs = [Submission]()
+    @Published var listOfSubs = [String]()
     let api = SubmissionsAPI()
     
     init() {
@@ -72,7 +72,7 @@ class AddNewSubViewModel: ObservableObject {
             }
             
             try await api.addNewSubToList(submissionName: newSubName)
-            setChosenSub(Submission(name: newSubName))
+            setChosenSub(newSubName)
             DispatchQueue.main.async {
                 self.dismissSheets()
             }
@@ -81,7 +81,7 @@ class AddNewSubViewModel: ObservableObject {
         }
     }
     
-    func setChosenSub(_ submission: Submission) {
+    func setChosenSub(_ submission: String) {
         DispatchQueue.main.async {
             self.chosenSub = submission
             self.showSubsList = false
@@ -89,6 +89,14 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func saveWholeSub() async {
-        
+        let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name)
+        do {
+            try await self.api.saveWholeSub(submission: sub)
+            DispatchQueue.main.async {
+                self.dismissState = .screen
+            }
+        } catch {
+            print(error)
+        }
     }
 }
