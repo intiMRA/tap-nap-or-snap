@@ -16,7 +16,7 @@ protocol SubmissionsAPIProtocol {
 
 class SubmissionsAPI: SubmissionsAPIProtocol {
     enum Keys: String {
-        case subMissionList, users, peopleTapped
+        case subMissionList, users, peopleTapped, numberOfTimes, id, subName, person
     }
     
     lazy var fireStore = Firestore.firestore()
@@ -64,8 +64,18 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         }
         
         let subsList = (snapshot[Keys.subMissionList.rawValue] as? [String]) ?? []
-        
-        peopleTapped.append(["id": submission.id, "subName": submission.subName, "person": submission.personName ?? ""])
+        if peopleTapped.first(where: { $0[Keys.person.rawValue] == submission.personName &&  $0[Keys.subName.rawValue] == submission.subName }) != nil {
+            peopleTapped = peopleTapped.map({ dict in
+                if dict[Keys.person.rawValue] == submission.personName, dict[Keys.subName.rawValue] == submission.subName {
+                    let numberOfTimes = Int(dict[Keys.numberOfTimes.rawValue] ?? "0")
+                    return [Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes + (numberOfTimes ?? 0))"]
+                } else {
+                    return dict
+                }
+            })
+        } else {
+            peopleTapped.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
+        }
         
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData([Keys.subMissionList.rawValue: subsList, Keys.peopleTapped.rawValue: peopleTapped], merge: true)
     }
@@ -121,7 +131,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
                             return
                         }
                
-                        promise(.success(list.map { Submission(id: $0["id"] ?? "", subName: $0["subName"] ?? "", personName: $0["person"]) }))
+                        promise(.success(list.map { Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1) }))
                     } catch {
                         promise(.failure(NSError()))
                     }

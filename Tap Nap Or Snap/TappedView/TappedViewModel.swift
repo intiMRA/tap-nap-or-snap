@@ -11,10 +11,18 @@ import Combine
 class TappedViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
+    @Published var refresh = false
     @Published var peopleTapped = [String: [Submission]]()
     let api = SubmissionsAPI()
     init() {
         loadPeopleTapped()
+        $refresh
+            .sink { refresh in
+                if refresh {
+                    self.loadPeopleTapped()
+                }
+            }
+            .store(in: &cancellable)
     }
     func showNewSub() {
         self.navigateToNewSub = true

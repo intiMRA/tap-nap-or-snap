@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewSubView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = AddNewSubViewModel()
+    @Binding var refresh: Bool
     
     var body: some View {
         VStack(spacing: 20) {
@@ -42,6 +43,7 @@ struct AddNewSubView: View {
         .onReceive(viewModel.$dismissState) { value in
             switch value {
             case .screen:
+                self.refresh = true
                 (UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.rootViewController?.dismiss(animated: true)
                 DispatchQueue.main.async {
                     presentationMode.wrappedValue.dismiss()
@@ -137,11 +139,5 @@ struct AddNewSubView: View {
                 .fill(.gray)
                 .frame(width: 100, height: 100)
         }
-    }
-}
-
-struct AddNewSub_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNewSubView()
     }
 }

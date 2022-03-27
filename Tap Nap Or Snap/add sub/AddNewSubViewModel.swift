@@ -89,7 +89,7 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func saveWholeSub() async {
-        let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name)
+        let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name, numberOfTimes: 1)
         do {
             try await self.api.saveWholeSub(submission: sub)
             DispatchQueue.main.async {

@@ -11,7 +11,7 @@ struct TappedView: View {
     @StateObject var viewModel = TappedViewModel()
     var body: some View {
         ZStack(alignment: .topLeading) {
-            NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView() }, label: { EmptyView() })
+            NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(refresh: $viewModel.refresh) }, label: { EmptyView() })
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(viewModel.peopleTapped.sorted(by: { $0.1.count > $1.1.count }), id: \.0) { list in
@@ -22,15 +22,24 @@ struct TappedView: View {
                                 .padding(.bottom, 16)
                                 
                             
-                            ForEach(list.1) { sub in
-                                VStack(alignment: .leading) {
-                                    Text("person who got tapped: \(sub.personName ?? "")")
+                            ForEach(list.1.sorted(by: { $0.numberOfTimes > $1.numberOfTimes })) { sub in
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("tapped: \(sub.personName ?? "")")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        
+                                        Text("by: \(sub.subName)")
+                                            .font(.body)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(sub.numberOfTimes) times")
                                         .font(.headline)
                                         .fontWeight(.bold)
-                                    
-                                    Text("submission: \(sub.subName)")
-                                        .font(.body)
                                 }
+                                .padding(.trailing, 32)
                             }
                             .padding(.bottom, 16)
                         }
