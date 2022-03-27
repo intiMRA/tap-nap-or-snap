@@ -8,23 +8,67 @@
 import SwiftUI
 
 struct TabItemsView: View {
+    @StateObject var viewModel = TabItemsViewModel()
+    
+    init() {
+        UITabBar.appearance().isTranslucent = false
+    }
+    
     var body: some View {
-        TabView {
-            Text("tapped")
-                .tabItem {
-                    Text("tapped")
+        ZStack {
+            ColorNames.bar.color()
+            
+            TabView(selection: $viewModel.selection) {
+            ZStack {
+                ColorNames.background.color()
+                VStack {
+
+                    TappedView()
+                            .padding(.top, 10)
+                    
+                    Rectangle()
+                        .fill(ColorNames.text.color())
+                        .frame(height: 1)
+                        .opacity(0.3)
                 }
+            }
+                .tabItem {
+                    VStack {
+                        ImageNames.medal.image()
+                            .renderingMode(.template)
+                        
+                        Text("tapped")
+                    }
+                }
+                .tag(ViewSelection.tapped)
             
             Text("got tapped")
                 .tabItem {
-                    Text("got tapped")
+                    VStack {
+                        ImageNames.dead.image()
+                            .renderingMode(.template)
+                       
+                        Text("got tapped")
+                    }
                 }
+                .tag(ViewSelection.gotTapped)
             
-            Text("people")
-                .tabItem {
-                    Text("people")
-                }
+//            Text("people")
+//                .tabItem {
+//                    VStack {
+//                        ImageNames.user.image()
+//                            .renderingMode(.template)
+//                       
+//                        Text("people")
+//                    }
+//                }
+//                .tag(ViewSelection.people)
         }
+        .accentColor(ColorNames.text.color())
+        }
+        .edgesIgnoringSafeArea(.all)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle(Text(viewModel.title))
     }
 }
 

@@ -13,7 +13,12 @@ class LogInViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     var cancellable = Set<AnyCancellable>()
-    let api = LogInAPI()
+    let api: LogInAPIProtocol
+    
+    init(api: LogInAPIProtocol = LogInAPI()) {
+        self.api = api
+        logInUserAlreadySignedIn()
+    }
     
     func login() {
         api.login(email: email, password: password)
@@ -27,8 +32,8 @@ class LogInViewModel: ObservableObject {
                     print(error)
                     break
                 }
-            } receiveValue: { _ in
-                self.navigateToTabView = true
+            } receiveValue: { [weak self] _ in
+                self?.navigateToTabView = true
             }
             .store(in: &cancellable)
     }
@@ -45,9 +50,26 @@ class LogInViewModel: ObservableObject {
                     print(error)
                     break
                 }
-            } receiveValue: { _ in
-                self.navigateToTabView = true
+            } receiveValue: { [weak self] _ in
+                self?.navigateToTabView = true
             }
+            .store(in: &cancellable)
+    }
+    
+    func logInUserAlreadySignedIn() {
+        api.logInUserAlreadySignedIn()
+            .receive(on: DispatchQueue.main)
+            .sink (receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case _:
+                    break
+                }
+                
+            }, receiveValue: { [weak self] model in
+                self?.navigateToTabView = true
+            })
             .store(in: &cancellable)
     }
 }
