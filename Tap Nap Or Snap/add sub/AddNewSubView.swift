@@ -9,17 +9,22 @@ import SwiftUI
 
 struct AddNewSubView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel = AddNewSubViewModel()
+    @StateObject var viewModel: AddNewSubViewModel
     @Binding var refresh: Bool
-    
+    init(viewModel: AddNewSubViewModel, refresh: Binding<Bool>) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._refresh = refresh
+    }
     var body: some View {
         VStack(spacing: 20) {
-            LoginTextField("Who I tapped", text: $viewModel.name)
+            LoginTextField("Persons Name", text: $viewModel.name)
             Button(action: viewModel.presentSubsList) {
                 if let sub = viewModel.chosenSub {
                     Text(sub)
+                        .foregroundColor(ColorNames.text.color())
                 } else {
                     Text("Add sub")
+                        .foregroundColor(ColorNames.text.color())
                 }
             }
             
@@ -55,9 +60,12 @@ struct AddNewSubView: View {
             }
         }
         .sheet(isPresented: $viewModel.showSubsList, onDismiss: { }) {
-            subsList
-                .padding(.horizontal, 16)
-                .padding(.top, 20)
+            ZStack {
+                ColorNames.background.color()
+                subsList
+                    .padding(.horizontal, 16)
+                    .padding(.top, 20)
+            }
         }
     }
     
@@ -70,6 +78,7 @@ struct AddNewSubView: View {
                         viewModel.setChosenSub(viewModel.listOfSubs[index])
                     }) {
                         Text(viewModel.listOfSubs[index])
+                            .foregroundColor(ColorNames.text.color())
                         Spacer()
                     }
                     
@@ -82,16 +91,22 @@ struct AddNewSubView: View {
             Button(action: viewModel.presentCreateSubView) {
                 VStack {
                     ImageNames.add.image()
+                        .renderingMode(.template)
+                        .foregroundColor(ColorNames.text.color())
                         .frame(width: 24, height: 24)
                     Text("add new")
+                        .foregroundColor(ColorNames.text.color())
                 }
             }
             Spacer()
         }
         .sheet(isPresented: $viewModel.showCreateSubView, onDismiss: {}) {
-            createNewSub
-                .padding(.horizontal, 16)
-                .padding(.top, 200)
+            ZStack {
+                ColorNames.background.color()
+                createNewSub
+                    .padding(.horizontal, 16)
+                    .padding(.top, 200)
+            }
 
         }
     }

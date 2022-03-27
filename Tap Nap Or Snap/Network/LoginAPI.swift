@@ -76,10 +76,7 @@ class LogInAPI: LogInAPIProtocol {
                         
                         let snapshot = try await self.fireStore.collection("users").document(result.user.uid).getDocument()
                         
-                        guard snapshot.exists == true,
-                              let snapshot = snapshot.data(),
-                              ((snapshot["email"] as? String) != nil)
-                        else {
+                        guard snapshot.exists == true else {
                             promise(.failure(LogInError.unkownError))
                             return
                         }
@@ -123,10 +120,8 @@ class LogInAPI: LogInAPIProtocol {
                         }
                         
                         let snapshot = try await self.fireStore.collection("users").document(currentUser.uid).getDocument()
-                        guard snapshot.exists == true,
-                              let snapshot = snapshot.data(),
-                              ((snapshot["email"] as? String) != nil)
-                        else {
+                        guard snapshot.exists == true else {
+                            try Auth.auth().signOut()
                             promise(.failure(LogInError.unkownError))
                             return
                         }

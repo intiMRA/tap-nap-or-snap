@@ -10,7 +10,7 @@ import Foundation
 protocol StoreState { }
 
 enum StateType: String {
-    case tapped, people, gotTapped, login
+    case wins, people, losses, login
 }
 
 actor Store {
@@ -23,11 +23,11 @@ actor Store {
     
     func changeState(newState: StoreState, stateType: StateType) {
         switch stateType {
-        case .tapped:
+        case .wins:
             break
         case .people:
             break
-        case .gotTapped:
+        case .losses:
             break
         case .login:
             guard let loginState = validateLoginState(state: newState) else {
