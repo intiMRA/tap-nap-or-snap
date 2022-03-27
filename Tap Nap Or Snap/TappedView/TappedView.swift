@@ -14,15 +14,30 @@ struct TappedView: View {
             NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView() }, label: { EmptyView() })
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(viewModel.peopleTapped) { sub in
+                    ForEach(viewModel.peopleTapped.sorted(by: { $0.1.count > $1.1.count }), id: \.0) { list in
                         VStack(alignment: .leading) {
-                            Text("person who got tapped: \(sub.personName ?? "")")
-                            Text("submission: \(sub.subName)")
+                            Text(list.0)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding(.bottom, 16)
+                                
+                            
+                            ForEach(list.1) { sub in
+                                VStack(alignment: .leading) {
+                                    Text("person who got tapped: \(sub.personName ?? "")")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                    
+                                    Text("submission: \(sub.subName)")
+                                        .font(.body)
+                                }
+                            }
+                            .padding(.bottom, 16)
                         }
                     }
                 }
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
                 Spacer()

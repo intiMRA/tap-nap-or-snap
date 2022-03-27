@@ -11,7 +11,7 @@ import Combine
 class TappedViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
-    @Published var peopleTapped = [Submission]()
+    @Published var peopleTapped = [String: [Submission]]()
     let api = SubmissionsAPI()
     init() {
         loadPeopleTapped()
@@ -30,7 +30,15 @@ class TappedViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { subs in
-                self.peopleTapped = subs
+                var dict = [String: [Submission]]()
+                subs.forEach { sub in
+                    if dict[sub.subName] != nil {
+                        dict[sub.subName]?.append(sub)
+                    } else {
+                        dict[sub.subName] = [sub]
+                    }
+                }
+                self.peopleTapped = dict
             }
             .store(in: &cancellable)
     }
