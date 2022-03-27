@@ -23,7 +23,7 @@ struct TabItemsView: View {
                 ColorNames.background.color()
                 VStack {
 
-                    TappedView()
+                    WinsView()
                             .padding(.top, 10)
                     
                     Rectangle()
@@ -40,9 +40,21 @@ struct TabItemsView: View {
                         Text("tapped")
                     }
                 }
-                .tag(ViewSelection.tapped)
+                .tag(ViewSelection.wins)
             
-            Text("got tapped")
+                ZStack {
+                    ColorNames.background.color()
+                    VStack {
+
+                        LossesView()
+                                .padding(.top, 10)
+                        
+                        Rectangle()
+                            .fill(ColorNames.text.color())
+                            .frame(height: 1)
+                            .opacity(0.3)
+                    }
+                }
                 .tabItem {
                     VStack {
                         ImageNames.dead.image()
@@ -51,7 +63,7 @@ struct TabItemsView: View {
                         Text("got tapped")
                     }
                 }
-                .tag(ViewSelection.gotTapped)
+                .tag(ViewSelection.losses)
             
 //            Text("people")
 //                .tabItem {

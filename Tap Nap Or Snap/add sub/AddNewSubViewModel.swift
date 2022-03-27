@@ -24,9 +24,11 @@ class AddNewSubViewModel: ObservableObject {
     @Published var dismissState: DismissState?
     @Published var inputImage: UIImage?
     @Published var listOfSubs = [String]()
+    let isWin: Bool
     let api = SubmissionsAPI()
     
-    init() {
+    init(isWin: Bool) {
+        self.isWin = isWin
         fetchSubsList()
     }
     
@@ -91,7 +93,12 @@ class AddNewSubViewModel: ObservableObject {
     func saveWholeSub() async {
         let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name, numberOfTimes: 1)
         do {
-            try await self.api.saveWholeSub(submission: sub)
+            if isWin {
+                try await self.api.saveWin(submission: sub)
+            } else {
+                try await self.api.saveLoss(submission: sub)
+            }
+            
             DispatchQueue.main.async {
                 self.dismissState = .screen
             }

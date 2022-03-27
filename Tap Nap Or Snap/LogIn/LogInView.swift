@@ -44,6 +44,7 @@ struct LogInView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
             }
+            .padding(.top, 20)
         }
         .ignoresSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -70,6 +71,7 @@ struct LoginTextField: View {
             TextField(name, text: $text)
                 .keyboardType(keyBoard)
                 .foregroundColor(ColorNames.text.color())
+                .accentColor(ColorNames.text.color())
                 .padding(10)
         }
         .frame(maxWidth: .infinity)

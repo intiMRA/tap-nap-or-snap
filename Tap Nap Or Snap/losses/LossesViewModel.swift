@@ -1,14 +1,14 @@
 //
-//  TappedViewModel.swift
+//  GotTappedViewModel.swift
 //  Tap Nap Or Snap
 //
-//  Created by Inti Albuquerque on 17/03/22.
+//  Created by Inti Albuquerque on 27/03/22.
 //
 
 import Foundation
 import Combine
 
-class TappedViewModel: ObservableObject {
+class LossesViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
     @Published var refresh = false
@@ -30,7 +30,7 @@ class TappedViewModel: ObservableObject {
     
     func loadPeopleTapped() {
         
-        api.getPeopleTapped()
+        api.getLosses()
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -50,4 +50,17 @@ class TappedViewModel: ObservableObject {
             }
             .store(in: &cancellable)
     }
+    
+    func createAddViewModel() -> AddNewSubViewModel {
+        AddNewSubViewModel(isWin: false)
+    }
+    
+    func getCountCopy(for sub: Submission) -> String {
+        if sub.numberOfTimes > 1 {
+            return "\(sub.numberOfTimes) times"
+        } else {
+            return "\(sub.numberOfTimes) time"
+        }
+    }
 }
+

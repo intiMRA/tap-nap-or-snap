@@ -12,7 +12,7 @@ extension String {
         NSLocalizedString(self, comment: "")
     }
     
-    func localizeWithFormat(arguments: CVarArg...) -> String{
+    func localizeWithFormat(arguments: CVarArg...) -> String {
         return String(format: self.localized, arguments: arguments)
     }
 }
