@@ -10,11 +10,11 @@ import SwiftUI
 struct AddNewSubView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: AddNewSubViewModel
-    @Binding var refresh: Bool
-    init(viewModel: AddNewSubViewModel, refresh: Binding<Bool>) {
+    
+    init(viewModel: AddNewSubViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._refresh = refresh
     }
+    
     var body: some View {
         VStack(spacing: 20) {
             LoginTextField("Persons Name", text: $viewModel.name)
@@ -45,10 +45,15 @@ struct AddNewSubView: View {
         }
         .padding(.horizontal, 16)
         .navigationTitle("New Tap")
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
+            guard output.name == NSNotification.reloadNotification else {
+                return
+            }
+            viewModel.reloadState()
+        })
         .onReceive(viewModel.$dismissState) { value in
             switch value {
             case .screen:
-                self.refresh = true
                 (UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene)?.windows.first?.rootViewController?.dismiss(animated: true)
                 DispatchQueue.main.async {
                     presentationMode.wrappedValue.dismiss()

@@ -29,22 +29,13 @@ class AddNewSubViewModel: ObservableObject {
     
     init(isWin: Bool) {
         self.isWin = isWin
-        fetchSubsList()
+        reloadState()
     }
     
-    func fetchSubsList() {
-        api.getSubsList()
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                default:
-                    break
-                }
-            } receiveValue: { list in
-                self.listOfSubs = list
-            }
-            .store(in: &cancellables)
-
+    func reloadState() {
+        dispatchOnMain {
+            self.listOfSubs = Store.shared.submissionsListState?.subs ?? []
+        }
     }
     
     func presentSubsList() {
@@ -104,6 +95,12 @@ class AddNewSubViewModel: ObservableObject {
             }
         } catch {
             print(error)
+        }
+    }
+    
+    private func dispatchOnMain(_ action: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            action()
         }
     }
 }

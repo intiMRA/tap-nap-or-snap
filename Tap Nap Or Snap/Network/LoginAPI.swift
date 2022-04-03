@@ -11,13 +11,9 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol LogInAPIProtocol: AnyObject {
-    func login(email: String, password: String) -> AnyPublisher<LogInModel, LogInError>
-    func logInUserAlreadySignedIn() -> AnyPublisher<LogInModel, LogInError>
-    func signUp(email: String, password: String) -> AnyPublisher<LogInModel, LogInError>
-}
-
-struct LogInModel: StoreState {
-    let id: String
+    func login(email: String, password: String) async throws
+    func logInUserAlreadySignedIn() async throws
+    func signUp(email: String, password: String) async throws
 }
 
 struct LogInError: Error {
@@ -57,128 +53,99 @@ class LogInAPI: LogInAPIProtocol {
         }
     }
     
-    func login(email: String, password: String) -> AnyPublisher<LogInModel, LogInError> {
-        Deferred {
-            Future { [weak self] promise in
-                let splitEmail = email.split(separator: "@")
-                guard let self = self,
-                      splitEmail[safe: 0] != nil,
-                      splitEmail[safe: 1] != nil
-                else {
-                    promise(.failure(LogInError.unkownError))
-                    return
-                }
-                
-                Task.init {
-                    
-                    do {
-                        let result = try await Auth.auth().signIn(withEmail: email, password: password)
-                        
-                        let snapshot = try await self.fireStore.collection("users").document(result.user.uid).getDocument()
-                        
-                        guard snapshot.exists == true else {
-                            promise(.failure(LogInError.unkownError))
-                            return
-                        }
-                        
-                        let model = LogInModel(id: result.user.uid)
-                        
-                        await Store.shared.changeState(newState: model, stateType: .login)
-                        promise(.success(model))
-                    } catch {
-                        if let errorCode = AuthErrorCode(rawValue: error._code) {
-                            promise(.failure(LogInAPI.logInError(from: errorCode)))
-                        } else {
-                            promise(.failure(LogInError.unkownError))
-                        }
-                    }
-                }
+    func login(email: String, password: String) async throws {
+        
+        let splitEmail = email.split(separator: "@")
+        guard
+            splitEmail[safe: 0] != nil,
+            splitEmail[safe: 1] != nil
+        else {
+            throw LogInError.unkownError
+        }
+        
+        do {
+            let result = try await Auth.auth().signIn(withEmail: email, password: password)
+            
+            let snapshot = try await self.fireStore.collection("users").document(result.user.uid).getDocument()
+            
+            guard snapshot.exists == true else {
+                throw LogInError.unkownError
+            }
+            
+            let model = LogInState(id: result.user.uid)
+            
+            await Store.shared.changeState(newState: model)
+        } catch {
+            if let errorCode = AuthErrorCode(rawValue: error._code) {
+                throw LogInAPI.logInError(from: errorCode)
+            } else {
+                throw LogInError.unkownError
             }
         }
-        .eraseToAnyPublisher()
+        
     }
     
     func reloadUser() async throws {
         try await Auth.auth().currentUser?.reload()
     }
     
-    func logInUserAlreadySignedIn() -> AnyPublisher<LogInModel, LogInError> {
-        Deferred {
-            Future { [weak self] promise in
-                guard let self = self, let currentUser = Auth.auth().currentUser else {
-                    promise(.failure(LogInError.unkownError))
-                    return
-                }
-                
-                Task.init {
-                    do {
-                        try await self.reloadUser()
-                        
-                        guard Store.shared.loginModel == nil else {
-                            promise(.success(LogInModel(id: currentUser.uid)))
-                            return
-                        }
-                        
-                        let snapshot = try await self.fireStore.collection("users").document(currentUser.uid).getDocument()
-                        guard snapshot.exists == true else {
-                            try Auth.auth().signOut()
-                            promise(.failure(LogInError.unkownError))
-                            return
-                        }
-                        
-                        let model = LogInModel(id: currentUser.uid)
-                        
-                        if Store.shared.loginModel == nil  {
-                            await Store.shared.changeState(newState: model, stateType: .login)
-                        }
-                        promise(.success(model))
-                        
-                    } catch {
-                        try Auth.auth().signOut()
-                        promise(.failure(LogInError.unkownError))
-                    }
-                }
+    func logInUserAlreadySignedIn() async throws {
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            throw LogInError.unkownError
+        }
+        
+        do {
+            try await self.reloadUser()
+            
+            guard Store.shared.loginState == nil else {
+                try Auth.auth().signOut()
+                throw LogInError.unkownError
             }
-        }.eraseToAnyPublisher()
+            
+            let snapshot = try await self.fireStore.collection("users").document(currentUser.uid).getDocument()
+            guard snapshot.exists == true else {
+                try Auth.auth().signOut()
+                throw LogInError.unkownError
+            }
+            
+            let model = LogInState(id: currentUser.uid)
+            
+            await Store.shared.changeState(newState: model)
+            
+        } catch {
+            try Auth.auth().signOut()
+            throw LogInError.unkownError
+        }
     }
     
-    func signUp(email: String, password: String) -> AnyPublisher<LogInModel, LogInError> {
-        Deferred {
-            Future {  [weak self] promise in
-                
-                let splitEmail = email.split(separator: "@")
-                guard let self = self,
-                      splitEmail[safe: 0] != nil,
-                      splitEmail[safe: 1] != nil
-                else {
-                    promise(.failure(LogInError.unkownError))
-                    return
-                }
-                
-                Task.init {
-                    
-                    do {
-                        let result = try await Auth.auth().createUser(withEmail: email, password: password)
-                        
-                        let dic: [String : Any] = [
-                            "email": email
-                        ]
-                        
-                        try await self.fireStore.collection("users").document(result.user.uid).setData(dic)
-                        let model = LogInModel(id: result.user.uid)
-                        await Store.shared.changeState(newState: model, stateType: .login)
-                        promise(.success(model))
-                    } catch {
-                        if let errorCode = AuthErrorCode(rawValue: error._code) {
-                            promise(.failure(LogInAPI.logInError(from: errorCode)))
-                        } else {
-                            promise(.failure(LogInError.unkownError))
-                        }
-                    }
-                }
+    func signUp(email: String, password: String) async throws {
+        
+        let splitEmail = email.split(separator: "@")
+        guard
+            splitEmail[safe: 0] != nil,
+            splitEmail[safe: 1] != nil
+        else {
+            throw LogInError.unkownError
+        }
+        
+        do {
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            
+            let dic: [String : Any] = [
+                "email": email
+            ]
+            
+            try await self.fireStore.collection("users").document(result.user.uid).setData(dic)
+            let model = LogInState(id: result.user.uid)
+            await Store.shared.changeState(newState: model)
+        } catch {
+            if let errorCode = AuthErrorCode(rawValue: error._code) {
+                throw LogInAPI.logInError(from: errorCode)
+            } else {
+                throw LogInError.unkownError
             }
         }
-        .eraseToAnyPublisher()
     }
 }
 

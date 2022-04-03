@@ -11,9 +11,7 @@ import FirebaseFirestore
 
 protocol SubmissionsAPIProtocol {
     func addNewSubToList(submissionName: String) async throws
-    func getSubsList() -> AnyPublisher<[String], Error>
-    func getWins() -> AnyPublisher<[Submission], Error>
-    func getLosses() -> AnyPublisher<[Submission], Error>
+    func getData() async throws
     func saveWin(submission: Submission) async throws
     func saveLoss(submission: Submission) async throws
 }
@@ -26,7 +24,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
     lazy var fireStore = Firestore.firestore()
     
     func addNewSubToList(submissionName: String) async throws {
-        guard let uid = Store.shared.loginModel?.id else {
+        guard let uid = Store.shared.loginState?.id else {
             return
         }
         let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
@@ -43,12 +41,12 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         }
         
         newList.append(submissionName)
-        
+        await Store.shared.changeState(newState: SubmissionsListState(subs: newList))
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(createUploadDict(snapshot: snapshot, subsList: newList), merge: false)
     }
     
     func saveWin(submission: Submission) async throws {
-        guard let uid = Store.shared.loginModel?.id else {
+        guard let uid = Store.shared.loginState?.id else {
             return
         }
         let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
@@ -78,11 +76,16 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
             winsDict.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
         }
         
+        var winStored = Store.shared.winsState?.subs ?? []
+        winStored.append(submission)
+        
+        await Store.shared.changeState(newState: WinsState(subs: winStored))
+        
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(createUploadDict(snapshot: snapshot, winsDict: winsDict), merge: false)
     }
     
     func saveLoss(submission: Submission) async throws {
-        guard let uid = Store.shared.loginModel?.id else {
+        guard let uid = Store.shared.loginState?.id else {
             return
         }
         let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
@@ -112,100 +115,43 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
             lossesDict.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
         }
         
+        var lossStored = Store.shared.lossesState?.subs ?? []
+        lossStored.append(submission)
+        
+        await Store.shared.changeState(newState: LossesState(subs: lossStored))
+        
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(createUploadDict(snapshot: snapshot, lossesDict: lossesDict), merge: false)
     }
     
-    func getSubsList() -> AnyPublisher<[String], Error> {
-        Deferred {
-            Future { promise in
-                Task {
-                    do {
-                        let fireStore = Firestore.firestore()
-                        guard let uid = Store.shared.loginModel?.id else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-                        let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
-                        
-                        guard snapshot.exists == true,
-                              let snapshot = snapshot.data(),
-                              let list = snapshot[Keys.subMissionList.rawValue] as? [String]
-                        else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-               
-                        promise(.success(list.map { $0 }))
-                    } catch {
-                        promise(.failure(NSError()))
-                    }
-                }
-                
+    func getData() async throws {
+        do {
+            let fireStore = Firestore.firestore()
+            guard let uid = Store.shared.loginState?.id else {
+                throw NSError()
             }
-        }
-        .eraseToAnyPublisher()
-    }
-    
-    func getWins() -> AnyPublisher<[Submission], Error> {
-        Deferred {
-            Future { promise in
-                Task {
-                    do {
-                        let fireStore = Firestore.firestore()
-                        guard let uid = Store.shared.loginModel?.id else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-                        let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
-                        
-                        guard snapshot.exists == true,
-                              let snapshot = snapshot.data(),
-                              let list = snapshot[Keys.wins.rawValue] as? [[String: String]]
-                        else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-               
-                        promise(.success(list.map { Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1) }))
-                    } catch {
-                        promise(.failure(NSError()))
-                    }
-                }
-                
+            let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
+            
+            guard snapshot.exists == true,
+                  let snapshot = snapshot.data(),
+                  let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String],
+                  let winsList = snapshot[Keys.wins.rawValue] as? [[String: String]],
+                  let lossesList = snapshot[Keys.losses.rawValue] as? [[String: String]]
+            else {
+                throw NSError()
             }
+            await Store.shared.changeState(newState: SubmissionsListState(subs: submissionList.map { $0 }))
+
+            await Store.shared.changeState(newState: WinsState(subs: winsList.map {
+                Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1)
+            }))
+            
+            await Store.shared.changeState(newState: LossesState(subs:lossesList.map {
+                Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1)
+            }))
+            
+        } catch {
+            throw NSError()
         }
-        .eraseToAnyPublisher()
-    }
-    
-    func getLosses() -> AnyPublisher<[Submission], Error> {
-        Deferred {
-            Future { promise in
-                Task {
-                    do {
-                        let fireStore = Firestore.firestore()
-                        guard let uid = Store.shared.loginModel?.id else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-                        let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
-                        
-                        guard snapshot.exists == true,
-                              let snapshot = snapshot.data(),
-                              let list = snapshot[Keys.losses.rawValue] as? [[String: String]]
-                        else {
-                            promise(.failure(NSError()))
-                            return
-                        }
-               
-                        promise(.success(list.map { Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1) }))
-                    } catch {
-                        promise(.failure(NSError()))
-                    }
-                }
-                
-            }
-        }
-        .eraseToAnyPublisher()
     }
     
     private func createUploadDict(snapshot: [String : Any], subsList: [String]? = nil, winsDict: [[String: String]]? = nil, lossesDict: [[String: String]]? = nil) -> [String: Any] {

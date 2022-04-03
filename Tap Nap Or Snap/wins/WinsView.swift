@@ -11,10 +11,10 @@ struct WinsView: View {
     @StateObject var viewModel = WinsViewModel()
     var body: some View {
         ZStack(alignment: .topLeading) {
-            NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel(), refresh: $viewModel.refresh) }, label: { EmptyView() })
+            NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel()) }, label: { EmptyView() })
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(viewModel.peopleTapped.sorted(by: { $0.1.count > $1.1.count }), id: \.0) { list in
+                    ForEach(viewModel.winsDict.sorted(by: { $0.1.count > $1.1.count }), id: \.0) { list in
                         VStack(alignment: .leading) {
                             Text(list.0)
                                 .font(.title)
@@ -54,6 +54,12 @@ struct WinsView: View {
                 }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
+            guard output.name == NSNotification.reloadNotification else {
+                return
+            }
+            viewModel.reloadState()
+        })
         .navigationBarBackButtonHidden(true)
         .padding(.horizontal, 16)
         
