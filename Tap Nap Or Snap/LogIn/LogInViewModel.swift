@@ -14,62 +14,57 @@ class LogInViewModel: ObservableObject {
     @Published var password = ""
     var cancellable = Set<AnyCancellable>()
     let api: LogInAPIProtocol
-    
-    init(api: LogInAPIProtocol = LogInAPI()) {
+    let subApi: SubmissionsAPIProtocol
+    init(api: LogInAPIProtocol = LogInAPI(), subApi: SubmissionsAPIProtocol = SubmissionsAPI()) {
         self.api = api
+        self.subApi = subApi
         logInUserAlreadySignedIn()
     }
     
     func login() {
-        api.login(email: email, password: password)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    //TODO: handle
-                    print(error)
-                    break
+        Task {
+            do {
+                try await api.login(email: email, password: password)
+                try await subApi.getData()
+                dispatchOnMain {
+                    self.navigateToTabView = true
                 }
-            } receiveValue: { [weak self] _ in
-                self?.navigateToTabView = true
+            } catch {
+                print(error)
             }
-            .store(in: &cancellable)
+        }
     }
     
     func signup() {
-        api.signUp(email: email, password: password)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    //TODO: handle
-                    print(error)
-                    break
+        Task {
+            do {
+                try await api.signUp(email: email, password: password)
+                dispatchOnMain {
+                    self.navigateToTabView = true
                 }
-            } receiveValue: { [weak self] _ in
-                self?.navigateToTabView = true
+            } catch {
+                print(error)
             }
-            .store(in: &cancellable)
+        }
     }
     
     func logInUserAlreadySignedIn() {
-        api.logInUserAlreadySignedIn()
-            .receive(on: DispatchQueue.main)
-            .sink (receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case _:
-                    break
+        Task {
+            do {
+                try await api.logInUserAlreadySignedIn()
+                try await subApi.getData()
+                dispatchOnMain {
+                    self.navigateToTabView = true
                 }
-                
-            }, receiveValue: { [weak self] model in
-                self?.navigateToTabView = true
-            })
-            .store(in: &cancellable)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func dispatchOnMain(_ action: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            action()
+        }
     }
 }

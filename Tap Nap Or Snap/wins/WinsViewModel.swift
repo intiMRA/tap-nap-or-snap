@@ -11,44 +11,34 @@ import Combine
 class WinsViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
-    @Published var refresh = false
-    @Published var peopleTapped = [String: [Submission]]()
+    @Published var winsDict = [String: [Submission]]()
     let api = SubmissionsAPI()
     init() {
-        loadPeopleTapped()
-        $refresh
-            .sink { refresh in
-                if refresh {
-                    self.loadPeopleTapped()
-                }
-            }
-            .store(in: &cancellable)
+        reloadState()
     }
     func showNewSub() {
         self.navigateToNewSub = true
     }
     
-    func loadPeopleTapped() {
-        
-        api.getWins()
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                default:
-                    break
+    func reloadState() {
+        dispatchOnMain {
+            let wins = Store.shared.winsState?.subs ?? []
+            var dict = [String: [Submission]]()
+            wins.forEach { win in
+                if dict[win.subName] != nil {
+                    dict[win.subName]?.append(win)
+                } else {
+                    dict[win.subName] = [win]
                 }
-            } receiveValue: { subs in
-                var dict = [String: [Submission]]()
-                subs.forEach { sub in
-                    if dict[sub.subName] != nil {
-                        dict[sub.subName]?.append(sub)
-                    } else {
-                        dict[sub.subName] = [sub]
-                    }
-                }
-                self.peopleTapped = dict
             }
-            .store(in: &cancellable)
+            self.winsDict = dict
+        }
+    }
+    
+    private func dispatchOnMain(_ action: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            action()
+        }
     }
     
     func createAddViewModel() -> AddNewSubViewModel {
