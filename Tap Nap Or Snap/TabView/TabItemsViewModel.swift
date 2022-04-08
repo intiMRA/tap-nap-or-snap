@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 enum ViewSelection: Int {
-    case wins, losses, people
+    case wins, losses, goals
 }
 
 class TabItemsViewModel: ObservableObject {
@@ -24,8 +24,8 @@ class TabItemsViewModel: ObservableObject {
                     self.title = "Wins"
                 case .losses:
                     self.title = "Losses"
-                case .people:
-                    self.title = "people"
+                case .goals:
+                    self.title = "Goals"
                 }
             }
             .store(in: &cancellables)

@@ -65,16 +65,28 @@ struct TabItemsView: View {
                 }
                 .tag(ViewSelection.losses)
             
-//            Text("people")
-//                .tabItem {
-//                    VStack {
-//                        ImageNames.user.image()
-//                            .renderingMode(.template)
-//                       
-//                        Text("people")
-//                    }
-//                }
-//                .tag(ViewSelection.people)
+                ZStack {
+                    ColorNames.background.color()
+                    VStack {
+
+                        GoalsView()
+                                .padding(.top, 10)
+                        
+                        Rectangle()
+                            .fill(ColorNames.text.color())
+                            .frame(height: 1)
+                            .opacity(0.3)
+                    }
+                }
+                .tabItem {
+                    VStack {
+                        ImageNames.user.image()
+                            .renderingMode(.template)
+                       
+                        Text("Goals")
+                    }
+                }
+                .tag(ViewSelection.goals)
         }
         .accentColor(ColorNames.text.color())
         }
