@@ -28,15 +28,31 @@ struct GoalsView: View {
             }
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
-                    VStack {
-                        Text(goal.title)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(ColorNames.text.color())
-                        
-                        Text(goal.description)
-                            .font(.body)
-                            .foregroundColor(ColorNames.text.color())
+                    Button(action: {}) {
+                        VStack(alignment: .leading) {
+                            Text(goal.title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .foregroundColor(ColorNames.text.color())
+                            
+                            HStack {
+                                Text("done date:")
+                                Spacer()
+                                Text(goal.timeStamp.asString())
+                            }
+                            
+                            HStack {
+                                Text("time remaining:")
+                                Spacer()
+                                Text("\(goal.timeStamp.day() - Date().day()) \(goal.timeStamp.day() - Date().day() > 1 ? "days" : "day")")
+                            }
+                            
+                            Text(goal.description)
+                                .multilineTextAlignment(.leading)
+                                .font(.body)
+                                .foregroundColor(ColorNames.text.color())
+                        }
+                        .padding(.horizontal, 10)
                     }
                     .frame(maxWidth: .infinity)
                     .overlay(
