@@ -12,7 +12,7 @@ protocol StoreState {
 }
 
 enum StateType: String {
-    case wins, people, losses, login, subs
+    case wins, goals, losses, login, subs
 }
 
 struct LogInState: StoreState {
@@ -35,6 +35,11 @@ struct LossesState: StoreState {
     let subs: [Submission]
 }
 
+struct GoalsState: StoreState {
+    var stateType: StateType = .goals
+    let goals: [GoalModel]
+}
+
 actor Store {
     private(set) static var shared = Store()
     
@@ -42,20 +47,23 @@ actor Store {
     let submissionsListState: SubmissionsListState?
     let winsState: WinsState?
     let lossesState: LossesState?
+    let goalsState: GoalsState?
     
     private init(
         loginState: LogInState? = nil,
         submissionsListState: SubmissionsListState? = nil,
         winsState: WinsState? = nil,
-        lossesState: LossesState? = nil
+        lossesState: LossesState? = nil,
+        goalsState: GoalsState? = nil
     ) {
         self.loginState = loginState
         self.submissionsListState = submissionsListState
         self.winsState = winsState
         self.lossesState = lossesState
+        self.goalsState = goalsState
     }
     
-    func changeState(newState: StoreState) {
+    func changeState(newState: any StoreState) {
         switch newState.stateType {
         case .wins:
             guard let wins = validateWinsState(state: newState) else {
@@ -67,7 +75,7 @@ actor Store {
                 winsState: wins,
                 lossesState: self.lossesState)
             
-        case .people:
+        case .goals:
             break
         case .losses:
             guard let losses = validateLossesState(state: newState) else {
@@ -106,28 +114,35 @@ actor Store {
         }
     }
     
-    private func validateLoginState(state: StoreState) -> LogInState? {
+    private func validateLoginState(state: any StoreState) -> LogInState? {
         guard let state = state as? LogInState, !state.id.isEmpty else {
             return nil
         }
         return state
     }
     
-    private func validateSubsListState(state: StoreState) -> SubmissionsListState? {
+    private func validateGoalsState(state: any StoreState) -> GoalsState? {
+        guard let state = state as? GoalsState else {
+            return nil
+        }
+        return state
+    }
+    
+    private func validateSubsListState(state: any StoreState) -> SubmissionsListState? {
         guard let state = state as? SubmissionsListState else {
             return nil
         }
         return state
     }
     
-    private func validateWinsState(state: StoreState) -> WinsState? {
+    private func validateWinsState(state: any StoreState) -> WinsState? {
         guard let state = state as? WinsState else {
             return nil
         }
         return state
     }
     
-    private func validateLossesState(state: StoreState) -> LossesState? {
+    private func validateLossesState(state: any StoreState) -> LossesState? {
         guard let state = state as? LossesState else {
             return nil
         }
