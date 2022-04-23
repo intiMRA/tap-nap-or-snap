@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 protocol SubmissionsAPIProtocol {
     func addNewSubToList(submissionName: String) async throws
-    func getData() async throws
     func saveWin(submission: Submission) async throws
     func saveLoss(submission: Submission) async throws
 }
@@ -151,36 +150,5 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         snapshot[Keys.losses.rawValue] = losses
         
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
-    }
-    
-    func getData() async throws {
-        do {
-            let fireStore = Firestore.firestore()
-            guard let uid = Store.shared.loginState?.id else {
-                throw NSError()
-            }
-            let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
-            
-            guard snapshot.exists == true,
-                  let snapshot = snapshot.data(),
-                  let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String],
-                  let winsList = snapshot[Keys.wins.rawValue] as? [[String: String]],
-                  let lossesList = snapshot[Keys.losses.rawValue] as? [[String: String]]
-            else {
-                throw NSError()
-            }
-            await Store.shared.changeState(newState: SubmissionsListState(subs: submissionList.map { $0 }))
-
-            await Store.shared.changeState(newState: WinsState(subs: winsList.map {
-                Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1)
-            }))
-            
-            await Store.shared.changeState(newState: LossesState(subs:lossesList.map {
-                Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1)
-            }))
-            
-        } catch {
-            throw NSError()
-        }
     }
 }

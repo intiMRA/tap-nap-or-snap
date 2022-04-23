@@ -35,7 +35,7 @@ class GoalsAPI: GoalsAPIProtocol {
                 uploadDict[Keys.timeStamp.rawValue] = goal.timeStamp.asString()
                 uploadDict[Keys.description.rawValue] = goal.description
                 snapshot[Keys.goals.rawValue] = [uploadDict]
-                try await fireStore.collection(Keys.users.rawValue).document(uid).setData(uploadDict)
+                try await fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
                 var storedGoals = Store.shared.goalsState?.goals ?? []
                 storedGoals.append(goal)
                 await Store.shared.changeState(newState: GoalsState(goals: storedGoals))
@@ -48,7 +48,7 @@ class GoalsAPI: GoalsAPIProtocol {
             uploadDict[Keys.description.rawValue] = goal.description
             goalsList.append(uploadDict)
             snapshot[Keys.goals.rawValue] = goalsList
-            try await fireStore.collection(Keys.users.rawValue).document(uid).setData(uploadDict)
+            try await fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
             var storedGoals = Store.shared.goalsState?.goals ?? []
             storedGoals.append(goal)
             await Store.shared.changeState(newState: GoalsState(goals: storedGoals))

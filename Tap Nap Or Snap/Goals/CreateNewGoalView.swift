@@ -26,8 +26,66 @@ struct CreateNewGoalView: View {
                     self.focusedField = .description
                     viewModel.isFocused(.description)
                 }
+                .padding(.bottom, 20)
+            VStack {
+                Text("Time to complete")
+                timeToCompleteView
+            }
+            Button(action: viewModel.saveGoal) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(ColorNames.bar.color())
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    
+                    Text("submit")
+                        .foregroundColor(.cyan)
+                }
+            }
         }
         .padding(.horizontal, 16)
+    }
+    
+    @ViewBuilder
+    var timeToCompleteView: some View {
+        HStack {
+            LoginTextField("days", keyBoard: .numberPad, text: $viewModel.numberOfDays)
+            
+            Spacer()
+            
+            Button(action: { viewModel.setTimeToComplete(timeToComplete: .weeks) }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill( viewModel.timeToComplete == .weeks ? ColorNames.bar.color() : Color.gray)
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    
+                    Text("Weeks")
+                        .foregroundColor(.cyan)
+                }
+            }
+            
+            Button(action: { viewModel.setTimeToComplete(timeToComplete: .months) }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(viewModel.timeToComplete == .months ? ColorNames.bar.color() : Color.gray)
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    
+                    Text("Months")
+                        .foregroundColor(.cyan)
+                }
+            }
+            
+            Button(action: { viewModel.setTimeToComplete(timeToComplete: .years) }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(viewModel.timeToComplete == .years ? ColorNames.bar.color() : Color.gray)
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    
+                    Text("Years")
+                        .foregroundColor(.cyan)
+                }
+            }
+            
+        }
     }
 }
 

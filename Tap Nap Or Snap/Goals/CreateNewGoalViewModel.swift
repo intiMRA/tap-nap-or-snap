@@ -12,11 +12,18 @@ enum FocusField: Hashable {
   case title, description
 }
 
+enum TimeToCompleteGoal: String {
+    case weeks, months, years
+}
+
 class CreateNewGoalViewModel: ObservableObject {
     @Published var title = ""
     @Published var placeholder = "placeholder"
     let originalPH = "placeholder"
+    let api = GoalsAPI()
     @Published var description = ""
+    @Published var numberOfDays = ""
+    @Published var timeToComplete: TimeToCompleteGoal = .weeks
     private var cancelable = Set<AnyCancellable>()
     init() {
         $placeholder
@@ -53,5 +60,29 @@ class CreateNewGoalViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func saveGoal() {
+        Task {
+            do {
+                var date = Date()
+                switch self.timeToComplete {
+                case .weeks:
+                    date = Calendar.current.date(byAdding: .weekOfYear, value: Int(numberOfDays)!, to: date)!
+                case .months:
+                    date = Calendar.current.date(byAdding: .month, value: Int(numberOfDays)!, to: date)!
+                case .years:
+                    date = Calendar.current.date(byAdding: .year, value: Int(numberOfDays)!, to: date)!
+                }
+                
+                try await api.addNewGoal(goal: GoalModel(title: self.title, description: self.description, timeStamp: date))
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func setTimeToComplete(timeToComplete: TimeToCompleteGoal) {
+        self.timeToComplete = timeToComplete
     }
 }

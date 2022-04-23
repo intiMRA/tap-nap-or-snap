@@ -14,10 +14,8 @@ class LogInViewModel: ObservableObject {
     @Published var password = ""
     var cancellable = Set<AnyCancellable>()
     let api: LogInAPIProtocol
-    let subApi: SubmissionsAPIProtocol
-    init(api: LogInAPIProtocol = LogInAPI(), subApi: SubmissionsAPIProtocol = SubmissionsAPI()) {
+    init(api: LogInAPIProtocol = LogInAPI()) {
         self.api = api
-        self.subApi = subApi
         logInUserAlreadySignedIn()
     }
     
@@ -25,7 +23,7 @@ class LogInViewModel: ObservableObject {
         Task {
             do {
                 try await api.login(email: email, password: password)
-                try await subApi.getData()
+                try await api.getData()
                 dispatchOnMain {
                     self.navigateToTabView = true
                 }
@@ -52,7 +50,7 @@ class LogInViewModel: ObservableObject {
         Task {
             do {
                 try await api.logInUserAlreadySignedIn()
-                try await subApi.getData()
+                try await api.getData()
                 dispatchOnMain {
                     self.navigateToTabView = true
                 }
