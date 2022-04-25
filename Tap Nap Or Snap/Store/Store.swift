@@ -76,7 +76,15 @@ actor Store {
                 lossesState: self.lossesState)
             
         case .goals:
-            break
+            guard let goals = validateGoalsState(state: newState) else {
+                return
+            }
+            Store.shared = Store(
+                loginState: self.loginState,
+                submissionsListState: self.submissionsListState,
+                winsState: self.winsState,
+                lossesState: self.lossesState,
+                goalsState: goals)
         case .losses:
             guard let losses = validateLossesState(state: newState) else {
                 return
@@ -108,7 +116,37 @@ actor Store {
                 lossesState: self.lossesState)
             
         }
-        
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(Notification(name: NSNotification.reloadNotification))
+        }
+    }
+    
+    func changeStates(states: [StoreState]) {
+        var loginState = self.loginState
+        var submissionsListState = self.submissionsListState
+        var winsState = self.winsState
+        var lossesState = self.lossesState
+        var goalsState = self.goalsState
+        states.forEach { state in
+            switch state.stateType {
+            case .wins:
+                winsState = validateWinsState(state: state) ?? winsState
+            case .goals:
+                goalsState = validateGoalsState(state: state) ?? goalsState
+            case .losses:
+                lossesState = validateLossesState(state: state) ?? lossesState
+            case .login:
+                loginState = validateLoginState(state: state) ?? loginState
+            case .subs:
+                submissionsListState = validateSubsListState(state: state) ?? submissionsListState
+            }
+        }
+        Store.shared = Store(
+            loginState: loginState,
+            submissionsListState: submissionsListState,
+            winsState: winsState,
+            lossesState: lossesState,
+            goalsState: goalsState)
         DispatchQueue.main.async {
             NotificationCenter.default.post(Notification(name: NSNotification.reloadNotification))
         }

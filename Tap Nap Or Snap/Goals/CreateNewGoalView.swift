@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateNewGoalView: View {
+    @Environment(\.presentationMode) var presentationMode
     @FocusState private var focusedField: FocusField?
     @StateObject var viewModel = CreateNewGoalViewModel()
     var body: some View {
@@ -43,6 +44,13 @@ struct CreateNewGoalView: View {
             }
         }
         .padding(.horizontal, 16)
+        .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
+            if shouldDismiss {
+                DispatchQueue.main.async {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
     }
     
     @ViewBuilder

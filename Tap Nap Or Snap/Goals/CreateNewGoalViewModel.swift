@@ -19,6 +19,7 @@ enum TimeToCompleteGoal: String {
 class CreateNewGoalViewModel: ObservableObject {
     @Published var title = ""
     @Published var placeholder = "placeholder"
+    @Published var shouldDismiss = false
     let originalPH = "placeholder"
     let api = GoalsAPI()
     @Published var description = ""
@@ -74,8 +75,10 @@ class CreateNewGoalViewModel: ObservableObject {
                 case .years:
                     date = Calendar.current.date(byAdding: .year, value: Int(numberOfDays)!, to: date)!
                 }
-                
                 try await api.addNewGoal(goal: GoalModel(title: self.title, description: self.description, timeStamp: date))
+                DispatchQueue.main.async {
+                    self.shouldDismiss = true
+                }
             } catch {
                 print(error)
             }

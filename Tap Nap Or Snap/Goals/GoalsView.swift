@@ -44,7 +44,7 @@ struct GoalsView: View {
                             HStack {
                                 Text("time remaining:")
                                 Spacer()
-                                Text("\(goal.timeStamp.day() - Date().day()) \(goal.timeStamp.day() - Date().day() > 1 ? "days" : "day")")
+                                Text(Date().difference(from: goal.timeStamp))
                             }
                             
                             Text(goal.description)
@@ -64,6 +64,12 @@ struct GoalsView: View {
             }
         }
         .padding(.horizontal, 16)
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
+            guard output.name == NSNotification.reloadNotification else {
+                return
+            }
+            viewModel.reloadState()
+        })
     }
 }
 
