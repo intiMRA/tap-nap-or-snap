@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452A27E708F90074EF2C /* ImagePickerView.swift */; };
 		3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */; };
-		3517453027F044B70074EF2C /* LossesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452F27F044B70074EF2C /* LossesView.swift */; };
-		3517453227F044D10074EF2C /* LossesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517453127F044D10074EF2C /* LossesViewModel.swift */; };
 		352D869A2802B005002B931C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D86992802B005002B931C /* DateFormatter.swift */; };
 		353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B3955280D6ED50067BC44 /* GoalsAPI.swift */; };
 		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
@@ -45,8 +43,6 @@
 /* Begin PBXFileReference section */
 		3517452A27E708F90074EF2C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsAPI.swift; sourceTree = "<group>"; };
-		3517452F27F044B70074EF2C /* LossesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LossesView.swift; sourceTree = "<group>"; };
-		3517453127F044D10074EF2C /* LossesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LossesViewModel.swift; sourceTree = "<group>"; };
 		352D86992802B005002B931C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		353B3955280D6ED50067BC44 /* GoalsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsAPI.swift; sourceTree = "<group>"; };
 		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
@@ -96,15 +92,6 @@
 				3517452A27E708F90074EF2C /* ImagePickerView.swift */,
 			);
 			path = "Image picker";
-			sourceTree = "<group>";
-		};
-		3517452E27F0446D0074EF2C /* losses */ = {
-			isa = PBXGroup;
-			children = (
-				3517452F27F044B70074EF2C /* LossesView.swift */,
-				3517453127F044D10074EF2C /* LossesViewModel.swift */,
-			);
-			path = losses;
 			sourceTree = "<group>";
 		};
 		354A89BA27E1C78E00078008 /* TabView */ = {
@@ -192,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				35CDD40727FFF74E00668A58 /* Goals */,
-				3517452E27F0446D0074EF2C /* losses */,
 				3517452927E708CD0074EF2C /* Image picker */,
 				354A946C27E5BA5A00E966B2 /* add sub */,
 				354A945F27E315E100E966B2 /* wins */,
@@ -328,7 +314,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3517453027F044B70074EF2C /* LossesView.swift in Sources */,
 				354A946327E3161100E966B2 /* WinsView.swift in Sources */,
 				352D869A2802B005002B931C /* DateFormatter.swift in Sources */,
 				354A89BF27E1C8EF00078008 /* Store.swift in Sources */,
@@ -346,7 +331,6 @@
 				353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */,
 				354A946B27E5BA4F00E966B2 /* AddNewSubView.swift in Sources */,
 				354A89D127E1D58000078008 /* Image+Custom.swift in Sources */,
-				3517453227F044D10074EF2C /* LossesViewModel.swift in Sources */,
 				35CDD40D27FFFC8000668A58 /* CreateNewGoalView.swift in Sources */,
 				354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */,
 				354A89CC27E1CC9700078008 /* String+Localizable.swift in Sources */,

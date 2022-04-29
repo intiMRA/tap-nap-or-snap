@@ -14,28 +14,25 @@ struct WinsView: View {
             NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel()) }, label: { EmptyView() })
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(viewModel.winsDict.sorted(by: { $0.1.count > $1.1.count }), id: \.0) { list in
-                        VStack(alignment: .leading) {
-                            Text(list.0)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.bottom, 16)
+                    ForEach(viewModel.submissionsDict.sorted(by: { $0.1.total > $1.1.total }), id: \.0) { sub in
+                        Button(action: viewModel.showSubmissionDetails) {
+                            VStack(alignment: .leading) {
+                                Text(sub.key)
+                                    .font(.headline)
+                                    .fontWeight(.bold)
                                 
-                            
-                            ForEach(list.1.sorted(by: { $0.numberOfTimes > $1.numberOfTimes })) { sub in
-                                VStack(alignment: .leading) {
-                                    Text("you tapped \(sub.personName ?? "") with \(sub.subName)")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                    
-                                    Text(viewModel.getCountCopy(for: sub))
-                                        .foregroundColor(.green)
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                }
+                                Text(viewModel.getWinsCountCopy(for: sub.key))
+                                    .foregroundColor(.green)
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                
+                                Text(viewModel.getLossesCountCopy(for: sub.key))
+                                    .foregroundColor(.red)
+                                    .font(.headline)
+                                    .fontWeight(.bold)
                             }
-                            .padding(.bottom, 16)
                         }
+                        .padding(.bottom, 16)
                     }
                 }
             }

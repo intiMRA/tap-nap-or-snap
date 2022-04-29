@@ -8,30 +8,35 @@
 import Foundation
 import Combine
 
+struct submissionCountsModel {
+    let wins: Int
+    let losses: Int
+    let total: Int
+}
+                                    
 class WinsViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
-    @Published var winsDict = [String: [Submission]]()
+    @Published var navigateToSubmissionDetails = false
+    @Published var submissionsDict = [String: submissionCountsModel]()
     let api = SubmissionsAPI()
     init() {
         reloadState()
     }
+    
     func showNewSub() {
         self.navigateToNewSub = true
     }
     
+    func showSubmissionDetails() {
+        self.navigateToSubmissionDetails = true
+    }
+    
     func reloadState() {
         dispatchOnMain {
-            let wins = Store.shared.winsState?.subs ?? []
-            var dict = [String: [Submission]]()
-            wins.forEach { win in
-                if dict[win.subName] != nil {
-                    dict[win.subName]?.append(win)
-                } else {
-                    dict[win.subName] = [win]
-                }
-            }
-            self.winsDict = dict
+            Store.shared.submissionsState?.subs.forEach({ key, value in
+                self.submissionsDict[key] = submissionCountsModel(wins: value.wins.count, losses: value.losses.count, total: value.losses.count + value.wins.count)
+            })
         }
     }
     
@@ -42,14 +47,22 @@ class WinsViewModel: ObservableObject {
     }
     
     func createAddViewModel() -> AddNewSubViewModel {
-        AddNewSubViewModel(isWin: true)
+        AddNewSubViewModel()
     }
     
-    func getCountCopy(for sub: Submission) -> String {
-        if sub.numberOfTimes > 1 {
-            return "\(sub.numberOfTimes) times"
+    func getWinsCountCopy(for subKey: String) -> String {
+        if submissionsDict[subKey]?.wins ?? 0 == 1 {
+            return "1 time"
         } else {
-            return "\(sub.numberOfTimes) time"
+            return "\(submissionsDict[subKey]?.wins  ?? 0) times"
+        }
+    }
+    
+    func getLossesCountCopy(for subKey: String) -> String {
+        if submissionsDict[subKey]?.losses ?? 0 == 1 {
+            return "1 time"
+        } else {
+            return "\(submissionsDict[subKey]?.losses ?? 0) times"
         }
     }
 }
