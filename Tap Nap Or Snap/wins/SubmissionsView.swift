@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct WinsView: View {
-    @StateObject var viewModel = WinsViewModel()
+struct SubmissionsView: View {
+    @StateObject var viewModel = SubmissionsViewModel()
     var body: some View {
         ZStack(alignment: .topLeading) {
             NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel()) }, label: { EmptyView() })

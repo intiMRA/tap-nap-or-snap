@@ -21,8 +21,8 @@
 		354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89CD27E1CD7900078008 /* Collection+Safe.swift */; };
 		354A89D127E1D58000078008 /* Image+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89D027E1D58000078008 /* Image+Custom.swift */; };
 		354A89D327E1D6E300078008 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89D227E1D6E200078008 /* LogInViewModel.swift */; };
-		354A946127E315FD00E966B2 /* WinsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946027E315FD00E966B2 /* WinsViewModel.swift */; };
-		354A946327E3161100E966B2 /* WinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946227E3161100E966B2 /* WinsView.swift */; };
+		354A946127E315FD00E966B2 /* SubmissionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946027E315FD00E966B2 /* SubmissionsViewModel.swift */; };
+		354A946327E3161100E966B2 /* SubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946227E3161100E966B2 /* SubmissionsView.swift */; };
 		354A946927E32A2B00E966B2 /* TabItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946827E32A2B00E966B2 /* TabItemsViewModel.swift */; };
 		354A946B27E5BA4F00E966B2 /* AddNewSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946A27E5BA4F00E966B2 /* AddNewSubView.swift */; };
 		354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */; };
@@ -53,8 +53,8 @@
 		354A89CD27E1CD7900078008 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		354A89D027E1D58000078008 /* Image+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Custom.swift"; sourceTree = "<group>"; };
 		354A89D227E1D6E200078008 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
-		354A946027E315FD00E966B2 /* WinsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsViewModel.swift; sourceTree = "<group>"; };
-		354A946227E3161100E966B2 /* WinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsView.swift; sourceTree = "<group>"; };
+		354A946027E315FD00E966B2 /* SubmissionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsViewModel.swift; sourceTree = "<group>"; };
+		354A946227E3161100E966B2 /* SubmissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsView.swift; sourceTree = "<group>"; };
 		354A946827E32A2B00E966B2 /* TabItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemsViewModel.swift; sourceTree = "<group>"; };
 		354A946A27E5BA4F00E966B2 /* AddNewSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubView.swift; sourceTree = "<group>"; };
 		354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubViewModel.swift; sourceTree = "<group>"; };
@@ -142,8 +142,8 @@
 		354A945F27E315E100E966B2 /* wins */ = {
 			isa = PBXGroup;
 			children = (
-				354A946027E315FD00E966B2 /* WinsViewModel.swift */,
-				354A946227E3161100E966B2 /* WinsView.swift */,
+				354A946027E315FD00E966B2 /* SubmissionsViewModel.swift */,
+				354A946227E3161100E966B2 /* SubmissionsView.swift */,
 			);
 			path = wins;
 			sourceTree = "<group>";
@@ -314,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				354A946327E3161100E966B2 /* WinsView.swift in Sources */,
+				354A946327E3161100E966B2 /* SubmissionsView.swift in Sources */,
 				352D869A2802B005002B931C /* DateFormatter.swift in Sources */,
 				354A89BF27E1C8EF00078008 /* Store.swift in Sources */,
 				3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */,
@@ -323,7 +323,7 @@
 				35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */,
 				354A89BC27E1C7B500078008 /* TabView.swift in Sources */,
 				354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */,
-				354A946127E315FD00E966B2 /* WinsViewModel.swift in Sources */,
+				354A946127E315FD00E966B2 /* SubmissionsViewModel.swift in Sources */,
 				354A947027E5BCFC00E966B2 /* Submission.swift in Sources */,
 				354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */,
 				35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */,

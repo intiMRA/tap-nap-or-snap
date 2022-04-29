@@ -22,7 +22,7 @@ struct TabItemsView: View {
                 ColorNames.background.color()
                 VStack {
 
-                    WinsView()
+                    SubmissionsView()
                             .padding(.top, 10)
                     
                     Rectangle()

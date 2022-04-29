@@ -14,7 +14,7 @@ struct submissionCountsModel {
     let total: Int
 }
                                     
-class WinsViewModel: ObservableObject {
+class SubmissionsViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
     @Published var navigateToSubmissionDetails = false
