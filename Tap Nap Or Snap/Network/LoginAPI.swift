@@ -14,6 +14,7 @@ protocol LogInAPIProtocol: AnyObject {
     func login(email: String, password: String) async throws
     func logInUserAlreadySignedIn() async throws
     func signUp(email: String, password: String) async throws
+    func getData() async throws
 }
 
 struct LogInError: Error {
@@ -145,6 +146,62 @@ class LogInAPI: LogInAPIProtocol {
             } else {
                 throw LogInError.unkownError
             }
+        }
+    }
+    
+    func getData() async throws {
+        do {
+            let fireStore = Firestore.firestore()
+            guard let uid = Store.shared.loginState?.id else {
+                throw NSError()
+            }
+            let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
+            
+            guard snapshot.exists == true,
+                  let snapshot = snapshot.data()
+            else {
+                throw NSError()
+            }
+            let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String] ?? []
+            let winsList = snapshot[Keys.wins.rawValue] as? [[String: String]] ?? []
+            let lossesList = snapshot[Keys.losses.rawValue] as? [[String: String]] ?? []
+            let goalsList = snapshot[Keys.goals.rawValue] as? [[String: String]] ?? []
+            
+            let subsState = SubmissionsListState(subs: submissionList.map { $0 })
+            let winsState = WinsState(subs: winsList.map {
+                Submission(
+                    id: $0[Keys.id.rawValue] ?? "",
+                    subName: $0[Keys.subName.rawValue] ?? "",
+                    personName: $0[Keys.person.rawValue],
+                    numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1
+                )
+            })
+            let lossesState = LossesState(subs:lossesList.map {
+                Submission(
+                    id: $0[Keys.id.rawValue] ?? "",
+                    subName: $0[Keys.subName.rawValue] ?? "",
+                    personName: $0[Keys.person.rawValue],
+                    numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1
+                )
+            })
+            
+            let goalsState =  GoalsState(goals: goalsList.map {
+                GoalModel(
+                    title: $0[Keys.title.rawValue] ?? "",
+                    description: $0[Keys.description.rawValue] ?? "",
+                    timeStamp: $0[Keys.timeStamp.rawValue]?.asDate() ?? Date()
+                )
+            })
+            
+            await Store.shared.changeStates(states: [
+                subsState,
+                winsState,
+                lossesState,
+                goalsState
+            ])
+            
+        } catch {
+            throw NSError()
         }
     }
 }

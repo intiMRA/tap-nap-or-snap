@@ -11,6 +11,8 @@
 		3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */; };
 		3517453027F044B70074EF2C /* LossesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452F27F044B70074EF2C /* LossesView.swift */; };
 		3517453227F044D10074EF2C /* LossesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517453127F044D10074EF2C /* LossesViewModel.swift */; };
+		352D869A2802B005002B931C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D86992802B005002B931C /* DateFormatter.swift */; };
+		353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B3955280D6ED50067BC44 /* GoalsAPI.swift */; };
 		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
 		354A89BF27E1C8EF00078008 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BE27E1C8EE00078008 /* Store.swift */; };
 		354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89C127E1CA9B00078008 /* LoginAPI.swift */; };
@@ -34,6 +36,10 @@
 		35BEC7A727E1A94100E3A23D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35BEC7A627E1A94100E3A23D /* Colors.xcassets */; };
 		35BEC7A927E1ABCE00E3A23D /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC7A827E1ABCE00E3A23D /* Color+Custom.swift */; };
 		35BEC7B127E1C3D700E3A23D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35BEC7B027E1C3D700E3A23D /* GoogleService-Info.plist */; };
+		35CDD40927FFF76400668A58 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD40827FFF76400668A58 /* GoalsView.swift */; };
+		35CDD40B27FFF77D00668A58 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD40A27FFF77D00668A58 /* GoalsViewModel.swift */; };
+		35CDD40D27FFFC8000668A58 /* CreateNewGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD40C27FFFC7F00668A58 /* CreateNewGoalView.swift */; };
+		35CDD40F27FFFC9A00668A58 /* CreateNewGoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD40E27FFFC9A00668A58 /* CreateNewGoalViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +47,8 @@
 		3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsAPI.swift; sourceTree = "<group>"; };
 		3517452F27F044B70074EF2C /* LossesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LossesView.swift; sourceTree = "<group>"; };
 		3517453127F044D10074EF2C /* LossesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LossesViewModel.swift; sourceTree = "<group>"; };
+		352D86992802B005002B931C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		353B3955280D6ED50067BC44 /* GoalsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsAPI.swift; sourceTree = "<group>"; };
 		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		354A89BE27E1C8EE00078008 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		354A89C127E1CA9B00078008 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
@@ -63,6 +71,10 @@
 		35BEC7A627E1A94100E3A23D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		35BEC7A827E1ABCE00E3A23D /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
 		35BEC7B027E1C3D700E3A23D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		35CDD40827FFF76400668A58 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+		35CDD40A27FFF77D00668A58 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
+		35CDD40C27FFFC7F00668A58 /* CreateNewGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGoalView.swift; sourceTree = "<group>"; };
+		35CDD40E27FFFC9A00668A58 /* CreateNewGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGoalViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +129,7 @@
 			children = (
 				354A89C127E1CA9B00078008 /* LoginAPI.swift */,
 				3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */,
+				353B3955280D6ED50067BC44 /* GoalsAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -134,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				354A89CD27E1CD7900078008 /* Collection+Safe.swift */,
+				352D86992802B005002B931C /* DateFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -177,6 +191,7 @@
 		35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */ = {
 			isa = PBXGroup;
 			children = (
+				35CDD40727FFF74E00668A58 /* Goals */,
 				3517452E27F0446D0074EF2C /* losses */,
 				3517452927E708CD0074EF2C /* Image picker */,
 				354A946C27E5BA5A00E966B2 /* add sub */,
@@ -220,6 +235,17 @@
 				354A89D027E1D58000078008 /* Image+Custom.swift */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		35CDD40727FFF74E00668A58 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				35CDD40827FFF76400668A58 /* GoalsView.swift */,
+				35CDD40A27FFF77D00668A58 /* GoalsViewModel.swift */,
+				35CDD40C27FFFC7F00668A58 /* CreateNewGoalView.swift */,
+				35CDD40E27FFFC9A00668A58 /* CreateNewGoalViewModel.swift */,
+			);
+			path = Goals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +330,10 @@
 			files = (
 				3517453027F044B70074EF2C /* LossesView.swift in Sources */,
 				354A946327E3161100E966B2 /* WinsView.swift in Sources */,
+				352D869A2802B005002B931C /* DateFormatter.swift in Sources */,
 				354A89BF27E1C8EF00078008 /* Store.swift in Sources */,
 				3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */,
+				35CDD40F27FFFC9A00668A58 /* CreateNewGoalViewModel.swift in Sources */,
 				35BEC7A927E1ABCE00E3A23D /* Color+Custom.swift in Sources */,
 				35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */,
 				354A89BC27E1C7B500078008 /* TabView.swift in Sources */,
@@ -315,11 +343,15 @@
 				354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */,
 				35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */,
 				354A89D327E1D6E300078008 /* LogInViewModel.swift in Sources */,
+				353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */,
 				354A946B27E5BA4F00E966B2 /* AddNewSubView.swift in Sources */,
 				354A89D127E1D58000078008 /* Image+Custom.swift in Sources */,
 				3517453227F044D10074EF2C /* LossesViewModel.swift in Sources */,
+				35CDD40D27FFFC8000668A58 /* CreateNewGoalView.swift in Sources */,
 				354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */,
 				354A89CC27E1CC9700078008 /* String+Localizable.swift in Sources */,
+				35CDD40927FFF76400668A58 /* GoalsView.swift in Sources */,
+				35CDD40B27FFF77D00668A58 /* GoalsViewModel.swift in Sources */,
 				354A946927E32A2B00E966B2 /* TabItemsViewModel.swift in Sources */,
 				3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */,
 			);

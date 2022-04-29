@@ -6,20 +6,30 @@
 //
 
 import Foundation
-import Combine
 import FirebaseFirestore
 
 protocol SubmissionsAPIProtocol {
     func addNewSubToList(submissionName: String) async throws
-    func getData() async throws
     func saveWin(submission: Submission) async throws
     func saveLoss(submission: Submission) async throws
 }
 
+enum Keys: String {
+    case subMissionList,
+         users,
+         wins,
+         losses,
+         numberOfTimes,
+         id,
+         subName,
+         person,
+         goals,
+         title,
+         timeStamp,
+         description
+}
+
 class SubmissionsAPI: SubmissionsAPIProtocol {
-    enum Keys: String {
-        case subMissionList, users, wins, losses, numberOfTimes, id, subName, person
-    }
     
     lazy var fireStore = Firestore.firestore()
     
@@ -30,19 +40,21 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
         
         guard snapshot.exists == true,
-              let snapshot = snapshot.data()
+              var snapshot = snapshot.data()
         else {
             return
         }
-        var newList = [String]()
         
-        if let list = snapshot[Keys.subMissionList.rawValue] as? [String] {
-            newList.append(contentsOf: list)
+        guard var list = snapshot[Keys.subMissionList.rawValue] as? [String] else {
+            snapshot[Keys.subMissionList.rawValue] = [submissionName]
+            await Store.shared.changeState(newState: SubmissionsListState(subs: [submissionName]))
+            try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
+            return
         }
         
-        newList.append(submissionName)
-        await Store.shared.changeState(newState: SubmissionsListState(subs: newList))
-        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(createUploadDict(snapshot: snapshot, subsList: newList), merge: false)
+        list.append(submissionName)
+        await Store.shared.changeState(newState: SubmissionsListState(subs: list))
+        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
     }
     
     func saveWin(submission: Submission) async throws {
@@ -52,19 +64,27 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
         
         guard snapshot.exists == true,
-              let snapshot = snapshot.data()
+              var snapshot = snapshot.data()
         else {
             return
         }
         
-        var winsDict = [[String: String]]()
-        
-        if let subsList = snapshot[Keys.wins.rawValue] as? [[String: String]] {
-            winsDict.append(contentsOf: subsList)
+        guard var wins = snapshot[Keys.wins.rawValue] as? [[String: String]] else {
+            let list = [[Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"]]
+            snapshot[Keys.wins.rawValue] = list
+            
+            var winStored = Store.shared.winsState?.subs ?? []
+            winStored.append(submission)
+            
+            await Store.shared.changeState(newState: WinsState(subs: winStored))
+            
+            try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
+            
+            return
         }
         
-        if winsDict.first(where: { $0[Keys.person.rawValue] == submission.personName &&  $0[Keys.subName.rawValue] == submission.subName }) != nil {
-            winsDict = winsDict.map({ dict in
+        if wins.first(where: { $0[Keys.person.rawValue] == submission.personName &&  $0[Keys.subName.rawValue] == submission.subName }) != nil {
+            wins = wins.map({ dict in
                 if dict[Keys.person.rawValue] == submission.personName, dict[Keys.subName.rawValue] == submission.subName {
                     let numberOfTimes = Int(dict[Keys.numberOfTimes.rawValue] ?? "0")
                     return [Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes + (numberOfTimes ?? 0))"]
@@ -73,15 +93,16 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
                 }
             })
         } else {
-            winsDict.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
+            wins.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
         }
         
         var winStored = Store.shared.winsState?.subs ?? []
         winStored.append(submission)
         
         await Store.shared.changeState(newState: WinsState(subs: winStored))
+        snapshot[Keys.wins.rawValue] = wins
         
-        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(createUploadDict(snapshot: snapshot, winsDict: winsDict), merge: false)
+        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
     }
     
     func saveLoss(submission: Submission) async throws {
@@ -91,19 +112,26 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
         
         guard snapshot.exists == true,
-              let snapshot = snapshot.data()
+              var snapshot = snapshot.data()
         else {
             return
         }
         
-        var lossesDict = [[String: String]]()
-        
-        if let subsList = snapshot[Keys.losses.rawValue] as? [[String: String]] {
-            lossesDict.append(contentsOf: subsList)
+        guard var losses = snapshot[Keys.losses.rawValue] as? [[String: String]] else {
+            let list = [[Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"]]
+            snapshot[Keys.losses.rawValue] = list
+            
+            var lossesStored = Store.shared.lossesState?.subs ?? []
+            lossesStored.append(submission)
+            
+            await Store.shared.changeState(newState: LossesState(subs: lossesStored))
+            
+            try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
+            return
         }
         
-        if lossesDict.first(where: { $0[Keys.person.rawValue] == submission.personName &&  $0[Keys.subName.rawValue] == submission.subName }) != nil {
-            lossesDict = lossesDict.map({ dict in
+        if losses.first(where: { $0[Keys.person.rawValue] == submission.personName &&  $0[Keys.subName.rawValue] == submission.subName }) != nil {
+            losses = losses.map({ dict in
                 if dict[Keys.person.rawValue] == submission.personName, dict[Keys.subName.rawValue] == submission.subName {
                     let numberOfTimes = Int(dict[Keys.numberOfTimes.rawValue] ?? "0")
                     return [Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes + (numberOfTimes ?? 0))"]
@@ -112,54 +140,15 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
                 }
             })
         } else {
-            lossesDict.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
+            losses.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.numberOfTimes.rawValue: "\(submission.numberOfTimes)"])
         }
         
-        var lossStored = Store.shared.lossesState?.subs ?? []
-        lossStored.append(submission)
+        var lossesStored = Store.shared.lossesState?.subs ?? []
+        lossesStored.append(submission)
         
-        await Store.shared.changeState(newState: LossesState(subs: lossStored))
+        await Store.shared.changeState(newState: LossesState(subs: lossesStored))
+        snapshot[Keys.losses.rawValue] = losses
         
-        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(createUploadDict(snapshot: snapshot, lossesDict: lossesDict), merge: false)
+        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
     }
-    
-    func getData() async throws {
-        do {
-            let fireStore = Firestore.firestore()
-            guard let uid = Store.shared.loginState?.id else {
-                throw NSError()
-            }
-            let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
-            
-            guard snapshot.exists == true,
-                  let snapshot = snapshot.data(),
-                  let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String],
-                  let winsList = snapshot[Keys.wins.rawValue] as? [[String: String]],
-                  let lossesList = snapshot[Keys.losses.rawValue] as? [[String: String]]
-            else {
-                throw NSError()
-            }
-            await Store.shared.changeState(newState: SubmissionsListState(subs: submissionList.map { $0 }))
-
-            await Store.shared.changeState(newState: WinsState(subs: winsList.map {
-                Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1)
-            }))
-            
-            await Store.shared.changeState(newState: LossesState(subs:lossesList.map {
-                Submission(id: $0[Keys.id.rawValue] ?? "", subName: $0[Keys.subName.rawValue] ?? "", personName: $0[Keys.person.rawValue], numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1)
-            }))
-            
-        } catch {
-            throw NSError()
-        }
-    }
-    
-    private func createUploadDict(snapshot: [String : Any], subsList: [String]? = nil, winsDict: [[String: String]]? = nil, lossesDict: [[String: String]]? = nil) -> [String: Any] {
-        let oldSubsList = snapshot[Keys.subMissionList.rawValue] as? [String]
-        let oldWinsDict = snapshot[Keys.wins.rawValue] as? [[String: String]]
-        let oldLossesDict = snapshot[Keys.losses.rawValue] as? [[String: String]]
-        
-        return [Keys.subMissionList.rawValue: (subsList ?? oldSubsList) ?? [String](), Keys.wins.rawValue: (winsDict ?? oldWinsDict) ?? [[String: String]](), Keys.losses.rawValue: (lossesDict ?? oldLossesDict) ?? [[String: String]]()]
-    }
-    
 }
