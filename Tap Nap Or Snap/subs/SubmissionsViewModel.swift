@@ -19,6 +19,8 @@ class SubmissionsViewModel: ObservableObject {
     @Published var navigateToNewSub = false
     @Published var navigateToSubmissionDetails = false
     @Published var submissionsDict = [String: submissionCountsModel]()
+    var currentSubName = ""
+    
     let api = SubmissionsAPI()
     init() {
         reloadState()
@@ -28,7 +30,8 @@ class SubmissionsViewModel: ObservableObject {
         self.navigateToNewSub = true
     }
     
-    func showSubmissionDetails() {
+    func showSubmissionDetails(for submissionName: String) {
+        self.currentSubName = submissionName
         self.navigateToSubmissionDetails = true
     }
     
@@ -38,6 +41,14 @@ class SubmissionsViewModel: ObservableObject {
                 self.submissionsDict[key] = submissionCountsModel(wins: value.wins.count, losses: value.losses.count, total: value.losses.count + value.wins.count)
             })
         }
+    }
+    
+    @MainActor
+    func createSubmissionDetailsViewModel() -> SubmissionDetailsViewModel {
+        guard let sub = Store.shared.submissionsState?.subs[currentSubName] else {
+            return SubmissionDetailsViewModel(submissionsModel: SubmissionsModel(wins: [], losses: []), name: "")
+        }
+        return SubmissionDetailsViewModel(submissionsModel: sub, name: currentSubName)
     }
     
     private func dispatchOnMain(_ action: @escaping () -> Void) {

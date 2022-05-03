@@ -12,10 +12,13 @@ struct SubmissionsView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel()) }, label: { EmptyView() })
+            
+            NavigationLink(isActive: $viewModel.navigateToSubmissionDetails, destination: { SubmissionDetailsView(with: viewModel.createSubmissionDetailsViewModel()) }, label: { EmptyView() })
+            
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(viewModel.submissionsDict.sorted(by: { $0.1.total > $1.1.total }), id: \.0) { sub in
-                        Button(action: viewModel.showSubmissionDetails) {
+                        Button(action: { viewModel.showSubmissionDetails(for: sub.key) }) {
                             VStack(alignment: .leading) {
                                 Text(sub.key)
                                     .font(.headline)
