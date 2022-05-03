@@ -17,13 +17,12 @@ struct TabItemsView: View {
     var body: some View {
         ZStack {
             ColorNames.bar.color()
-            
             TabView(selection: $viewModel.selection) {
             ZStack {
                 ColorNames.background.color()
                 VStack {
 
-                    WinsView()
+                    SubmissionsView()
                             .padding(.top, 10)
                     
                     Rectangle()
@@ -34,36 +33,13 @@ struct TabItemsView: View {
             }
                 .tabItem {
                     VStack {
-                        ImageNames.medal.image()
-                            .renderingMode(.template)
-                        
-                        Text("tapped")
-                    }
-                }
-                .tag(ViewSelection.wins)
-            
-                ZStack {
-                    ColorNames.background.color()
-                    VStack {
-
-                        LossesView()
-                                .padding(.top, 10)
-                        
-                        Rectangle()
-                            .fill(ColorNames.text.color())
-                            .frame(height: 1)
-                            .opacity(0.3)
-                    }
-                }
-                .tabItem {
-                    VStack {
                         ImageNames.dead.image()
                             .renderingMode(.template)
-                       
-                        Text("got tapped")
+                        
+                        Text("Submissions")
                     }
                 }
-                .tag(ViewSelection.losses)
+                .tag(ViewSelection.submissions)
             
                 ZStack {
                     ColorNames.background.color()

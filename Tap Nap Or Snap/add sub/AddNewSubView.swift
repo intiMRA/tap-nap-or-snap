@@ -28,11 +28,35 @@ struct AddNewSubView: View {
                 }
             }
             
-            Button(action: {
-                Task {
-                    await viewModel.saveWholeSub()
+            HStack {
+                
+                Button(action: viewModel.selectedWin) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.green)
+                            .opacity(viewModel.isWin ? 1 : 0.2)
+                        
+                        Text("Tapped")
+                            .foregroundColor(ColorNames.text.color())
+                    }
                 }
-            }) {
+                
+                Button(action: viewModel.selectedLoss) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.red)
+                            .opacity(viewModel.isWin ? 0.2 : 1)
+                        
+                        Text("Got Tapped")
+                            .foregroundColor(ColorNames.text.color())
+                    }
+                }
+                
+            }
+            .frame(height: 44)
+            .padding(.horizontal, 20)
+            
+            Button(action: viewModel.saveWholeSub) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(ColorNames.bar.color())
@@ -126,11 +150,7 @@ struct AddNewSubView: View {
             
             LoginTextField("Submission Name", text: $viewModel.newSubName)
             
-            Button(action: {
-                Task {
-                    await viewModel.saveNewSubmission()
-                }
-            }) {
+            Button(action: viewModel.chooseNewSubmission) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(ColorNames.bar.color())

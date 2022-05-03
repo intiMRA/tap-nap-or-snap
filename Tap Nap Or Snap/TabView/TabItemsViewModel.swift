@@ -9,21 +9,19 @@ import Foundation
 import Combine
 
 enum ViewSelection: Int {
-    case wins, losses, goals
+    case submissions, goals
 }
 
 class TabItemsViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    @Published var selection: ViewSelection = .wins
+    @Published var selection: ViewSelection = .submissions
     @Published var title = "Wins"
     init() {
         $selection
             .sink { selection in
                 switch selection {
-                case .wins:
-                    self.title = "Wins"
-                case .losses:
-                    self.title = "Losses"
+                case .submissions:
+                    self.title = "Submissions"
                 case .goals:
                     self.title = "Goals"
                 }

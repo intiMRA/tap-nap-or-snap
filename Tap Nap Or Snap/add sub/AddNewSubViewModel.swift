@@ -24,17 +24,16 @@ class AddNewSubViewModel: ObservableObject {
     @Published var dismissState: DismissState?
     @Published var inputImage: UIImage?
     @Published var listOfSubs = [String]()
-    let isWin: Bool
+    @Published var isWin: Bool = true
     let api = SubmissionsAPI()
     
-    init(isWin: Bool) {
-        self.isWin = isWin
+    init() {
         reloadState()
     }
     
     func reloadState() {
         dispatchOnMain {
-            self.listOfSubs = Store.shared.submissionsListState?.subs ?? []
+            self.listOfSubs = Store.shared.submissionNamesState?.subs ?? []
         }
     }
     
@@ -58,19 +57,14 @@ class AddNewSubViewModel: ObservableObject {
         self.dismissState = .screen
     }
     
-    func saveNewSubmission() async {
-        do {
-            guard !newSubName.isEmpty else {
-                return
-            }
-            
-            try await api.addNewSubToList(submissionName: newSubName)
-            setChosenSub(newSubName)
-            DispatchQueue.main.async {
-                self.dismissSheets()
-            }
-        } catch {
-            print(error)
+    func chooseNewSubmission() {
+        guard !newSubName.isEmpty else {
+            return
+        }
+        
+        setChosenSub(newSubName)
+        DispatchQueue.main.async {
+            self.dismissSheets()
         }
     }
     
@@ -81,20 +75,30 @@ class AddNewSubViewModel: ObservableObject {
         }
     }
     
-    func saveWholeSub() async {
-        let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name, numberOfTimes: 1)
-        do {
-            if isWin {
-                try await self.api.saveWin(submission: sub)
-            } else {
-                try await self.api.saveLoss(submission: sub)
+    func selectedWin() {
+        self.isWin = true
+    }
+    
+    func selectedLoss() {
+        self.isWin = false
+    }
+    
+    func saveWholeSub() {
+        Task {
+            let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name)
+            do {
+                if isWin {
+                    try await self.api.saveWin(submission: sub)
+                } else {
+                    try await self.api.saveLoss(submission: sub)
+                }
+                
+                DispatchQueue.main.async {
+                    self.dismissState = .screen
+                }
+            } catch {
+                print(error)
             }
-            
-            DispatchQueue.main.async {
-                self.dismissState = .screen
-            }
-        } catch {
-            print(error)
         }
     }
     

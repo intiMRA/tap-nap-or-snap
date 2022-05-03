@@ -11,11 +11,9 @@ struct Submission: Identifiable {
     let id: String
     let subName : String
     let personName: String?
-    let numberOfTimes: Int
-    init(id: String, subName: String, personName: String? = nil, numberOfTimes: Int) {
+    init(id: String, subName: String, personName: String? = nil) {
         self.id = id
         self.subName = subName
         self.personName = personName
-        self.numberOfTimes = numberOfTimes
     }
 }

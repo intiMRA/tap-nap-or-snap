@@ -163,27 +163,34 @@ class LogInAPI: LogInAPIProtocol {
                 throw NSError()
             }
             let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String] ?? []
-            let winsList = snapshot[Keys.wins.rawValue] as? [[String: String]] ?? []
-            let lossesList = snapshot[Keys.losses.rawValue] as? [[String: String]] ?? []
+            let submissions = snapshot[Keys.submissions.rawValue] as? [String: [String: [[String: String]]]] ?? [:]
             let goalsList = snapshot[Keys.goals.rawValue] as? [[String: String]] ?? []
             
-            let subsState = SubmissionsListState(subs: submissionList.map { $0 })
-            let winsState = WinsState(subs: winsList.map {
-                Submission(
+            let submissionNamesState = SubmissionNamesState(subs: submissionList.map { $0 })
+            
+            let submissionsStateDict = submissions.keys.reduce([String: SubmissionsModel]()) { partialResult, nextItemName in
+                var currentResult = partialResult
+                let currentSubmission = submissions[nextItemName]
+                let wins = currentSubmission?[SubmissionKeys.wins.rawValue]?.map { Submission(
                     id: $0[Keys.id.rawValue] ?? "",
                     subName: $0[Keys.subName.rawValue] ?? "",
-                    personName: $0[Keys.person.rawValue],
-                    numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1
-                )
-            })
-            let lossesState = LossesState(subs:lossesList.map {
-                Submission(
+                    personName: $0[Keys.person.rawValue]
+                )}
+                
+                let losses = currentSubmission?[SubmissionKeys.losses.rawValue]?.map { Submission(
                     id: $0[Keys.id.rawValue] ?? "",
                     subName: $0[Keys.subName.rawValue] ?? "",
-                    personName: $0[Keys.person.rawValue],
-                    numberOfTimes: Int($0[Keys.numberOfTimes.rawValue] ?? "1") ?? 1
-                )
-            })
+                    personName: $0[Keys.person.rawValue]
+                )}
+                
+                currentResult[nextItemName] = SubmissionsModel(
+                    wins: wins ?? [],
+                    losses: losses ?? [])
+                
+                return currentResult
+            }
+            
+            let submissionsState = SubmissionsState(subs: submissionsStateDict)
             
             let goalsState =  GoalsState(goals: goalsList.map {
                 GoalModel(
@@ -194,9 +201,8 @@ class LogInAPI: LogInAPIProtocol {
             })
             
             await Store.shared.changeStates(states: [
-                subsState,
-                winsState,
-                lossesState,
+                submissionNamesState,
+                submissionsState,
                 goalsState
             ])
             

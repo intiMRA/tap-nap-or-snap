@@ -12,7 +12,7 @@ protocol StoreState {
 }
 
 enum StateType: String {
-    case wins, goals, losses, login, subs
+    case goals, submissions, login, submissionNames
 }
 
 struct LogInState: StoreState {
@@ -20,19 +20,14 @@ struct LogInState: StoreState {
     let id: String
 }
 
-struct SubmissionsListState: StoreState {
-    var stateType: StateType = .subs
+struct SubmissionNamesState: StoreState {
+    var stateType: StateType = .submissionNames
     let subs: [String]
 }
 
-struct WinsState: StoreState {
-    var stateType: StateType = .wins
-    let subs: [Submission]
-}
-
-struct LossesState: StoreState {
-    var stateType: StateType = .losses
-    let subs: [Submission]
+struct SubmissionsState: StoreState {
+    var stateType: StateType = .submissions
+    let subs: [String: SubmissionsModel]
 }
 
 struct GoalsState: StoreState {
@@ -44,36 +39,33 @@ actor Store {
     private(set) static var shared = Store()
     
     let loginState: LogInState?
-    let submissionsListState: SubmissionsListState?
-    let winsState: WinsState?
-    let lossesState: LossesState?
+    let submissionNamesState: SubmissionNamesState?
+    let submissionsState: SubmissionsState?
     let goalsState: GoalsState?
     
     private init(
         loginState: LogInState? = nil,
-        submissionsListState: SubmissionsListState? = nil,
-        winsState: WinsState? = nil,
-        lossesState: LossesState? = nil,
+        submissionNamesState: SubmissionNamesState? = nil,
+        submissionsState: SubmissionsState? = nil,
         goalsState: GoalsState? = nil
     ) {
         self.loginState = loginState
-        self.submissionsListState = submissionsListState
-        self.winsState = winsState
-        self.lossesState = lossesState
+        self.submissionNamesState = submissionNamesState
+        self.submissionsState = submissionsState
         self.goalsState = goalsState
     }
     
     func changeState(newState: any StoreState) {
         switch newState.stateType {
-        case .wins:
-            guard let wins = validateWinsState(state: newState) else {
+        case .submissions:
+            guard let subs = validateSubmissionsState(state: newState) else {
                 return
             }
             Store.shared = Store(
                 loginState: self.loginState,
-                submissionsListState: self.submissionsListState,
-                winsState: wins,
-                lossesState: self.lossesState)
+                submissionNamesState: self.submissionNamesState,
+                submissionsState: subs,
+                goalsState: self.goalsState)
             
         case .goals:
             guard let goals = validateGoalsState(state: newState) else {
@@ -81,39 +73,28 @@ actor Store {
             }
             Store.shared = Store(
                 loginState: self.loginState,
-                submissionsListState: self.submissionsListState,
-                winsState: self.winsState,
-                lossesState: self.lossesState,
+                submissionNamesState: self.submissionNamesState,
+                submissionsState: self.submissionsState,
                 goalsState: goals)
-        case .losses:
-            guard let losses = validateLossesState(state: newState) else {
-                return
-            }
-            Store.shared = Store(
-                loginState: self.loginState,
-                submissionsListState: self.submissionsListState,
-                winsState: self.winsState,
-                lossesState: losses)
-            
         case .login:
             guard let loginState = validateLoginState(state: newState) else {
                 return
             }
             Store.shared = Store(
                 loginState: loginState,
-                submissionsListState: self.submissionsListState,
-                winsState: self.winsState,
-                lossesState: self.lossesState)
+                submissionNamesState: self.submissionNamesState,
+                submissionsState: self.submissionsState,
+                goalsState: self.goalsState)
             
-        case .subs:
-            guard let subsList = validateSubsListState(state: newState) else {
+        case .submissionNames:
+            guard let subsList = validateSubmissionNamesState(state: newState) else {
                 return
             }
             Store.shared = Store(
                 loginState: self.loginState,
-                submissionsListState: subsList,
-                winsState: self.winsState,
-                lossesState: self.lossesState)
+                submissionNamesState: subsList,
+                submissionsState: self.submissionsState,
+                goalsState: self.goalsState)
             
         }
         DispatchQueue.main.async {
@@ -123,29 +104,25 @@ actor Store {
     
     func changeStates(states: [StoreState]) {
         var loginState = self.loginState
-        var submissionsListState = self.submissionsListState
-        var winsState = self.winsState
-        var lossesState = self.lossesState
+        var submissionNamesState = self.submissionNamesState
+        var submissionsState = self.submissionsState
         var goalsState = self.goalsState
         states.forEach { state in
             switch state.stateType {
-            case .wins:
-                winsState = validateWinsState(state: state) ?? winsState
+            case .submissions:
+                submissionsState = validateSubmissionsState(state: state) ?? submissionsState
             case .goals:
                 goalsState = validateGoalsState(state: state) ?? goalsState
-            case .losses:
-                lossesState = validateLossesState(state: state) ?? lossesState
             case .login:
                 loginState = validateLoginState(state: state) ?? loginState
-            case .subs:
-                submissionsListState = validateSubsListState(state: state) ?? submissionsListState
+            case .submissionNames:
+                submissionNamesState = validateSubmissionNamesState(state: state) ?? submissionNamesState
             }
         }
         Store.shared = Store(
             loginState: loginState,
-            submissionsListState: submissionsListState,
-            winsState: winsState,
-            lossesState: lossesState,
+            submissionNamesState: submissionNamesState,
+            submissionsState: submissionsState,
             goalsState: goalsState)
         DispatchQueue.main.async {
             NotificationCenter.default.post(Notification(name: NSNotification.reloadNotification))
@@ -166,22 +143,15 @@ actor Store {
         return state
     }
     
-    private func validateSubsListState(state: any StoreState) -> SubmissionsListState? {
-        guard let state = state as? SubmissionsListState else {
+    private func validateSubmissionNamesState(state: any StoreState) -> SubmissionNamesState? {
+        guard let state = state as? SubmissionNamesState else {
             return nil
         }
         return state
     }
     
-    private func validateWinsState(state: any StoreState) -> WinsState? {
-        guard let state = state as? WinsState else {
-            return nil
-        }
-        return state
-    }
-    
-    private func validateLossesState(state: any StoreState) -> LossesState? {
-        guard let state = state as? LossesState else {
+    private func validateSubmissionsState(state: any StoreState) -> SubmissionsState? {
+        guard let state = state as? SubmissionsState else {
             return nil
         }
         return state
