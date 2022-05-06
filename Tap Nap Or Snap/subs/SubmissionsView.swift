@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct SubmissionsView: View {
-    @StateObject var viewModel = SubmissionsViewModel()
+    @StateObject var viewModel: SubmissionsViewModel
+    init() {
+        self._viewModel = StateObject(wrappedValue: SubmissionsViewModel())
+    }
     var body: some View {
         ZStack(alignment: .topLeading) {
             NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel()) }, label: { EmptyView() })
@@ -43,7 +46,7 @@ struct SubmissionsView: View {
             
             HStack {
                 Spacer()
-                Button(action: viewModel.showNewSub) {
+                Button(action: { viewModel.showNewSub() }) {
                     VStack {
                         ImageNames.add.image()
                             .renderingMode(.template)

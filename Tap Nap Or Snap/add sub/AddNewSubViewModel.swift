@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 import Combine
+import SwiftUI
 
 enum DismissState {
     case sheets, screen
 }
 
+enum AddSubsViewFocusField: Hashable {
+    case title, description
+}
+
+@MainActor
 class AddNewSubViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var name = ""
@@ -25,16 +31,38 @@ class AddNewSubViewModel: ObservableObject {
     @Published var inputImage: UIImage?
     @Published var listOfSubs = [String]()
     @Published var isWin: Bool = true
+    @Published var description = ""
+    @Published var placeholder = "placehoder"
+    let originalPH = "placehoder"
     let api = SubmissionsAPI()
-    
+    var cancelable = Set<AnyCancellable>()
     init() {
         reloadState()
+        $placeholder
+            .dropFirst()
+            .sink { value in
+                if !value.isEmpty, value != self.originalPH, let lastCharacter = value.last {
+                    withAnimation {
+                        self.description = String(lastCharacter)
+                    }
+                }
+
+            }
+            .store(in: &cancelable)
+        $description
+            .dropFirst()
+            .sink { description in
+                if description.isEmpty {
+                    withAnimation {
+                        self.placeholder = self.originalPH
+                    }
+                }
+            }
+            .store(in: &cancelable)
     }
     
     func reloadState() {
-        dispatchOnMain {
-            self.listOfSubs = Store.shared.submissionNamesState?.subs ?? []
-        }
+        self.listOfSubs = Store.shared.submissionNamesState?.subs ?? []
     }
     
     func presentSubsList() {
@@ -85,7 +113,7 @@ class AddNewSubViewModel: ObservableObject {
     
     func saveWholeSub() {
         Task {
-            let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name)
+            let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name, description: self.description)
             do {
                 if isWin {
                     try await self.api.saveWin(submission: sub)
@@ -102,9 +130,14 @@ class AddNewSubViewModel: ObservableObject {
         }
     }
     
-    private func dispatchOnMain(_ action: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            action()
+    func isFocused(_ field: AddSubsViewFocusField) {
+        withAnimation {
+            switch field {
+            case .title:
+                self.placeholder = self.originalPH
+            case .description:
+                self.placeholder = ""
+            }
         }
     }
 }

@@ -16,10 +16,13 @@ struct SubmissionDetailModel {
 @MainActor
 class SubmissionDetailsViewModel: ObservableObject {
     @Published var subsList: [SubmissionDetailModel] = []
-    @Published var name: String = ""
+    @Published var submissionName: String = ""
+    @Published var navigateToDescription = false
+    
+    var currentPersonsName = ""
     
     init(submissionsModel: SubmissionsModel, name: String) {
-        self.name = name
+        self.submissionName = name
         var countDictionary = [String: SubmissionDetailModel]()
         submissionsModel.wins.forEach { model in
             let name = model.personName ?? "unkown"
@@ -36,5 +39,32 @@ class SubmissionDetailsViewModel: ObservableObject {
         }
         
         self.subsList = countDictionary.map(\.value)
+    }
+    
+    func createDescriptionViewModel() -> SubmissionDescriptionViewModel {
+        let subModel = Store.shared.submissionsState?.subs[submissionName]
+        
+        let wins = subModel?.wins
+            .compactMap({ sub -> DescriptionModel? in
+                guard let id = UUID(uuidString: sub.id), let description = sub.description, sub.personName == currentPersonsName else {
+                    return nil
+                }
+                return DescriptionModel(id: id, description: description)
+            }) ?? []
+        
+        let losses = subModel?.losses
+            .compactMap({ sub -> DescriptionModel? in
+                guard let id = UUID(uuidString: sub.id), let description = sub.description, sub.personName == currentPersonsName else {
+                    return nil
+                }
+                return DescriptionModel(id: id, description: description)
+            }) ?? []
+        
+        return SubmissionDescriptionViewModel(title: submissionName, winDescriptions: wins, lossesDescriptions: losses)
+    }
+    
+    func showDescription(for name: String) {
+        self.currentPersonsName = name
+        self.navigateToDescription = true
     }
 }

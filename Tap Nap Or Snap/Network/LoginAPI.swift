@@ -174,13 +174,15 @@ class LogInAPI: LogInAPIProtocol {
                 let wins = currentSubmission?[SubmissionKeys.wins.rawValue]?.map { Submission(
                     id: $0[Keys.id.rawValue] ?? "",
                     subName: $0[Keys.subName.rawValue] ?? "",
-                    personName: $0[Keys.person.rawValue]
+                    personName: $0[Keys.person.rawValue],
+                    description: $0[Keys.description.rawValue]
                 )}
                 
                 let losses = currentSubmission?[SubmissionKeys.losses.rawValue]?.map { Submission(
                     id: $0[Keys.id.rawValue] ?? "",
                     subName: $0[Keys.subName.rawValue] ?? "",
-                    personName: $0[Keys.person.rawValue]
+                    personName: $0[Keys.person.rawValue],
+                    description: $0[Keys.description.rawValue]
                 )}
                 
                 currentResult[nextItemName] = SubmissionsModel(

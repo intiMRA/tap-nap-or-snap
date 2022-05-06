@@ -13,7 +13,8 @@ struct submissionCountsModel {
     let losses: Int
     let total: Int
 }
-                                    
+
+@MainActor
 class SubmissionsViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     @Published var navigateToNewSub = false
@@ -43,7 +44,6 @@ class SubmissionsViewModel: ObservableObject {
         }
     }
     
-    @MainActor
     func createSubmissionDetailsViewModel() -> SubmissionDetailsViewModel {
         guard let sub = Store.shared.submissionsState?.subs[currentSubName] else {
             return SubmissionDetailsViewModel(submissionsModel: SubmissionsModel(wins: [], losses: []), name: "")

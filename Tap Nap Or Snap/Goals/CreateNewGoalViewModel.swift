@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
-enum FocusField: Hashable {
+enum GoalsViewFocusField: Hashable {
   case title, description
 }
 
@@ -50,7 +50,7 @@ class CreateNewGoalViewModel: ObservableObject {
             .store(in: &cancelable)
     }
     
-    func isFocused(_ field: FocusField) {
+    func isFocused(_ field: GoalsViewFocusField) {
         DispatchQueue.main.async {
             withAnimation {
                 switch field {

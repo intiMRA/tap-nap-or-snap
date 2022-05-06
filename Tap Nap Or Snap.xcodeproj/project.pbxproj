@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452A27E708F90074EF2C /* ImagePickerView.swift */; };
 		3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */; };
+		351909762824A1E400AC6783 /* SubmissionDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */; };
+		351909782824A21900AC6783 /* SubmissionDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */; };
 		352D869A2802B005002B931C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D86992802B005002B931C /* DateFormatter.swift */; };
 		353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B3955280D6ED50067BC44 /* GoalsAPI.swift */; };
 		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		3517452A27E708F90074EF2C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsAPI.swift; sourceTree = "<group>"; };
+		351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionView.swift; sourceTree = "<group>"; };
+		351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionViewModel.swift; sourceTree = "<group>"; };
 		352D86992802B005002B931C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		353B3955280D6ED50067BC44 /* GoalsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsAPI.swift; sourceTree = "<group>"; };
 		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 			children = (
 				35E234E028211308001E9871 /* SubmissionDetailsView.swift */,
 				35E234E22821161E001E9871 /* SubmissionDetailsViewModel.swift */,
+				351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */,
+				351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */,
 			);
 			path = submissionDetails;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				35E234E128211308001E9871 /* SubmissionDetailsView.swift in Sources */,
 				354A946327E3161100E966B2 /* SubmissionsView.swift in Sources */,
 				352D869A2802B005002B931C /* DateFormatter.swift in Sources */,
+				351909782824A21900AC6783 /* SubmissionDescriptionViewModel.swift in Sources */,
 				35E234E32821161E001E9871 /* SubmissionDetailsViewModel.swift in Sources */,
 				354A89BF27E1C8EF00078008 /* Store.swift in Sources */,
 				3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */,
@@ -341,6 +348,7 @@
 				354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */,
 				354A946127E315FD00E966B2 /* SubmissionsViewModel.swift in Sources */,
 				354A947027E5BCFC00E966B2 /* Submission.swift in Sources */,
+				351909762824A1E400AC6783 /* SubmissionDescriptionView.swift in Sources */,
 				354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */,
 				35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */,
 				354A89D327E1D6E300078008 /* LogInViewModel.swift in Sources */,

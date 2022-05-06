@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateNewGoalView: View {
     @Environment(\.presentationMode) var presentationMode
-    @FocusState private var focusedField: FocusField?
+    @FocusState private var focusedField: GoalsViewFocusField?
     @StateObject var viewModel = CreateNewGoalViewModel()
     var body: some View {
         VStack {

@@ -17,17 +17,21 @@ struct SubmissionDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text(viewModel.name)
+                NavigationLink(isActive: $viewModel.navigateToDescription, destination: { SubmissionDescriptionView(viewModel: viewModel.createDescriptionViewModel()) }, label: { EmptyView() })
+                
+                Text(viewModel.submissionName)
                     .font(.title)
                 
                 ForEach(viewModel.subsList, id: \.personsName) { sub in
-                    HStack {
-                        Text(sub.personsName)
-                        Text("\(sub.numberOfWins) \(sub.numberOfWins == 1 ? "win" : "wins")")
-                            .foregroundColor(.green)
-                        
-                        Text("\(sub.numberOfLosses) \(sub.numberOfLosses == 1 ? "loss" : "losses")")
-                            .foregroundColor(.red)
+                    Button(action: { viewModel.showDescription(for: sub.personsName) }) {
+                        HStack {
+                            Text(sub.personsName)
+                            Text("\(sub.numberOfWins) \(sub.numberOfWins == 1 ? "win" : "wins")")
+                                .foregroundColor(.green)
+                            
+                            Text("\(sub.numberOfLosses) \(sub.numberOfLosses == 1 ? "loss" : "losses")")
+                                .foregroundColor(.red)
+                        }
                     }
                     .padding(.bottom, 10)
                 }

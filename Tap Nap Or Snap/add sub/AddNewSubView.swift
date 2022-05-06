@@ -10,61 +10,74 @@ import SwiftUI
 struct AddNewSubView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: AddNewSubViewModel
-    
+    @FocusState var focusedField: AddSubsViewFocusField?
     init(viewModel: AddNewSubViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            LoginTextField("Persons Name", text: $viewModel.name)
-            Button(action: viewModel.presentSubsList) {
-                if let sub = viewModel.chosenSub {
-                    Text(sub)
-                        .foregroundColor(ColorNames.text.color())
-                } else {
-                    Text("Add sub")
-                        .foregroundColor(ColorNames.text.color())
-                }
-            }
-            
-            HStack {
-                
-                Button(action: viewModel.selectedWin) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.green)
-                            .opacity(viewModel.isWin ? 1 : 0.2)
-                        
-                        Text("Tapped")
+        ScrollView {
+            VStack(spacing: 20) {
+                LoginTextField("Persons Name", text: $viewModel.name)
+                    .focused($focusedField, equals: .title)
+                Button(action: { viewModel.presentSubsList() }) {
+                    if let sub = viewModel.chosenSub {
+                        Text(sub)
+                            .foregroundColor(ColorNames.text.color())
+                    } else {
+                        Text("Add sub")
                             .foregroundColor(ColorNames.text.color())
                     }
                 }
                 
-                Button(action: viewModel.selectedLoss) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.red)
-                            .opacity(viewModel.isWin ? 0.2 : 1)
-                        
-                        Text("Got Tapped")
-                            .foregroundColor(ColorNames.text.color())
+                HStack {
+                    Button(action: { viewModel.selectedWin () }) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.green)
+                                .opacity(viewModel.isWin ? 1 : 0.2)
+                            
+                            Text("Tapped")
+                                .foregroundColor(ColorNames.text.color())
+                        }
                     }
-                }
-                
-            }
-            .frame(height: 44)
-            .padding(.horizontal, 20)
-            
-            Button(action: viewModel.saveWholeSub) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(ColorNames.bar.color())
-                        .frame(maxWidth: .infinity, maxHeight: 44)
                     
-                    Text("submit")
-                        .foregroundColor(.cyan)
+                    Button(action: { viewModel.selectedLoss() }) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.red)
+                                .opacity(viewModel.isWin ? 0.2 : 1)
+                            
+                            Text("Got Tapped")
+                                .foregroundColor(ColorNames.text.color())
+                        }
+                    }
+                    
                 }
+                .frame(height: 44)
+                .padding(.horizontal, 20)
+                
+                
+                TextEditor(text: viewModel.description.isEmpty ? $viewModel.placeholder : $viewModel.description)
+                    .focused($focusedField, equals: .description)
+                    .font(viewModel.description.isEmpty ? .callout : .body)
+                    .opacity(viewModel.description.isEmpty ? 0.3 : 1)
+                    .onTapGesture {
+                        self.focusedField = .description
+                        viewModel.isFocused(.description)
+                    }
+                    .padding(.bottom, 20)
+                
+                Button(action: { viewModel.saveWholeSub() }) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(ColorNames.bar.color())
+                        
+                        Text("submit")
+                            .foregroundColor(.cyan)
+                    }
+                }
+                .frame(maxWidth: .infinity, idealHeight: 44)
             }
         }
         .padding(.horizontal, 16)
@@ -117,7 +130,7 @@ struct AddNewSubView: View {
                     }
                 }
             }
-            Button(action: viewModel.presentCreateSubView) {
+            Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {
                     ImageNames.add.image()
                         .renderingMode(.template)
@@ -136,7 +149,7 @@ struct AddNewSubView: View {
                     .padding(.horizontal, 16)
                     .padding(.top, 200)
             }
-
+            
         }
     }
     
@@ -144,13 +157,13 @@ struct AddNewSubView: View {
     var createNewSub: some View {
         VStack {
             
-//            Button(action: viewModel.presentCreateImagePickerView) {
-//                submissionImage
-//            }
+            //            Button(action: viewModel.presentCreateImagePickerView) {
+            //                submissionImage
+            //            }
             
             LoginTextField("Submission Name", text: $viewModel.newSubName)
             
-            Button(action: viewModel.chooseNewSubmission) {
+            Button(action: { viewModel.chooseNewSubmission() }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(ColorNames.bar.color())
@@ -163,9 +176,9 @@ struct AddNewSubView: View {
             
             Spacer()
         }
-//        .sheet(isPresented: $viewModel.showImagePicker) {
-//            ImagePicker(image: $viewModel.inputImage)
-//        }
+        //        .sheet(isPresented: $viewModel.showImagePicker) {
+        //            ImagePicker(image: $viewModel.inputImage)
+        //        }
     }
     
     @ViewBuilder
