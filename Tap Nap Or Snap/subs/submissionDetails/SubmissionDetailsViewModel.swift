@@ -60,7 +60,7 @@ class SubmissionDetailsViewModel: ObservableObject {
                 return DescriptionModel(id: id, description: description)
             }) ?? []
         
-        return SubmissionDescriptionViewModel(title: submissionName, winDescriptions: wins, lossesDescriptions: losses)
+        return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", winDescriptions: wins, lossesDescriptions: losses)
     }
     
     func showDescription(for name: String) {

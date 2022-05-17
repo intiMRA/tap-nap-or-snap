@@ -16,11 +16,12 @@ struct SubmissionDetailsView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading){
                 NavigationLink(isActive: $viewModel.navigateToDescription, destination: { SubmissionDescriptionView(viewModel: viewModel.createDescriptionViewModel()) }, label: { EmptyView() })
                 
                 Text(viewModel.submissionName)
                     .font(.title)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ForEach(viewModel.subsList, id: \.personsName) { sub in
                     Button(action: { viewModel.showDescription(for: sub.personsName) }) {
@@ -36,6 +37,8 @@ struct SubmissionDetailsView: View {
                     .padding(.bottom, 10)
                 }
             }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 16)
         }
     }
 }
