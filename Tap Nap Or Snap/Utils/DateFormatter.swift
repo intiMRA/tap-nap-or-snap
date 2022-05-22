@@ -45,6 +45,10 @@ extension Date {
            return "0 days"
         }
     }
+    
+    func isPastDueDate() -> Bool {
+        self.difference(from: Date()) == "0 days"
+    }
 }
 
 extension String {

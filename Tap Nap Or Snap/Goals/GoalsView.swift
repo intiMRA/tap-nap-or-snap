@@ -28,36 +28,13 @@ struct GoalsView: View {
             }
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
-                    Button(action: {}) {
-                        VStack(alignment: .leading) {
-                            Text(goal.title)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(ColorNames.text.color())
-                            
-                            HStack {
-                                Text("done date:")
-                                Spacer()
-                                Text(goal.timeStamp.asString())
-                            }
-                            
-                            HStack {
-                                Text("time remaining:")
-                                Spacer()
-                                Text(Date().difference(from: goal.timeStamp))
-                            }
-                            
-                            Text(goal.description)
-                                .multilineTextAlignment(.leading)
-                                .font(.body)
-                                .foregroundColor(ColorNames.text.color())
-                        }
-                        .padding(.horizontal, 10)
+                    Button(action: { print("aite") }) {
+                        GoalView(goal: goal)
                     }
                     .frame(maxWidth: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
-                            .stroke(ColorNames.text.color())
+                            .stroke(goal.timeStamp.isPastDueDate() ? ColorNames.text.color() : Color.red)
                     )
                     .padding(.bottom, 20)
                 }
@@ -73,8 +50,43 @@ struct GoalsView: View {
     }
 }
 
-struct GoalsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GoalsView()
+struct GoalView: View {
+    let goal: GoalModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(goal.title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(ColorNames.text.color())
+                Spacer()
+                
+                Button(action: { print("yooo") }) {
+                    ImageNames.cancel.icon()
+                }
+                
+                Button(action: {}) {
+                    ImageNames.confirm.icon()
+                }
+            }
+            HStack {
+                Text("done date:")
+                Spacer()
+                Text(goal.timeStamp.asString())
+            }
+            
+            HStack {
+                Text("time remaining:")
+                Spacer()
+                Text(Date().difference(from: goal.timeStamp))
+            }
+            
+            Text(goal.description)
+                .multilineTextAlignment(.leading)
+                .font(.body)
+                .foregroundColor(ColorNames.text.color())
+        }
+        .padding(.horizontal, 10)
     }
 }
