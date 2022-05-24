@@ -15,9 +15,25 @@ enum ImageNames: String {
     case user = "User"
     case add = "Add"
     case trash = "Trash"
+    case cancel = "Cancel"
+    case confirm = "Confirm"
     
     func image() -> Image {
         Image(self.rawValue)
             .resizable()
+    }
+    
+    func icon(color: Color) -> some View {
+        Image(self.rawValue)
+            .resizable()
+            .renderingMode(.template)
+            .foregroundColor(color)
+            .frame(width: 24, height: 24)
+    }
+    
+    func rawIcon() -> some View {
+        Image(self.rawValue)
+            .resizable()
+            .frame(width: 24, height: 24)
     }
 }

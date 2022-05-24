@@ -18,52 +18,26 @@ struct GoalsView: View {
                 Spacer()
                 Button(action: viewModel.showAddGoal) {
                     VStack {
-                        ImageNames.add.image()
-                            .renderingMode(.template)
-                            .foregroundColor(ColorNames.text.color())
-                            .frame(width: 24, height: 24)
+                        ImageNames.add.icon(color: ColorNames.text.color())
+                        
                         Text("add new")
                     }
                 }
             }
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
-                    Button(action: {}) {
-                        VStack(alignment: .leading) {
-                            Text(goal.title)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(ColorNames.text.color())
-                            
-                            HStack {
-                                Text("done date:")
-                                Spacer()
-                                Text(goal.timeStamp.asString())
-                            }
-                            
-                            HStack {
-                                Text("time remaining:")
-                                Spacer()
-                                Text(Date().difference(from: goal.timeStamp))
-                            }
-                            
-                            Text(goal.description)
-                                .multilineTextAlignment(.leading)
-                                .font(.body)
-                                .foregroundColor(ColorNames.text.color())
-                        }
-                        .padding(.horizontal, 10)
+                    ZStack {
+                        CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red)
+                            .opacity(0.3)
+                        
+                        GoalView(goal: goal)
                     }
                     .frame(maxWidth: .infinity)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(ColorNames.text.color())
-                    )
-                    .padding(.bottom, 20)
+                    .padding(.bottom, length: .small)
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .horizontalPadding()
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
             guard output.name == NSNotification.reloadNotification else {
                 return
@@ -73,8 +47,64 @@ struct GoalsView: View {
     }
 }
 
-struct GoalsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GoalsView()
+struct GoalView: View {
+    let goal: GoalModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(goal.title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(ColorNames.text.color())
+                Spacer()
+                
+                Button(action: { print("yooo") }) {
+                    ImageNames.cancel.rawIcon()
+                }
+            }
+            
+            HStack {
+                Text("done date:")
+                Spacer()
+                Text(goal.timeStamp.asString())
+            }
+            
+            HStack {
+                Text("time remaining:")
+                Spacer()
+                Text(Date().difference(from: goal.timeStamp))
+            }
+            VStack(alignment: .leading) {
+                Text("description: ")
+                    .padding(.bottom, length: .xxxSmall)
+                
+                Text(goal.description)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                    .font(.body)
+                    .foregroundColor(ColorNames.text.color())
+            }
+            
+            HStack {
+                Button(action: {}) {
+                    ZStack {
+                        CustomRoundRectangle(color: .green)
+                        Text("Complete")
+                    }
+                }
+                Spacer()
+                
+                Button(action: {}) {
+                    ZStack {
+                        CustomRoundRectangle(color: .blue)
+                        Text("More")
+                    }
+                }
+            }
+            .standardHeight()
+            .padding(.bottom, length: .small)
+        }
+        .padding(.horizontal, length: .small)
     }
 }

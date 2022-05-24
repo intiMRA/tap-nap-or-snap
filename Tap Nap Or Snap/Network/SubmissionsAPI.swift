@@ -85,7 +85,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         var currentSubmission = submissions[submission.subName] ?? [:]
         
         guard var subsToReplace = currentSubmission[key.rawValue] else {
-            let list = [[Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? ""]]
+            let list = [[Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.description.rawValue: submission.description ?? ""]]
             currentSubmission[key.rawValue] = list
             submissions[submission.subName] = currentSubmission
             snapshot[Keys.submissions.rawValue] = submissions
@@ -94,7 +94,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
             return
         }
         
-        subsToReplace.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? ""])
+        subsToReplace.append([Keys.id.rawValue: submission.id, Keys.subName.rawValue: submission.subName, Keys.person.rawValue: submission.personName ?? "", Keys.description.rawValue: submission.description ?? ""])
         currentSubmission[key.rawValue] = subsToReplace
         
         submissions[submission.subName] = currentSubmission

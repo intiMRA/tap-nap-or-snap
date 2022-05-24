@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateNewGoalView: View {
     @Environment(\.presentationMode) var presentationMode
-    @FocusState private var focusedField: FocusField?
+    @FocusState private var focusedField: GoalsViewFocusField?
     @StateObject var viewModel = CreateNewGoalViewModel()
     var body: some View {
         VStack {
@@ -27,23 +27,23 @@ struct CreateNewGoalView: View {
                     self.focusedField = .description
                     viewModel.isFocused(.description)
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, length: .large)
+            
             VStack {
                 Text("Time to complete")
                 timeToCompleteView
             }
             Button(action: viewModel.saveGoal) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(ColorNames.bar.color())
-                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    CustomRoundRectangle(color: ColorNames.bar.color())
+                        .standardHeightFillUp()
                     
                     Text("submit")
                         .foregroundColor(.cyan)
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .horizontalPadding()
         .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
             if shouldDismiss {
                 DispatchQueue.main.async {
@@ -62,9 +62,7 @@ struct CreateNewGoalView: View {
             
             Button(action: { viewModel.setTimeToComplete(timeToComplete: .weeks) }) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill( viewModel.timeToComplete == .weeks ? ColorNames.bar.color() : Color.gray)
-                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    GoalsRectangle(useBarColor: viewModel.timeToComplete == .weeks)
                     
                     Text("Weeks")
                         .foregroundColor(.cyan)
@@ -73,9 +71,7 @@ struct CreateNewGoalView: View {
             
             Button(action: { viewModel.setTimeToComplete(timeToComplete: .months) }) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(viewModel.timeToComplete == .months ? ColorNames.bar.color() : Color.gray)
-                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    GoalsRectangle(useBarColor: viewModel.timeToComplete == .months)
                     
                     Text("Months")
                         .foregroundColor(.cyan)
@@ -84,9 +80,7 @@ struct CreateNewGoalView: View {
             
             Button(action: { viewModel.setTimeToComplete(timeToComplete: .years) }) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(viewModel.timeToComplete == .years ? ColorNames.bar.color() : Color.gray)
-                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    GoalsRectangle(useBarColor: viewModel.timeToComplete == .years)
                     
                     Text("Years")
                         .foregroundColor(.cyan)
@@ -94,6 +88,14 @@ struct CreateNewGoalView: View {
             }
             
         }
+    }
+}
+
+struct GoalsRectangle: View {
+    let useBarColor: Bool
+    var body: some View {
+        CustomRoundRectangle(color: useBarColor ? ColorNames.bar.color() : Color.gray)
+            .standardHeightFillUp()
     }
 }
 

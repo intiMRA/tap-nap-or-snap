@@ -11,9 +11,11 @@ struct Submission: Identifiable {
     let id: String
     let subName : String
     let personName: String?
-    init(id: String, subName: String, personName: String? = nil) {
+    let description: String?
+    init(id: String, subName: String, personName: String?, description: String?) {
         self.id = id
         self.subName = subName
         self.personName = personName
+        self.description = description ?? ""
     }
 }

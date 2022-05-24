@@ -41,10 +41,10 @@ struct LogInView: View {
                             .foregroundColor(ColorNames.text.color())
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 20)
+                .horizontalPadding()
+                .padding(.top, length: .large)
             }
-            .padding(.top, 20)
+            .padding(.top, length: .large)
         }
         .ignoresSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -65,17 +65,15 @@ struct LoginTextField: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .fill(ColorNames.text.color(opacity: .ten))
+            CustomRoundRectangle(color: ColorNames.text.color(opacity: .ten))
             
             TextField(name, text: $text)
                 .keyboardType(keyBoard)
                 .foregroundColor(ColorNames.text.color())
                 .accentColor(ColorNames.text.color())
-                .padding(10)
+                .padding(length: .small)
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 44)
+        .standardHeightFillUp()
     }
 }
 
