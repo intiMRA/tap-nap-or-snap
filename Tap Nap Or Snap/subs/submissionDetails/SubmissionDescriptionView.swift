@@ -17,48 +17,46 @@ struct SubmissionDescriptionView: View {
             VStack(alignment: .leading) {
                 LeftAlignedTextView(viewModel.title)
                     .font(.title)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, length: .large)
                 ZStack {
-                    RoundedRectangle(cornerRadius: 7)
-                        .fill(.gray)
+                    CustomRoundRectangle(color: .gray)
                         .opacity(0.1)
                     
                 VStack(alignment: .leading) {
                     LeftAlignedTextView(viewModel.winsTitle)
                         .font(.title3)
-                        .padding(.all, 10)
+                        .padding(.all, length: .small)
                         .foregroundColor(.green)
                     
                     LeftAlignedTextView(viewModel.text(for: viewModel.winDescriptions))
-                        .padding(.bottom, 10)
-                        .padding(.horizontal, 10)
+                        .padding(.bottom, length: .small)
+                        .padding(.horizontal, length: .small)
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.bottom, 10)
+                .padding(.bottom, length: .small)
                 
                 ZStack {
-                    RoundedRectangle(cornerRadius: 7)
-                        .fill(.gray)
+                    CustomRoundRectangle(color: .gray)
                         .opacity(0.1)
                     
                 VStack(alignment: .leading) {
                     LeftAlignedTextView(viewModel.lossesTitle)
                         .font(.title3)
-                        .padding(.all, 10)
+                        .padding(.all, length: .small)
                         .foregroundColor(.red)
 
                     LeftAlignedTextView(viewModel.text(for: viewModel.lossesDescriptions))
-                        .padding(.bottom, 10)
-                        .padding(.horizontal, 10)
+                        .padding(.bottom, length: .small)
+                        .padding(.horizontal, length: .small)
 
                 }
                 .frame(maxWidth: .infinity)
                 }
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 20)
+        .horizontalPadding()
+        .padding(.vertical, length: .large)
     }
 }
 

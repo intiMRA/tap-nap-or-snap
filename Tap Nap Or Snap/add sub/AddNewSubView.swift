@@ -33,8 +33,7 @@ struct AddNewSubView: View {
                 HStack {
                     Button(action: { viewModel.selectedWin () }) {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(.green)
+                            CustomRoundRectangle(color: .green)
                                 .opacity(viewModel.isWin ? 1 : 0.2)
                             
                             Text("Tapped")
@@ -44,8 +43,7 @@ struct AddNewSubView: View {
                     
                     Button(action: { viewModel.selectedLoss() }) {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(.red)
+                            CustomRoundRectangle(color: .red)
                                 .opacity(viewModel.isWin ? 0.2 : 1)
                             
                             Text("Got Tapped")
@@ -54,8 +52,8 @@ struct AddNewSubView: View {
                     }
                     
                 }
-                .frame(height: 44)
-                .padding(.horizontal, 20)
+                .standardHeight()
+                .padding(.horizontal, length: .large)
                 
                 
                 TextEditor(text: viewModel.description.isEmpty ? $viewModel.placeholder : $viewModel.description)
@@ -66,21 +64,21 @@ struct AddNewSubView: View {
                         self.focusedField = .description
                         viewModel.isFocused(.description)
                     }
-                    .padding(.bottom, 20)
+                    .padding(.bottom, length: .large)
                 
                 Button(action: { viewModel.saveWholeSub() }) {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(ColorNames.bar.color())
+                        CustomRoundRectangle(color: ColorNames.bar.color())
                         
                         Text("submit")
                             .foregroundColor(.cyan)
                     }
                 }
-                .frame(maxWidth: .infinity, idealHeight: 44)
+                .standardHeightFillUp()
             }
         }
-        .padding(.horizontal, 16)
+        .horizontalPadding()
+        
         .navigationTitle("New Tap")
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
             guard output.name == NSNotification.reloadNotification else {
@@ -105,8 +103,8 @@ struct AddNewSubView: View {
             ZStack {
                 ColorNames.background.color()
                 subsList
-                    .padding(.horizontal, 16)
-                    .padding(.top, 20)
+                    .horizontalPadding()
+                    .padding(.top, length: .large)
             }
         }
     }
@@ -125,17 +123,13 @@ struct AddNewSubView: View {
                     }
                     
                     Button(action: {}) {
-                        ImageNames.trash.image()
-                            .frame(width: 24, height: 24)
+                        ImageNames.trash.rawIcon()
                     }
                 }
             }
             Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {
-                    ImageNames.add.image()
-                        .renderingMode(.template)
-                        .foregroundColor(ColorNames.text.color())
-                        .frame(width: 24, height: 24)
+                    ImageNames.add.icon(color: ColorNames.text.color())
                     Text("add new")
                         .foregroundColor(ColorNames.text.color())
                 }
@@ -146,8 +140,8 @@ struct AddNewSubView: View {
             ZStack {
                 ColorNames.background.color()
                 createNewSub
-                    .padding(.horizontal, 16)
-                    .padding(.top, 200)
+                    .horizontalPadding()
+                    .padding(.top, length: .twoHundred)
             }
             
         }
@@ -165,9 +159,8 @@ struct AddNewSubView: View {
             
             Button(action: { viewModel.chooseNewSubmission() }) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(ColorNames.bar.color())
-                        .frame(maxWidth: .infinity, maxHeight: 44)
+                    CustomRoundRectangle(color: ColorNames.bar.color())
+                        .standardHeightFillUp()
                     
                     Text("submit")
                         .foregroundColor(.cyan)

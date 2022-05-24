@@ -18,29 +18,26 @@ struct GoalsView: View {
                 Spacer()
                 Button(action: viewModel.showAddGoal) {
                     VStack {
-                        ImageNames.add.image()
-                            .renderingMode(.template)
-                            .foregroundColor(ColorNames.text.color())
-                            .frame(width: 24, height: 24)
+                        ImageNames.add.icon(color: ColorNames.text.color())
+                        
                         Text("add new")
                     }
                 }
             }
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
-                    Button(action: { print("aite") }) {
+                    ZStack {
+                        CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red)
+                            .opacity(0.3)
+                        
                         GoalView(goal: goal)
                     }
                     .frame(maxWidth: .infinity)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(goal.timeStamp.isPastDueDate() ? ColorNames.text.color() : Color.red)
-                    )
-                    .padding(.bottom, 20)
+                    .padding(.bottom, length: .small)
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .horizontalPadding()
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
             guard output.name == NSNotification.reloadNotification else {
                 return
@@ -63,13 +60,10 @@ struct GoalView: View {
                 Spacer()
                 
                 Button(action: { print("yooo") }) {
-                    ImageNames.cancel.icon()
-                }
-                
-                Button(action: {}) {
-                    ImageNames.confirm.icon()
+                    ImageNames.cancel.rawIcon()
                 }
             }
+            
             HStack {
                 Text("done date:")
                 Spacer()
@@ -81,12 +75,36 @@ struct GoalView: View {
                 Spacer()
                 Text(Date().difference(from: goal.timeStamp))
             }
+            VStack(alignment: .leading) {
+                Text("description: ")
+                    .padding(.bottom, length: .xxxSmall)
+                
+                Text(goal.description)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                    .font(.body)
+                    .foregroundColor(ColorNames.text.color())
+            }
             
-            Text(goal.description)
-                .multilineTextAlignment(.leading)
-                .font(.body)
-                .foregroundColor(ColorNames.text.color())
+            HStack {
+                Button(action: {}) {
+                    ZStack {
+                        CustomRoundRectangle(color: .green)
+                        Text("Complete")
+                    }
+                }
+                Spacer()
+                
+                Button(action: {}) {
+                    ZStack {
+                        CustomRoundRectangle(color: .blue)
+                        Text("More")
+                    }
+                }
+            }
+            .standardHeight()
+            .padding(.bottom, length: .small)
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, length: .small)
     }
 }

@@ -13,6 +13,8 @@
 		351909782824A21900AC6783 /* SubmissionDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */; };
 		352D869A2802B005002B931C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D86992802B005002B931C /* DateFormatter.swift */; };
 		353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B3955280D6ED50067BC44 /* GoalsAPI.swift */; };
+		353D465F283CDB58006C0A07 /* View+CutomPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D465E283CDB58006C0A07 /* View+CutomPadding.swift */; };
+		353D4662283CDF0F006C0A07 /* CustomRoundRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D4661283CDF0F006C0A07 /* CustomRoundRectangle.swift */; };
 		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
 		354A89BF27E1C8EF00078008 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BE27E1C8EE00078008 /* Store.swift */; };
 		354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89C127E1CA9B00078008 /* LoginAPI.swift */; };
@@ -51,6 +53,8 @@
 		351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionViewModel.swift; sourceTree = "<group>"; };
 		352D86992802B005002B931C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		353B3955280D6ED50067BC44 /* GoalsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsAPI.swift; sourceTree = "<group>"; };
+		353D465E283CDB58006C0A07 /* View+CutomPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CutomPadding.swift"; sourceTree = "<group>"; };
+		353D4661283CDF0F006C0A07 /* CustomRoundRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundRectangle.swift; sourceTree = "<group>"; };
 		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		354A89BE27E1C8EE00078008 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		354A89C127E1CA9B00078008 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
@@ -102,6 +106,14 @@
 			path = "Image picker";
 			sourceTree = "<group>";
 		};
+		353D4660283CDEEB006C0A07 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				353D4661283CDF0F006C0A07 /* CustomRoundRectangle.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		354A89BA27E1C78E00078008 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +155,7 @@
 			children = (
 				354A89CD27E1CD7900078008 /* Collection+Safe.swift */,
 				352D86992802B005002B931C /* DateFormatter.swift */,
+				353D465E283CDB58006C0A07 /* View+CutomPadding.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -187,6 +200,7 @@
 		35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */ = {
 			isa = PBXGroup;
 			children = (
+				353D4660283CDEEB006C0A07 /* Components */,
 				35CDD40727FFF74E00668A58 /* Goals */,
 				3517452927E708CD0074EF2C /* Image picker */,
 				354A946C27E5BA5A00E966B2 /* add sub */,
@@ -347,9 +361,11 @@
 				354A89BC27E1C7B500078008 /* TabView.swift in Sources */,
 				354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */,
 				354A946127E315FD00E966B2 /* SubmissionsViewModel.swift in Sources */,
+				353D4662283CDF0F006C0A07 /* CustomRoundRectangle.swift in Sources */,
 				354A947027E5BCFC00E966B2 /* Submission.swift in Sources */,
 				351909762824A1E400AC6783 /* SubmissionDescriptionView.swift in Sources */,
 				354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */,
+				353D465F283CDB58006C0A07 /* View+CutomPadding.swift in Sources */,
 				35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */,
 				354A89D327E1D6E300078008 /* LogInViewModel.swift in Sources */,
 				353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */,

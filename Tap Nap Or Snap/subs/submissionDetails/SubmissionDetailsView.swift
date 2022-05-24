@@ -34,11 +34,11 @@ struct SubmissionDetailsView: View {
                                 .foregroundColor(.red)
                         }
                     }
-                    .padding(.bottom, 10)
+                    .padding(.bottom, length: .small)
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(.horizontal, 16)
+            .horizontalPadding()
         }
     }
 }

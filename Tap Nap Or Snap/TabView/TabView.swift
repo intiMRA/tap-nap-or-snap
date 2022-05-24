@@ -23,7 +23,7 @@ struct TabItemsView: View {
                     VStack {
                         
                         SubmissionsView()
-                            .padding(.top, 10)
+                            .padding(.top, length: .small)
                         
                         Rectangle()
                             .fill(ColorNames.text.color())
@@ -46,7 +46,7 @@ struct TabItemsView: View {
                     VStack {
                         
                         GoalsView()
-                            .padding(.top, 10)
+                            .padding(.top, length: .small)
                         
                         Rectangle()
                             .fill(ColorNames.text.color())

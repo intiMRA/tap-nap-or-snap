@@ -23,7 +23,15 @@ enum ImageNames: String {
             .resizable()
     }
     
-    func icon() -> some View {
+    func icon(color: Color) -> some View {
+        Image(self.rawValue)
+            .resizable()
+            .renderingMode(.template)
+            .foregroundColor(color)
+            .frame(width: 24, height: 24)
+    }
+    
+    func rawIcon() -> some View {
         Image(self.rawValue)
             .resizable()
             .frame(width: 24, height: 24)
