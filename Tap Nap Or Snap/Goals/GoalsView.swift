@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct GoalsView: View {
-    @StateObject var viewModel = GoalsViewModel()
+    @StateObject var viewModel: GoalsViewModel
+    
+    init() {
+        self._viewModel = StateObject(wrappedValue: GoalsViewModel())
+    }
+    
     var body: some View {
         VStack {
             NavigationLink(isActive: $viewModel.navigateToAddGoal, destination: { CreateNewGoalView() }) {
                 EmptyView()
             }
+            
+            NavigationLink(isActive: $viewModel.navigateToEditGoal, destination: { EditGoalDetailsView(viewModel.createEditViewModel()) }) {
+                EmptyView()
+            }
+            
             HStack {
                 Spacer()
-                Button(action: viewModel.showAddGoal) {
+                Button(action: { viewModel.showAddGoal() }) {
                     VStack {
                         ImageNames.add.icon(color: ColorNames.text.color())
                         
@@ -30,7 +40,7 @@ struct GoalsView: View {
                         CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red)
                             .opacity(0.3)
                         
-                        GoalView(goal: goal)
+                        GoalView(goal: goal, viewModel: viewModel)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, length: .small)
@@ -49,6 +59,7 @@ struct GoalsView: View {
 
 struct GoalView: View {
     let goal: GoalModel
+    @StateObject var viewModel: GoalsViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -95,10 +106,10 @@ struct GoalView: View {
                 }
                 Spacer()
                 
-                Button(action: {}) {
+                Button(action: { viewModel.showEditGoal(currentGoal: goal) }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
-                        Text("More")
+                        Text("Edit")
                     }
                 }
             }

@@ -15,6 +15,8 @@
 		353B3956280D6ED50067BC44 /* GoalsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B3955280D6ED50067BC44 /* GoalsAPI.swift */; };
 		353D465F283CDB58006C0A07 /* View+CutomPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D465E283CDB58006C0A07 /* View+CutomPadding.swift */; };
 		353D4662283CDF0F006C0A07 /* CustomRoundRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D4661283CDF0F006C0A07 /* CustomRoundRectangle.swift */; };
+		353D4665283DCF23006C0A07 /* EditGoalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D4664283DCF23006C0A07 /* EditGoalDetailsView.swift */; };
+		353D4667283DCF63006C0A07 /* EditGoalDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D4666283DCF63006C0A07 /* EditGoalDetailsViewModel.swift */; };
 		354A89BC27E1C7B500078008 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BB27E1C7B500078008 /* TabView.swift */; };
 		354A89BF27E1C8EF00078008 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89BE27E1C8EE00078008 /* Store.swift */; };
 		354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A89C127E1CA9B00078008 /* LoginAPI.swift */; };
@@ -55,6 +57,8 @@
 		353B3955280D6ED50067BC44 /* GoalsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsAPI.swift; sourceTree = "<group>"; };
 		353D465E283CDB58006C0A07 /* View+CutomPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CutomPadding.swift"; sourceTree = "<group>"; };
 		353D4661283CDF0F006C0A07 /* CustomRoundRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundRectangle.swift; sourceTree = "<group>"; };
+		353D4664283DCF23006C0A07 /* EditGoalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalDetailsView.swift; sourceTree = "<group>"; };
+		353D4666283DCF63006C0A07 /* EditGoalDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalDetailsViewModel.swift; sourceTree = "<group>"; };
 		354A89BB27E1C7B500078008 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		354A89BE27E1C8EE00078008 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		354A89C127E1CA9B00078008 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
@@ -112,6 +116,15 @@
 				353D4661283CDF0F006C0A07 /* CustomRoundRectangle.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		353D4663283DCEF4006C0A07 /* edit goal */ = {
+			isa = PBXGroup;
+			children = (
+				353D4664283DCF23006C0A07 /* EditGoalDetailsView.swift */,
+				353D4666283DCF63006C0A07 /* EditGoalDetailsViewModel.swift */,
+			);
+			path = "edit goal";
 			sourceTree = "<group>";
 		};
 		354A89BA27E1C78E00078008 /* TabView */ = {
@@ -249,6 +262,7 @@
 		35CDD40727FFF74E00668A58 /* Goals */ = {
 			isa = PBXGroup;
 			children = (
+				353D4663283DCEF4006C0A07 /* edit goal */,
 				35CDD40827FFF76400668A58 /* GoalsView.swift */,
 				35CDD40A27FFF77D00668A58 /* GoalsViewModel.swift */,
 				35CDD40C27FFFC7F00668A58 /* CreateNewGoalView.swift */,
@@ -350,6 +364,7 @@
 			files = (
 				35E234E128211308001E9871 /* SubmissionDetailsView.swift in Sources */,
 				354A946327E3161100E966B2 /* SubmissionsView.swift in Sources */,
+				353D4665283DCF23006C0A07 /* EditGoalDetailsView.swift in Sources */,
 				352D869A2802B005002B931C /* DateFormatter.swift in Sources */,
 				351909782824A21900AC6783 /* SubmissionDescriptionViewModel.swift in Sources */,
 				35E234E32821161E001E9871 /* SubmissionDetailsViewModel.swift in Sources */,
@@ -357,6 +372,7 @@
 				3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */,
 				35CDD40F27FFFC9A00668A58 /* CreateNewGoalViewModel.swift in Sources */,
 				35BEC7A927E1ABCE00E3A23D /* Color+Custom.swift in Sources */,
+				353D4667283DCF63006C0A07 /* EditGoalDetailsViewModel.swift in Sources */,
 				35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */,
 				354A89BC27E1C7B500078008 /* TabView.swift in Sources */,
 				354A89C227E1CA9B00078008 /* LoginAPI.swift in Sources */,
