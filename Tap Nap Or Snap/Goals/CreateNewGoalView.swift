@@ -35,11 +35,11 @@ struct CreateNewGoalView: View {
             }
             Button(action: viewModel.saveGoal) {
                 ZStack {
-                    CustomRoundRectangle(color: ColorNames.bar.color())
+                    CustomRoundRectangle(color: .blue)
                         .standardHeightFillUp()
                     
                     Text("submit")
-                        .foregroundColor(.cyan)
+                        .foregroundColor(ColorNames.text.color())
                 }
             }
         }

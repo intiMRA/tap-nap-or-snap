@@ -37,8 +37,7 @@ struct GoalsView: View {
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
                     ZStack {
-                        CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red)
-                            .opacity(0.3)
+                        CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red, opacity: 0.3)
                         
                         GoalView(goal: goal, viewModel: viewModel)
                     }

@@ -17,13 +17,14 @@ enum ImageNames: String {
     case trash = "Trash"
     case cancel = "Cancel"
     case confirm = "Confirm"
+    case edit = "Edit"
     
     func image() -> Image {
         Image(self.rawValue)
             .resizable()
     }
     
-    func icon(color: Color) -> some View {
+    func icon(color: Color = ColorNames.text.color()) -> some View {
         Image(self.rawValue)
             .resizable()
             .renderingMode(.template)
