@@ -5,9 +5,10 @@
 //  Created by Inti Albuquerque on 8/04/22.
 //
 import Foundation
+import SwiftUI
 
 struct GoalModel: Identifiable {
-    let id = UUID()
+    let id: String
     let title: String
     let description: String
     let timeStamp: Date
@@ -19,6 +20,7 @@ class GoalsViewModel: ObservableObject {
     @Published var goalModels = [GoalModel]()
     @Published var navigateToEditGoal = false
     var currentGoal: GoalModel?
+    let goalsApi = GoalsAPI()
     
     init() {
         reloadState()
@@ -38,10 +40,19 @@ class GoalsViewModel: ObservableObject {
     }
     
     func reloadState() {
-        self.goalModels = Store.shared.goalsState?.goals ?? []
+        withAnimation {
+            self.goalModels = Store.shared.goalsState?.goals ?? []
+        }
     }
     
     func createEditViewModel() -> EditGoalDetailsViewModel {
         EditGoalDetailsViewModel(currentGoal: self.currentGoal)
+    }
+    
+    func deleteGoal(with id: String) {
+        Task {
+            try? await self.goalsApi.deleteGoal(with: id)
+            self.reloadState()
+        }
     }
 }

@@ -69,7 +69,7 @@ struct GoalView: View {
                     .foregroundColor(ColorNames.text.color())
                 Spacer()
                 
-                Button(action: { print("yooo") }) {
+                Button(action: { viewModel.deleteGoal(with: goal.id) }) {
                     ImageNames.cancel.rawIcon()
                 }
             }

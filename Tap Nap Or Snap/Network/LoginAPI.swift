@@ -196,6 +196,7 @@ class LogInAPI: LogInAPIProtocol {
             
             let goalsState =  GoalsState(goals: goalsList.map {
                 GoalModel(
+                    id: $0[Keys.id.rawValue] ?? "",
                     title: $0[Keys.title.rawValue] ?? "",
                     description: $0[Keys.description.rawValue] ?? "",
                     timeStamp: $0[Keys.timeStamp.rawValue]?.asDate() ?? Date()
