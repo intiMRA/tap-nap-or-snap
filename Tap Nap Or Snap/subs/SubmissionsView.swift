@@ -34,7 +34,6 @@ struct SubmissionsView: View {
                         Button(action: { viewModel.showSubmissionDetails(for: sub.key) }) {
                             ZStack {
                                 CustomRoundRectangle(color: .blue, opacity: 0.3)
-                                
                                 VStack(alignment: .center) {
                                     Text(sub.key)
                                         .font(.title3)
@@ -70,6 +69,7 @@ struct SubmissionsView: View {
                         }
                         .padding(.bottom, length: .medium)
                     }
+                    .background(.background)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,6 +82,5 @@ struct SubmissionsView: View {
         })
         .navigationBarBackButtonHidden(true)
         .horizontalPadding()
-        
     }
 }

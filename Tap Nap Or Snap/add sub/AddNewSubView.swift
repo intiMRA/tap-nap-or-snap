@@ -91,10 +91,10 @@ struct AddNewSubView: View {
                 }
                 .standardHeightFillUp()
             }
+            .horizontalPadding()
+            .padding(.top, length: .large)
         }
-        .horizontalPadding()
-        .padding(.top, length: .large)
-
+        .background(.background)
         .navigationTitle("New Tap")
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
             guard output.name == NSNotification.reloadNotification else {
@@ -143,7 +143,7 @@ struct AddNewSubView: View {
                         }
                         
                         Button(action: {}) {
-                            ImageNames.trash.rawIcon()
+                            ImageNames.trash.icon()
                         }
                     }
                     .padding(length: .medium)
@@ -153,9 +153,9 @@ struct AddNewSubView: View {
             }
             Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {
-                    ImageNames.add.icon(color: ColorNames.text.color())
+                    ImageNames.add.icon()
                     Text("add new")
-                        .foregroundColor(ColorNames.text.color())
+                        .foregroundColor(.text)
                 }
             }
             Spacer()
@@ -166,7 +166,7 @@ struct AddNewSubView: View {
                 ColorNames.background.color()
                 createNewSub
                     .horizontalPadding()
-                    .padding(.top, length: .twoHundred)
+                    .padding(.top, length: .xLarge)
             }
             
         }

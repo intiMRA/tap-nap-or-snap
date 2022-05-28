@@ -19,7 +19,7 @@ struct SubmissionDescriptionView: View {
                     .font(.title)
                     .padding(.bottom, length: .large)
                 ZStack {
-                    CustomRoundRectangle(color: .gray, opacity: 0.1)
+                    CustomRoundRectangle(color: ColorNames.text.color(), opacity: 0.1)
                     
                 VStack(alignment: .leading) {
                     LeftAlignedTextView(viewModel.winsTitle)
@@ -36,7 +36,7 @@ struct SubmissionDescriptionView: View {
                 .padding(.bottom, length: .small)
                 
                 ZStack {
-                    CustomRoundRectangle(color: .gray, opacity: 0.1)
+                    CustomRoundRectangle(color: ColorNames.text.color(), opacity: 0.1)
                     
                 VStack(alignment: .leading) {
                     LeftAlignedTextView(viewModel.lossesTitle)
