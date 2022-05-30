@@ -199,7 +199,8 @@ class LogInAPI: LogInAPIProtocol {
                     id: $0[Keys.id.rawValue] ?? "",
                     title: $0[Keys.title.rawValue] ?? "",
                     description: $0[Keys.description.rawValue] ?? "",
-                    timeStamp: $0[Keys.timeStamp.rawValue]?.asDate() ?? Date()
+                    timeStamp: $0[Keys.timeStamp.rawValue]?.asDate() ?? Date(),
+                    isComplete: Bool($0[GoalKeys.isComplete.rawValue] ?? "false") ?? false
                 )
             })
             

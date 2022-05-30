@@ -37,7 +37,7 @@ struct GoalsView: View {
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
                     ZStack {
-                        CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red, opacity: 0.3)
+                        CustomRoundRectangle(color: color(for: goal), opacity: 0.3)
                         
                         GoalView(goal: goal, viewModel: viewModel)
                     }
@@ -53,6 +53,10 @@ struct GoalsView: View {
             }
             viewModel.reloadState()
         })
+    }
+    
+    func color(for goal: GoalModel) -> Color {
+        goal.isComplete ? .green : (goal.timeStamp.isPastDueDate() ? .blue : Color.red)
     }
 }
 
@@ -97,10 +101,11 @@ struct GoalView: View {
             }
             
             HStack {
-                Button(action: {}) {
+                
+                Button(action: { viewModel.completeGoal(with: goal.id, status: !goal.isComplete) }) {
                     ZStack {
-                        CustomRoundRectangle(color: .green)
-                        Text("Complete")
+                        CustomRoundRectangle(color: goal.isComplete ? .yellow : .green)
+                        Text(goal.isComplete ? "Reopen" : "Complete")
                     }
                 }
                 Spacer()

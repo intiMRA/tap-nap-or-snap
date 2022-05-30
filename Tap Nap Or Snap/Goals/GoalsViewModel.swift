@@ -12,6 +12,22 @@ struct GoalModel: Identifiable {
     let title: String
     let description: String
     let timeStamp: Date
+    let isComplete: Bool
+}
+
+extension GoalModel {
+    init?(from dictionary: [String: String]) {
+        guard let id = dictionary[Keys.id.rawValue],
+              let title = dictionary[Keys.title.rawValue],
+              let description = dictionary[Keys.description.rawValue],
+              let timeStamp = dictionary[Keys.timeStamp.rawValue]?.asDate(),
+              let isComplete = Bool(dictionary[GoalKeys.isComplete.rawValue] ?? "false") else {
+            return nil
+        }
+        
+        self.init(id: id, title: title, description: description, timeStamp: timeStamp, isComplete: isComplete)
+            
+    }
 }
 
 @MainActor
@@ -52,6 +68,13 @@ class GoalsViewModel: ObservableObject {
     func deleteGoal(with id: String) {
         Task {
             try? await self.goalsApi.deleteGoal(with: id)
+            self.reloadState()
+        }
+    }
+    
+    func completeGoal(with id: String, status: Bool) {
+        Task {
+            try? await self.goalsApi.goalCompletion(status: status, id: id)
             self.reloadState()
         }
     }

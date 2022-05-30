@@ -84,7 +84,7 @@ class CreateNewGoalViewModel: ObservableObject {
                     return
                 }
                 
-                try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date))
+                try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date, isComplete: false))
                 DispatchQueue.main.async {
                     self.shouldDismiss = true
                 }
