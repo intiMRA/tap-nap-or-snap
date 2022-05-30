@@ -72,13 +72,13 @@ struct AddNewSubView: View {
                         .focused($focusedField, equals: .description)
                         .font(viewModel.description.isEmpty ? .callout : .body)
                         .opacity(viewModel.description.isEmpty ? 0.3 : 1)
-                        .onTapGesture {
-                            self.focusedField = .description
-                            viewModel.isFocused(.description)
-                        }
                 }
-                .frame(minHeight: 44)
+                .frame(height: 200)
                 .padding(.bottom, length: .large)
+                .onTapGesture {
+                    self.focusedField = .description
+                    viewModel.isFocused(.description)
+                }
                 
                 Button(action: { viewModel.saveWholeSub() }) {
                     ZStack {

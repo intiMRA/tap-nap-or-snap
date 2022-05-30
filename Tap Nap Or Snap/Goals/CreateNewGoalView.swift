@@ -28,13 +28,14 @@ struct CreateNewGoalView: View {
                         .focused($focusedField, equals: .description)
                         .font(viewModel.description.isEmpty ? .callout : .body)
                         .opacity(viewModel.description.isEmpty ? 0.3 : 1)
-                        .onTapGesture {
-                            self.focusedField = .description
-                            viewModel.isFocused(.description)
-                        }
                 }
-                .standardHeight()
+                .frame(height: 200)
                 .padding(.bottom, length: .medium)
+                .onTapGesture {
+                    self.focusedField = .description
+                    viewModel.isFocused(.description)
+                }
+                
                 
                 timeToCompleteView
                 

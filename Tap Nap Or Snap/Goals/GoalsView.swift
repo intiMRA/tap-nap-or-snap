@@ -65,7 +65,7 @@ struct GoalView: View {
     @StateObject var viewModel: GoalsViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: PaddingValues.xxSmall.rawValue) {
             HStack {
                 Text(goal.title)
                     .font(.title)
@@ -80,17 +80,20 @@ struct GoalView: View {
             
             HStack {
                 Text("done date:")
+                    .bold()
                 Spacer()
                 Text(goal.timeStamp.asString())
             }
             
             HStack {
                 Text("time remaining:")
+                    .bold()
                 Spacer()
                 Text(Date().difference(from: goal.timeStamp))
             }
             VStack(alignment: .leading) {
                 Text("description: ")
+                    .bold()
                     .padding(.bottom, length: .xxxSmall)
                 
                 Text(goal.description)
