@@ -12,6 +12,7 @@ protocol SubmissionsAPIProtocol {
     func addNewSubToList(submissionName: String) async throws
     func saveWin(submission: Submission) async throws
     func saveLoss(submission: Submission) async throws
+    func saveSubmissionDescriptions(submissionName: String, name: String, winDescription: String?,  lossDescription: String?) async throws
 }
 
 enum Keys: String {
@@ -126,6 +127,77 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         submissions[submission.subName] = subModel
         
         await Store.shared.changeState(newState: SubmissionsState(subs: submissions))
+    }
+    
+    func saveSubmissionDescriptions(submissionName: String, name: String, winDescription: String?, lossDescription: String?) async throws {
+        guard let uid = Store.shared.loginState?.id else {
+            return
+        }
+        
+        let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
+        
+        guard snapshot.exists == true,
+              var snapshot = snapshot.data()
+        else {
+            return
+        }
+        
+        var submissions = (snapshot[Keys.submissions.rawValue] as? [String: [String: [[String: String]]]]) ?? [:]
+        var currentSubmission = submissions[submissionName] ?? [:]
+        var newWins: [[String: String]]?
+        var newLosses: [[String: String]]?
+        
+        if let wins = (currentSubmission[SubmissionKeys.wins.rawValue]), let winDescription = winDescription {
+            newWins = wins.map { emptySubDescription(subsDict: $0, name: name) }
+            var firstSub = newWins?.first(where: { $0[Keys.person.rawValue] == name })
+            firstSub?[Keys.description.rawValue] = winDescription
+            newWins = newWins?.dropFirst().map { $0 }
+            if let firstSub = firstSub {
+                newWins?.append(firstSub)
+            }
+        }
+        
+        if let losses = (currentSubmission[SubmissionKeys.losses.rawValue]), let lossDescription = lossDescription {
+            newLosses = losses.map { emptySubDescription(subsDict: $0, name: name) }
+            var firstSub = newLosses?.first(where: { $0[Keys.person.rawValue] == name })
+            firstSub?[Keys.description.rawValue] = lossDescription
+            newLosses = newLosses?.dropFirst().map { $0 }
+            if let firstSub = firstSub {
+                newLosses?.append(firstSub)
+            }
+        }
+
+        currentSubmission[SubmissionKeys.wins.rawValue] = newWins ?? []
+        currentSubmission[SubmissionKeys.losses.rawValue] = newLosses ?? []
+        
+        submissions[submissionName] = currentSubmission
+        
+        snapshot[Keys.submissions.rawValue] = submissions
+        
+        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
+        
+        var storedSubs = Store.shared.submissionsState?.subs ?? [:]
+
+        let subModel = SubmissionsModel(wins: newWins?.compactMap{ Submission(from: $0) } ?? [], losses: newLosses?.compactMap { Submission(from: $0) } ?? [])
+        storedSubs[submissionName] = subModel
+        
+        await Store.shared.changeState(newState: SubmissionsState(subs: storedSubs))
+    }
+    
+    private func emptySubDescription(subsDict: [String: String], name: String) -> [String: String] {
+        guard name == subsDict[Keys.person.rawValue] else {
+            return subsDict
+        }
+        
+        var newDict: [String: String] = [:]
+        subsDict.forEach { (key, value) in
+            if key == Keys.description.rawValue {
+                newDict[key] = ""
+            } else {
+                newDict[key] = value
+            }
+        }
+        return newDict
     }
 }
 

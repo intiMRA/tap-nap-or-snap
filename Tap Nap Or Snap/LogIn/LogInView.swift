@@ -29,7 +29,7 @@ struct LogInView: View {
                     
                     LoginTextField("Email".localized, keyBoard: .emailAddress, text: $viewModel.email)
                     
-                    LoginTextField("Password".localized, text: $viewModel.password)
+                    LoginTextField("Password".localized, text: $viewModel.password, isSecureEntry: true)
                     
                     Button(action: viewModel.login) {
                         Text("LogIn".localized)
@@ -55,23 +55,49 @@ struct LogInView: View {
 struct LoginTextField: View {
     let name: String
     let keyBoard: UIKeyboardType
+    let isSecureEntry: Bool
     @Binding var text: String
-    
-    init(_ name: String, keyBoard: UIKeyboardType = .alphabet, text: Binding<String>) {
+    @State var isVisible = false
+    init(_ name: String, keyBoard: UIKeyboardType = .alphabet, text: Binding<String>, isSecureEntry: Bool = false) {
         self.name = name
         self._text = text
         self.keyBoard = keyBoard
+        self.isSecureEntry = isSecureEntry
     }
     
     var body: some View {
         ZStack {
             CustomRoundRectangle(color: ColorNames.text.color(opacity: .ten))
-            
-            TextField(name, text: $text)
-                .keyboardType(keyBoard)
-                .foregroundColor(ColorNames.text.color())
-                .accentColor(ColorNames.text.color())
-                .padding(length: .small)
+            if isSecureEntry {
+                HStack {
+                    Group {
+                        if isVisible {
+                            TextField(name, text: $text)
+                                .keyboardType(keyBoard)
+                                .foregroundColor(ColorNames.text.color())
+                                .accentColor(ColorNames.text.color())
+                                .padding(length: .small)
+                        } else {
+                            SecureField(name, text: $text)
+                                .keyboardType(keyBoard)
+                                .foregroundColor(ColorNames.text.color())
+                                .accentColor(ColorNames.text.color())
+                                .padding(length: .small)
+                        }
+                    }
+                    
+                    Button(action: { self.isVisible = !self.isVisible }) {
+                        ImageNames.eye.icon(color: self.isVisible ? .blue : ColorNames.text.color())
+                    }
+                    .padding(.horizontal, length: .small)
+                }
+            } else {
+                TextField(name, text: $text)
+                    .keyboardType(keyBoard)
+                    .foregroundColor(ColorNames.text.color())
+                    .accentColor(ColorNames.text.color())
+                    .padding(length: .small)
+            }
         }
         .standardHeightFillUp()
     }

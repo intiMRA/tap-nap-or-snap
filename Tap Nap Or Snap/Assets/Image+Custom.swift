@@ -18,6 +18,7 @@ enum ImageNames: String {
     case cancel = "Cancel"
     case confirm = "Confirm"
     case edit = "Edit"
+    case eye = "Eye"
     
     func image() -> Image {
         Image(self.rawValue)
