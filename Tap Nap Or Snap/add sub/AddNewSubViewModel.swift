@@ -46,7 +46,6 @@ class AddNewSubViewModel: ObservableObject {
                         self.description = String(lastCharacter)
                     }
                 }
-
             }
             .store(in: &cancelable)
         $description

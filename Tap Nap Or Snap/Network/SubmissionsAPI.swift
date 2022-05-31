@@ -63,6 +63,7 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         }
         
         list.append(submissionName)
+        snapshot[Keys.subMissionList.rawValue] = list
         await Store.shared.changeState(newState: SubmissionNamesState(subs: list))
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
     }

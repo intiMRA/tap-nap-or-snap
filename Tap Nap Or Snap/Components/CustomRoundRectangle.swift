@@ -9,12 +9,15 @@ import SwiftUI
 
 struct CustomRoundRectangle: View {
     let color: Color
-    init(color: Color = .clear) {
+    let opacity: CGFloat
+    init(color: Color = .clear, opacity: CGFloat = 1) {
         self.color = color
+        self.opacity = opacity
     }
     
     var body: some View {
         RoundedRectangle(cornerRadius: 7)
             .fill(color)
+            .opacity(opacity)
     }
 }

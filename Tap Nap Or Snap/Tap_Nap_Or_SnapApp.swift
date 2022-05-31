@@ -25,6 +25,7 @@ struct Tap_Nap_Or_SnapApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        UITextView.appearance().backgroundColor = .clear
         return true
     }
 }

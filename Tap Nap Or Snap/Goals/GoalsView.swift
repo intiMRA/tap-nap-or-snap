@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct GoalsView: View {
-    @StateObject var viewModel = GoalsViewModel()
+    @StateObject var viewModel: GoalsViewModel
+    
+    init() {
+        self._viewModel = StateObject(wrappedValue: GoalsViewModel())
+    }
+    
     var body: some View {
         VStack {
             NavigationLink(isActive: $viewModel.navigateToAddGoal, destination: { CreateNewGoalView() }) {
                 EmptyView()
             }
+            
+            NavigationLink(isActive: $viewModel.navigateToEditGoal, destination: { EditGoalDetailsView(viewModel.createEditViewModel()) }) {
+                EmptyView()
+            }
+            
             HStack {
                 Spacer()
-                Button(action: viewModel.showAddGoal) {
+                Button(action: { viewModel.showAddGoal() }) {
                     VStack {
                         ImageNames.add.icon(color: ColorNames.text.color())
                         
@@ -27,10 +37,9 @@ struct GoalsView: View {
             ScrollView {
                 ForEach(viewModel.goalModels) { goal in
                     ZStack {
-                        CustomRoundRectangle(color: goal.timeStamp.isPastDueDate() ? .blue : Color.red)
-                            .opacity(0.3)
+                        CustomRoundRectangle(color: color(for: goal), opacity: 0.3)
                         
-                        GoalView(goal: goal)
+                        GoalView(goal: goal, viewModel: viewModel)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, length: .small)
@@ -45,13 +54,18 @@ struct GoalsView: View {
             viewModel.reloadState()
         })
     }
+    
+    func color(for goal: GoalModel) -> Color {
+        goal.isComplete ? .green : (goal.timeStamp.isPastDueDate() ? .blue : Color.red)
+    }
 }
 
 struct GoalView: View {
     let goal: GoalModel
+    @StateObject var viewModel: GoalsViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: PaddingValues.xxSmall.rawValue) {
             HStack {
                 Text(goal.title)
                     .font(.title)
@@ -59,24 +73,27 @@ struct GoalView: View {
                     .foregroundColor(ColorNames.text.color())
                 Spacer()
                 
-                Button(action: { print("yooo") }) {
+                Button(action: { viewModel.deleteGoal(with: goal.id) }) {
                     ImageNames.cancel.rawIcon()
                 }
             }
             
             HStack {
                 Text("done date:")
+                    .bold()
                 Spacer()
                 Text(goal.timeStamp.asString())
             }
             
             HStack {
                 Text("time remaining:")
+                    .bold()
                 Spacer()
                 Text(Date().difference(from: goal.timeStamp))
             }
             VStack(alignment: .leading) {
                 Text("description: ")
+                    .bold()
                     .padding(.bottom, length: .xxxSmall)
                 
                 Text(goal.description)
@@ -87,18 +104,19 @@ struct GoalView: View {
             }
             
             HStack {
-                Button(action: {}) {
+                
+                Button(action: { viewModel.completeGoal(with: goal.id, status: !goal.isComplete) }) {
                     ZStack {
-                        CustomRoundRectangle(color: .green)
-                        Text("Complete")
+                        CustomRoundRectangle(color: goal.isComplete ? .yellow : .green)
+                        Text(goal.isComplete ? "Reopen" : "Complete")
                     }
                 }
                 Spacer()
                 
-                Button(action: {}) {
+                Button(action: { viewModel.showEditGoal(currentGoal: goal) }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
-                        Text("More")
+                        Text("Edit")
                     }
                 }
             }

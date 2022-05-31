@@ -64,18 +64,27 @@ class CreateNewGoalViewModel: ObservableObject {
     }
     
     func saveGoal() {
+        //TODO: proper error
+        guard let numberOfDays = Int(numberOfDays) else {
+            return
+        }
         Task {
             do {
-                var date = Date()
+                var date: Date?
                 switch self.timeToComplete {
                 case .weeks:
-                    date = Calendar.current.date(byAdding: .weekOfYear, value: Int(numberOfDays)!, to: date)!
+                    date = Calendar.current.date(byAdding: .weekOfYear, value: numberOfDays, to: Date())
                 case .months:
-                    date = Calendar.current.date(byAdding: .month, value: Int(numberOfDays)!, to: date)!
+                    date = Calendar.current.date(byAdding: .month, value: numberOfDays, to: Date())
                 case .years:
-                    date = Calendar.current.date(byAdding: .year, value: Int(numberOfDays)!, to: date)!
+                    date = Calendar.current.date(byAdding: .year, value: numberOfDays, to: Date())
                 }
-                try await api.addNewGoal(goal: GoalModel(title: self.title, description: self.description, timeStamp: date))
+                
+                guard let date = date else {
+                    return
+                }
+                
+                try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date, isComplete: false))
                 DispatchQueue.main.async {
                     self.shouldDismiss = true
                 }

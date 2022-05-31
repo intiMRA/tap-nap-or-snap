@@ -67,4 +67,12 @@ class SubmissionDetailsViewModel: ObservableObject {
         self.currentPersonsName = name
         self.navigateToDescription = true
     }
+    
+    func getWinsCountCopy(for sub: SubmissionDetailModel) -> String {
+        "\(sub.numberOfWins) \(sub.numberOfWins == 1 ? "time" : "times")"
+    }
+    
+    func getLossesCountCopy(for sub: SubmissionDetailModel) -> String {
+        "\(sub.numberOfLosses) \(sub.numberOfLosses == 1 ? "time" : "times")"
+    }
 }

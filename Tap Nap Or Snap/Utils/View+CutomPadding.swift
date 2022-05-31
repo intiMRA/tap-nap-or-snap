@@ -15,6 +15,7 @@ enum PaddingValues: CGFloat {
     case small = 10
     case medium = 16
     case large = 20
+    case xLarge = 32
     case twoHundred = 200
 }
 

@@ -25,16 +25,42 @@ struct SubmissionDetailsView: View {
                 
                 ForEach(viewModel.subsList, id: \.personsName) { sub in
                     Button(action: { viewModel.showDescription(for: sub.personsName) }) {
-                        HStack {
-                            Text(sub.personsName)
-                            Text("\(sub.numberOfWins) \(sub.numberOfWins == 1 ? "win" : "wins")")
-                                .foregroundColor(.green)
-                            
-                            Text("\(sub.numberOfLosses) \(sub.numberOfLosses == 1 ? "loss" : "losses")")
-                                .foregroundColor(.red)
+                        ZStack {
+                            CustomRoundRectangle(color: .blue, opacity: 0.3)
+                            VStack(alignment: .center) {
+                                Text(sub.personsName)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .padding(.bottom, length: .xxSmall)
+                                
+                                HStack {
+                                    Spacer()
+                                    Text("Won:")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                        .padding(.trailing, length: .xxSmall)
+                                    
+                                    Text(viewModel.getWinsCountCopy(for: sub))
+                                        .foregroundColor(.green)
+                                        .font(.headline)
+                                    
+                                    Spacer()
+                                    
+                                    Text("Lost:")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                        .padding(.trailing, length: .xxSmall)
+                                    
+                                    Text(viewModel.getLossesCountCopy(for: sub))
+                                        .foregroundColor(.red)
+                                        .font(.headline)
+                                    Spacer()
+                                }
+                            }
+                            .padding(length: .medium)
                         }
                     }
-                    .padding(.bottom, length: .small)
+                    .padding(.bottom, length: .medium)
                 }
             }
             .frame(maxWidth: .infinity)

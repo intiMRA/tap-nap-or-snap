@@ -28,3 +28,13 @@ enum ColorNames: String {
             .opacity(opacity.rawValue)
     }
 }
+
+extension View {
+    func foregroundColor(_ colorName: ColorNames) -> some View {
+        self.foregroundColor(colorName.color())
+    }
+    
+    func backgroundColor(_ colorName: ColorNames) -> some View {
+        self.background(colorName.color())
+    }
+}
