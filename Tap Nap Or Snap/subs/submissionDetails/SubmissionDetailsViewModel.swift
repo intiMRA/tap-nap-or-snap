@@ -7,60 +7,24 @@
 
 import Foundation
 
-struct SubmissionDetailModel {
-    let personsName: String
-    let numberOfWins: Int
-    let numberOfLosses: Int
-}
-
 @MainActor
 class SubmissionDetailsViewModel: ObservableObject {
-    @Published var subsList: [SubmissionDetailModel] = []
+    @Published var submissionsList: [Submission]
     @Published var submissionName: String = ""
     @Published var navigateToDescription = false
     
     var currentPersonsName = ""
     
-    init(submissionsModel: SubmissionsModel, name: String) {
-        self.submissionName = name
-        var countDictionary = [String: SubmissionDetailModel]()
-        submissionsModel.wins.forEach { model in
-            let name = model.personName ?? "unkown"
-                countDictionary[name] = SubmissionDetailModel(
-                    personsName: name,
-                    numberOfWins: (countDictionary[name]?.numberOfWins ?? 0) + 1, numberOfLosses: 0)
-        }
-        
-        submissionsModel.losses.forEach { model in
-            let name = model.personName ?? "unkown"
-                countDictionary[name] = SubmissionDetailModel(
-                    personsName: name,
-                    numberOfWins: countDictionary[name]?.numberOfWins ?? 0, numberOfLosses: (countDictionary[name]?.numberOfLosses ?? 0) + 1)
-        }
-        
-        self.subsList = countDictionary.map(\.value)
+    init(submissionsList: [Submission], submissionName: String) {
+        self.submissionName = submissionName
+        self.submissionsList = submissionsList
     }
     
     func createDescriptionViewModel() -> SubmissionDescriptionViewModel {
-        let subModel = Store.shared.submissionsState?.subs[submissionName]
-        
-        let wins = subModel?.wins
-            .compactMap({ sub -> DescriptionModel? in
-                guard let description = sub.description, sub.personName == currentPersonsName else {
-                    return nil
-                }
-                return DescriptionModel(id: sub.id, description: description)
-            }) ?? []
-        
-        let losses = subModel?.losses
-            .compactMap({ sub -> DescriptionModel? in
-                guard let description = sub.description, sub.personName == currentPersonsName else {
-                    return nil
-                }
-                return DescriptionModel(id: sub.id, description: description)
-            }) ?? []
-        
-        return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", subName: submissionName, personName: currentPersonsName, winDescriptions: wins, lossesDescriptions: losses)
+        guard let sub = submissionsList.first(where: { $0.personName == currentPersonsName }) else {
+            return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", subName: submissionName, personName: currentPersonsName, submission: Submission())
+        }
+        return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", subName: submissionName, personName: currentPersonsName, submission: sub)
     }
     
     func showDescription(for name: String) {
@@ -68,11 +32,11 @@ class SubmissionDetailsViewModel: ObservableObject {
         self.navigateToDescription = true
     }
     
-    func getWinsCountCopy(for sub: SubmissionDetailModel) -> String {
-        "\(sub.numberOfWins) \(sub.numberOfWins == 1 ? "time" : "times")"
+    func getWinsCountCopy(for sub: Submission) -> String {
+        "\(sub.wins) \(sub.wins == 1 ? "time" : "times")"
     }
     
-    func getLossesCountCopy(for sub: SubmissionDetailModel) -> String {
-        "\(sub.numberOfLosses) \(sub.numberOfLosses == 1 ? "time" : "times")"
+    func getLossesCountCopy(for sub: Submission) -> String {
+        "\(sub.losses) \(sub.losses == 1 ? "time" : "times")"
     }
 }

@@ -9,11 +9,6 @@ import Foundation
 import Combine
 import SwiftUI
 
-struct DescriptionModel: Identifiable {
-    let id: String
-    let description: String
-}
-
 enum SubmissionDescriptionViewFocusField: Hashable {
     case wins, losses
 }
@@ -34,14 +29,14 @@ class SubmissionDescriptionViewModel: ObservableObject {
     var cancellable = Set<AnyCancellable>()
     let api: SubmissionsAPIProtocol
     
-    init(title: String, subName: String, personName: String, winDescriptions: [DescriptionModel], lossesDescriptions: [DescriptionModel], api: SubmissionsAPIProtocol = SubmissionsAPI()) {
+    init(title: String, subName: String, personName: String, submission: Submission, api: SubmissionsAPIProtocol = SubmissionsAPI()) {
         self.title = title
         self.api = api
         self.subName = subName
         self.personName = personName
         
-        self.winDescription = text(for: winDescriptions)
-        self.lossesDescription = text(for: lossesDescriptions)
+        self.winDescription = submission.winDescription
+        self.lossesDescription = submission.lossesDescription
 
         
         $winPlaceholder
@@ -92,16 +87,6 @@ class SubmissionDescriptionViewModel: ObservableObject {
         
     }
     
-    private func text(for submissions: [DescriptionModel]) -> String {
-        var subsString = ""
-        submissions.forEach { sub in
-            if !sub.description.isEmpty {
-                subsString += "\(sub.description)\n"
-            }
-        }
-        return subsString
-    }
-    
     func isFocused(_ field: SubmissionDescriptionViewFocusField) {
         DispatchQueue.main.async {
             withAnimation {
@@ -123,7 +108,7 @@ class SubmissionDescriptionViewModel: ObservableObject {
                 self.shouldDismiss = true
             }
             
-            try? await api.saveSubmissionDescriptions(submissionName: subName, name: personName, winDescription: winDescription, lossDescription: lossesDescription)
+            try? await api.saveSubmissionDescriptions(submissionName: subName, personName: personName, winDescription: winDescription, lossDescription: lossesDescription)
         }
     }
 }

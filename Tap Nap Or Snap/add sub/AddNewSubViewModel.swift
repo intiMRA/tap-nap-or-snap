@@ -112,7 +112,7 @@ class AddNewSubViewModel: ObservableObject {
     
     func saveWholeSub() {
         Task {
-            let sub = Submission(id: UUID().uuidString, subName: chosenSub ?? "", personName: self.name, description: self.description)
+            let sub = SubmissionUploadModel(subName: chosenSub ?? "", personName: self.name, description: self.description)
             do {
                 if isWin {
                     try await self.api.saveWin(submission: sub)
