@@ -12,7 +12,7 @@ protocol SubmissionsAPIProtocol {
     func addNewSubToList(submissionName: String) async throws
     func saveWin(submission: Submission) async throws
     func saveLoss(submission: Submission) async throws
-    func saveSubmissionDescriptions(submissionName: String, name: String, winDescription: String?,  lossDescription: String?) async throws
+    func saveSubmissionDescriptions(submissionName: String, name: String, winDescription: String?, lossDescription: String?) async throws
 }
 
 enum Keys: String {

@@ -15,12 +15,14 @@ struct DescriptionModel: Identifiable {
 }
 
 enum SubmissionDescriptionViewFocusField: Hashable {
-  case wins, losses
+    case wins, losses
 }
 
 @MainActor
 class SubmissionDescriptionViewModel: ObservableObject {
     let title: String
+    let subName: String
+    let personName: String
     let winsTitle = "Win Descriptions:"
     let lossesTitle = "Loss Descriptions:"
     @Published var winDescription = ""
@@ -30,11 +32,17 @@ class SubmissionDescriptionViewModel: ObservableObject {
     @Published var shouldDismiss = false
     let originalPH = "No description"
     var cancellable = Set<AnyCancellable>()
+    let api: SubmissionsAPIProtocol
     
-    init(title: String, winDescriptions: [DescriptionModel], lossesDescriptions: [DescriptionModel]) {
+    init(title: String, subName: String, personName: String, winDescriptions: [DescriptionModel], lossesDescriptions: [DescriptionModel], api: SubmissionsAPIProtocol = SubmissionsAPI()) {
         self.title = title
+        self.api = api
+        self.subName = subName
+        self.personName = personName
+        
         self.winDescription = text(for: winDescriptions)
         self.lossesDescription = text(for: lossesDescriptions)
+
         
         $winPlaceholder
             .dropFirst()
@@ -44,7 +52,7 @@ class SubmissionDescriptionViewModel: ObservableObject {
                         self.winDescription = String(lastCharacter)
                     }
                 }
-
+                
             }
             .store(in: &cancellable)
         
@@ -67,7 +75,7 @@ class SubmissionDescriptionViewModel: ObservableObject {
                         self.lossesDescription = String(lastCharacter)
                     }
                 }
-
+                
             }
             .store(in: &cancellable)
         
@@ -85,12 +93,10 @@ class SubmissionDescriptionViewModel: ObservableObject {
     }
     
     private func text(for submissions: [DescriptionModel]) -> String {
-        var count = 1
         var subsString = ""
         submissions.forEach { sub in
             if !sub.description.isEmpty {
-                subsString += "\(count). \(sub.description)\n"
-                count += 1
+                subsString += "\(sub.description)\n"
             }
         }
         return subsString
@@ -112,8 +118,12 @@ class SubmissionDescriptionViewModel: ObservableObject {
     }
     
     func saveDescriptions() {
-        withAnimation {
-            self.shouldDismiss = true
+        Task {
+            withAnimation {
+                self.shouldDismiss = true
+            }
+            
+            try? await api.saveSubmissionDescriptions(submissionName: subName, name: personName, winDescription: winDescription, lossDescription: lossesDescription)
         }
     }
 }
