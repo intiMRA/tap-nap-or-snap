@@ -46,21 +46,21 @@ class SubmissionDetailsViewModel: ObservableObject {
         
         let wins = subModel?.wins
             .compactMap({ sub -> DescriptionModel? in
-                guard let id = UUID(uuidString: sub.id), let description = sub.description, sub.personName == currentPersonsName else {
+                guard let description = sub.description, sub.personName == currentPersonsName else {
                     return nil
                 }
-                return DescriptionModel(id: id, description: description)
+                return DescriptionModel(id: sub.id, description: description)
             }) ?? []
         
         let losses = subModel?.losses
             .compactMap({ sub -> DescriptionModel? in
-                guard let id = UUID(uuidString: sub.id), let description = sub.description, sub.personName == currentPersonsName else {
+                guard let description = sub.description, sub.personName == currentPersonsName else {
                     return nil
                 }
-                return DescriptionModel(id: id, description: description)
+                return DescriptionModel(id: sub.id, description: description)
             }) ?? []
         
-        return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", winDescriptions: wins, lossesDescriptions: losses)
+        return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", subName: submissionName, personName: currentPersonsName, winDescriptions: wins, lossesDescriptions: losses)
     }
     
     func showDescription(for name: String) {

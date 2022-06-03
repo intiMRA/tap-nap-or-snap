@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SubmissionDescriptionView: View {
     @StateObject var viewModel: SubmissionDescriptionViewModel
+    @FocusState private var focusedField: SubmissionDescriptionViewFocusField?
+    @Environment(\.presentationMode) var presentationMode
     init(viewModel: SubmissionDescriptionViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -18,43 +20,72 @@ struct SubmissionDescriptionView: View {
                 LeftAlignedTextView(viewModel.title)
                     .font(.title)
                     .padding(.bottom, length: .large)
-                ZStack {
-                    CustomRoundRectangle(color: ColorNames.text.color(), opacity: 0.1)
-                    
+                
                 VStack(alignment: .leading) {
                     LeftAlignedTextView(viewModel.winsTitle)
                         .font(.title3)
                         .padding(.all, length: .small)
                         .foregroundColor(.green)
                     
-                    LeftAlignedTextView(viewModel.text(for: viewModel.winDescriptions))
-                        .padding(.bottom, length: .small)
-                        .padding(.horizontal, length: .small)
+                    ZStack {
+                        CustomRoundRectangle(color: ColorNames.text.color(opacity: .ten))
+                        
+                        TextEditor(text: viewModel.winDescription.isEmpty ? $viewModel.winPlaceholder : $viewModel.winDescription)
+                            .focused($focusedField, equals: .wins)
+                            .font(viewModel.winDescription.isEmpty ? .callout : .body)
+                            .opacity(viewModel.winDescription.isEmpty ? 0.3 : 1)
+                    }
+                    .frame(height: 200)
+                    .padding(.bottom, length: .medium)
+                    .onTapGesture {
+                        self.focusedField = .wins
+                        viewModel.isFocused(.wins)
                     }
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.bottom, length: .small)
                 
-                ZStack {
-                    CustomRoundRectangle(color: ColorNames.text.color(), opacity: 0.1)
-                    
                 VStack(alignment: .leading) {
                     LeftAlignedTextView(viewModel.lossesTitle)
                         .font(.title3)
                         .padding(.all, length: .small)
                         .foregroundColor(.red)
-
-                    LeftAlignedTextView(viewModel.text(for: viewModel.lossesDescriptions))
-                        .padding(.bottom, length: .small)
-                        .padding(.horizontal, length: .small)
-
+                    
+                    ZStack {
+                        CustomRoundRectangle(color: ColorNames.text.color(opacity: .ten))
+                        
+                        TextEditor(text: viewModel.lossesDescription.isEmpty ? $viewModel.lossesPlaceholder : $viewModel.lossesDescription)
+                            .focused($focusedField, equals: .losses)
+                            .font(viewModel.lossesDescription.isEmpty ? .callout : .body)
+                            .opacity(viewModel.lossesDescription.isEmpty ? 0.3 : 1)
+                    }
+                    .frame(height: 200)
+                    .padding(.bottom, length: .medium)
+                    .onTapGesture {
+                        self.focusedField = .losses
+                        viewModel.isFocused(.losses)
+                    }
+                    
                 }
                 .frame(maxWidth: .infinity)
+                
+                Button(action: { viewModel.saveDescriptions() }) {
+                    ZStack {
+                        CustomRoundRectangle(color: .blue)
+                        Text("Done")
+                    }
                 }
+                .standardHeightFillUp()
             }
+            .padding(.bottom, length: .medium)
         }
         .horizontalPadding()
         .padding(.vertical, length: .large)
+        .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
+            if shouldDismiss {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
 }
 

@@ -25,7 +25,7 @@ class CreateNewGoalViewModel: ObservableObject {
     @Published var description = ""
     @Published var numberOfDays = ""
     @Published var timeToComplete: TimeToCompleteGoal = .weeks
-    private var cancelable = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     init() {
         $placeholder
             .dropFirst()
@@ -37,7 +37,7 @@ class CreateNewGoalViewModel: ObservableObject {
                 }
 
             }
-            .store(in: &cancelable)
+            .store(in: &cancellable)
         $description
             .dropFirst()
             .sink { description in
@@ -47,7 +47,7 @@ class CreateNewGoalViewModel: ObservableObject {
                     }
                 }
             }
-            .store(in: &cancelable)
+            .store(in: &cancellable)
     }
     
     func isFocused(_ field: GoalsViewFocusField) {

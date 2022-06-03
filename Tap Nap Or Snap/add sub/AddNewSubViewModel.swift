@@ -35,7 +35,7 @@ class AddNewSubViewModel: ObservableObject {
     @Published var placeholder = "placehoder"
     let originalPH = "placehoder"
     let api = SubmissionsAPI()
-    var cancelable = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
     init() {
         reloadState()
         $placeholder
@@ -47,7 +47,7 @@ class AddNewSubViewModel: ObservableObject {
                     }
                 }
             }
-            .store(in: &cancelable)
+            .store(in: &cancellable)
         $description
             .dropFirst()
             .sink { description in
@@ -57,7 +57,7 @@ class AddNewSubViewModel: ObservableObject {
                     }
                 }
             }
-            .store(in: &cancelable)
+            .store(in: &cancellable)
     }
     
     func reloadState() {
