@@ -32,8 +32,8 @@ class AddNewSubViewModel: ObservableObject {
     @Published var listOfSubs = [String]()
     @Published var isWin: Bool = true
     @Published var description = ""
-    @Published var placeholder = "placehoder"
-    let originalPH = "placehoder"
+    @Published var placeholder = "AddSubPlaceholder".localized
+    let originalPH = "AddSubPlaceholder".localized
     let api = SubmissionsAPI()
     var cancellable = Set<AnyCancellable>()
     init() {

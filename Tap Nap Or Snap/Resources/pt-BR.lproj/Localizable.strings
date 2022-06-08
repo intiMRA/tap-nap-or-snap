@@ -1,0 +1,133 @@
+/* 
+  Localizable.strings
+  Tap Nap Or Snap
+
+  Created by Inti Albuquerque on 16/03/22.
+  
+*/
+
+"TapNapOrSnap" = "Tap Nap Or Snap";
+
+"Submit" = "Confirmar";
+
+"Ok" = "Ok";
+
+"Updated" = "Atualizado";
+
+"LogOut" = "Log Out";
+
+"WeAreSorry" = "Sentimos Muinto";
+
+"WeCouldNotLogOut" = "Houve um error fazendo o log out, por favor tente de novo.";
+
+"Settings" = "Configurações";
+
+"LogIn" = "Log In";
+
+"SignUp" = "Inscrever-se";
+
+"Password" = "Senha";
+
+"Email" = "Email";
+
+"UnkownErrorTitle" = "Algo Deu Errado";
+
+"UnkownErrorMessage" = "Ocorreu um error, tente de novo mais tarde.";
+
+"WrongCredentialsErrorTitle" = "Credenciais Errados";
+
+"WrongCredentialsErrorMessage" = "Por favor entre um email valido.";
+
+"InvalidEmail" = "Email Ivalido";
+
+"InvalidEmailError" = "Este email é invalido, por favor use outro.";
+
+"InvalidPassword" = "Senha Invalida";
+
+"InvalidPasswordError" = "Entre uma senha valida por favor.";
+
+"NoSuchEmailError" = "Este email não existe no nosso sistema, por favor entre um email correto.";
+
+"InvalidCredentials" = "Credenciais Invalidos";
+
+"AccountExistsWithDifferentCredential" = "Entre uma senha e um email validos.";
+
+"NetworkErrorMessage" = "Por favor certifique-se que a sua internete está ligada.";
+
+"NetworkErrorTitle" = "Erro Na Conexão";
+
+"CredentialAlreadyInUse" = "Entre sua senha e email corretos por favor.";
+
+"WeakPassword" = "A senha precisa ter no mínimo um numero e tem que ter seis letras no mínimo.";
+
+"UnableToSaveErrorTitle" = "Não Deu Para Salvar";
+
+"UnableToSaveMessage" = "Algo deu errado salvando sua informação, por favor verifique sua conexão com a internet e tente novamente.";
+
+"Done" = "Completo";
+
+"Reopen" = "Re Abrir";
+
+"Complete" = "Completar";
+
+"Edit" = "Editar";
+
+"Title" = "Título";
+
+"Time" = "Vez";
+
+"Times" = "Vezes";
+
+"Days" = "Dias";
+
+"Day" = "Dia";
+
+"Weeks" = "Semanas";
+
+"Week" = "Semana";
+
+"Months" = "Meses";
+
+"Month" = "Mês";
+
+"Years" = "Anos";
+
+"Year" = "Ano";
+
+"GoalsPlaceholder" = "Insira a descrição da sua meta";
+
+"AddSubPlaceholder" = "Insira a descrição do golpe";
+
+"Tapped" = "Bateu";
+
+"GotTapped" = "Foi Batido";
+
+"NewTap" = "Nova Batida";
+
+"AddNew" = "Adicione";
+
+"ZeroDays" = "0 dias";
+
+"Submissions" = "Golpes";
+
+"Goals" = "Metas";
+
+"Wins" = "Vitórias";
+
+"PersonsName" = "Nome Da Pessoa";
+
+"AddSub" = "Adicionar golpe";
+
+"SubmissionName" = "Nome Do Golpe";
+
+"Won:" = "Ganhou:";
+
+"Lost:" = "Perdeu:";
+
+"WinDescriptions:" = "Descrições das vitórias:";
+
+"LossDescriptions:" = "Descrições de Perdas:";
+
+"NoDescription" = "Sem descrição";
+
+"OneTime" = "1 vez";

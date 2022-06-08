@@ -36,7 +36,7 @@ struct TabItemsView: View {
                         ImageNames.dead.image()
                             .renderingMode(.template)
                         
-                        Text("Submissions")
+                        Text("Submissions".localized)
                     }
                 }
                 .tag(ViewSelection.submissions)
@@ -59,7 +59,7 @@ struct TabItemsView: View {
                         ImageNames.user.image()
                             .renderingMode(.template)
                         
-                        Text("Goals")
+                        Text("Goals".localized)
                     }
                 }
                 .tag(ViewSelection.goals)

@@ -40,7 +40,7 @@ struct EditGoalDetailsView: View {
                 Button(action: { viewModel.saveDescription() }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
-                        Text("Done")
+                        Text("Done".localized)
                     }
                 }
                 .standardHeightFillUp()

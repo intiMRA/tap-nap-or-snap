@@ -18,7 +18,7 @@ struct AddNewSubView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                LoginTextField("Persons Name", text: $viewModel.name)
+                LoginTextField("PersonsName".localized, text: $viewModel.name)
                     .focused($focusedField, equals: .title)
                 Button(action: { viewModel.presentSubsList() }) {
                     if let sub = viewModel.chosenSub {
@@ -32,7 +32,7 @@ struct AddNewSubView: View {
                         }
                     } else {
                         HStack {
-                            Text("Add sub")
+                            Text("AddSub".localized)
                                 .font(.title3)
                                 .bold()
                                 .foregroundColor(ColorNames.text.color())
@@ -47,7 +47,7 @@ struct AddNewSubView: View {
                         ZStack {
                             CustomRoundRectangle(color: .green, opacity: viewModel.isWin ? 1 : 0.2)
                             
-                            Text("Tapped")
+                            Text("Tapped".localized)
                                 .foregroundColor(ColorNames.text.color())
                         }
                     }
@@ -58,7 +58,7 @@ struct AddNewSubView: View {
                         ZStack {
                             CustomRoundRectangle(color: .red, opacity: viewModel.isWin ? 0.2 : 1)
                             
-                            Text("Got Tapped")
+                            Text("GotTapped".localized)
                                 .foregroundColor(ColorNames.text.color())
                         }
                     }
@@ -85,7 +85,7 @@ struct AddNewSubView: View {
                         CustomRoundRectangle(color: .blue)
                             .standardHeightFillUp()
                         
-                        Text("submit")
+                        Text("Submit".localized)
                             .foregroundColor(ColorNames.text.color())
                     }
                 }
@@ -95,7 +95,7 @@ struct AddNewSubView: View {
             .padding(.top, length: .large)
         }
         .background(.background)
-        .navigationTitle("New Tap")
+        .navigationTitle("NewTap".localized)
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
             guard output.name == NSNotification.reloadNotification else {
                 return
@@ -154,7 +154,7 @@ struct AddNewSubView: View {
             Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {
                     ImageNames.add.icon()
-                    Text("add new")
+                    Text("AddNew".localized)
                         .foregroundColor(.text)
                 }
             }
@@ -175,14 +175,14 @@ struct AddNewSubView: View {
     @ViewBuilder
     var createNewSub: some View {
         VStack {
-            LoginTextField("Submission Name", text: $viewModel.newSubName)
+            LoginTextField("SubmissionName".localized, text: $viewModel.newSubName)
             
             Button(action: { viewModel.chooseNewSubmission() }) {
                 ZStack {
                     CustomRoundRectangle(color: .blue)
                         .standardHeightFillUp()
                     
-                    Text("submit")
+                    Text("Submit".localized)
                         .foregroundColor(ColorNames.text.color())
                 }
             }

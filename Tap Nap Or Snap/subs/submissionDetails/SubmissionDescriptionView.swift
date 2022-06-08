@@ -72,7 +72,7 @@ struct SubmissionDescriptionView: View {
                 Button(action: { viewModel.saveDescriptions() }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
-                        Text("Done")
+                        Text("Done".localized)
                     }
                 }
                 .standardHeightFillUp()

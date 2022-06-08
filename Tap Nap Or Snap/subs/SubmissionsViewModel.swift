@@ -70,17 +70,17 @@ class SubmissionsViewModel: ObservableObject {
     
     func getWinsCountCopy(for subKey: String) -> String {
         if submissionsDict[subKey]?.wins ?? 0 == 1 {
-            return "1 time"
+            return "OneTime".localized
         } else {
-            return "\(submissionsDict[subKey]?.wins  ?? 0) times"
+            return "\(submissionsDict[subKey]?.wins  ?? 0) \("Times".localized)"
         }
     }
     
     func getLossesCountCopy(for subKey: String) -> String {
         if submissionsDict[subKey]?.losses ?? 0 == 1 {
-            return "1 time"
+            return "OneTime".localized
         } else {
-            return "\(submissionsDict[subKey]?.losses ?? 0) times"
+            return "\(submissionsDict[subKey]?.losses ?? 0) \("Times".localized)"
         }
     }
 }

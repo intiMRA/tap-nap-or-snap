@@ -33,10 +33,10 @@ class SubmissionDetailsViewModel: ObservableObject {
     }
     
     func getWinsCountCopy(for sub: Submission) -> String {
-        "\(sub.wins) \(sub.wins == 1 ? "time" : "times")"
+        "\(sub.wins) \(sub.wins == 1 ? "Time".localized : "Times".localized)"
     }
     
     func getLossesCountCopy(for sub: Submission) -> String {
-        "\(sub.losses) \(sub.losses == 1 ? "time" : "times")"
+        "\(sub.losses) \(sub.losses == 1 ? "Time".localized : "Times".localized)"
     }
 }

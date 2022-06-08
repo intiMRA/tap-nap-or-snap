@@ -18,14 +18,14 @@ class SubmissionDescriptionViewModel: ObservableObject {
     let title: String
     let subName: String
     let personName: String
-    let winsTitle = "Win Descriptions:"
-    let lossesTitle = "Loss Descriptions:"
+    let winsTitle = "WinDescriptions:".localized
+    let lossesTitle = "LossDescriptions:".localized
     @Published var winDescription = ""
     @Published var lossesDescription = ""
-    @Published var winPlaceholder = "No description"
-    @Published var lossesPlaceholder = "No description"
+    @Published var winPlaceholder = "NoDescription".localized
+    @Published var lossesPlaceholder = "NoDescription".localized
     @Published var shouldDismiss = false
-    let originalPH = "No description"
+    let originalPH = "NoDescription".localized
     var cancellable = Set<AnyCancellable>()
     let api: SubmissionsAPIProtocol
     

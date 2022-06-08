@@ -18,9 +18,9 @@ enum TimeToCompleteGoal: String {
 
 class CreateNewGoalViewModel: ObservableObject {
     @Published var title = ""
-    @Published var placeholder = "placeholder"
+    @Published var placeholder = "GoalsPlaceholder".localized
     @Published var shouldDismiss = false
-    let originalPH = "placeholder"
+    let originalPH = "GoalsPlaceholder".localized
     let api = GoalsAPI()
     @Published var description = ""
     @Published var numberOfDays = ""

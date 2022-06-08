@@ -60,8 +60,74 @@
 
 "WeakPassword" = "Passwords need to contain at least 1 number and need to be at least 6 characters long.";
 
-"QRCodeNotFound" = "The QR code you scanned is not in our database, or a scanning error occurred.";
-
 "UnableToSaveErrorTitle" = "Unable To Save";
 
 "UnableToSaveMessage" = "Something went wrong while saving your data, please check your internet connection and try again.";
+
+"Done" = "Done";
+
+"Reopen" = "Reopen";
+
+"Complete" = "Complete";
+
+"Edit" = "Edit";
+
+"Title" = "Title";
+
+"Time" = "Time";
+
+"Times" = "Times";
+
+"Days" = "Days";
+
+"Day" = "Day";
+
+"Weeks" = "Weeks";
+
+"Week" = "Week";
+
+"Months" = "Months";
+
+"Month" = "Month";
+
+"Years" = "Years";
+
+"Year" = "Year";
+
+"GoalsPlaceholder" = "Enter your goal description";
+
+"AddSubPlaceholder" = "Enter your submission description";
+
+"Tapped" = "Tapped";
+
+"GotTapped" = "Got Tapped";
+
+"NewTap" = "New Tap";
+
+"AddNew" = "Add New";
+
+"ZeroDays" = "0 days";
+
+"Submissions" = "Submissions";
+
+"Goals" = "Goals";
+
+"Wins" = "Wins";
+
+"PersonsName" = "Persons Name";
+
+"AddSub" = "Add sub";
+
+"SubmissionName" = "Submission Name";
+
+"Won:" = "Won:";
+
+"Lost:" = "Lost:";
+
+"WinDescriptions:" = "Win Descriptions:";
+
+"LossDescriptions:" = "Loss Descriptions:";
+
+"NoDescription" = "No description";
+
+"OneTime" = "1 time";
