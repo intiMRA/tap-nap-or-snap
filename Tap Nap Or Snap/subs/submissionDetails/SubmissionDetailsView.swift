@@ -23,12 +23,12 @@ struct SubmissionDetailsView: View {
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ForEach(viewModel.subsList, id: \.personsName) { sub in
-                    Button(action: { viewModel.showDescription(for: sub.personsName) }) {
+                ForEach(viewModel.submissionsList, id: \.personName) { sub in
+                    Button(action: { viewModel.showDescription(for: sub.personName) }) {
                         ZStack {
                             CustomRoundRectangle(color: .blue, opacity: 0.3)
                             VStack(alignment: .center) {
-                                Text(sub.personsName)
+                                Text(sub.personName)
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .padding(.bottom, length: .xxSmall)

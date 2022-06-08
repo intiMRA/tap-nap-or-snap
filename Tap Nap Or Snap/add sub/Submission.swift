@@ -7,29 +7,48 @@
 
 import Foundation
 
-struct Submission: Identifiable {
-    let id: String
+struct SubmissionUploadModel {
     let subName : String
-    let personName: String?
-    let description: String?
-    init(id: String, subName: String, personName: String?, description: String?) {
-        self.id = id
+    let personName: String
+    let description: String
+    init(subName: String, personName: String, description: String = "") {
         self.subName = subName
         self.personName = personName
-        self.description = description ?? ""
+        self.description = description
+    }
+}
+
+struct Submission {
+    let personName: String
+    let subName: String
+    let wins: Int
+    let losses: Int
+    let winDescription: String
+    let lossesDescription: String
+    
+    init(
+        personName: String = "",
+        subName: String = "",
+        wins: Int = 0,
+        losses: Int = 0,
+        winDescription: String = "",
+        lossesDescription: String = ""
+    ) {
+        self.personName = personName
+        self.subName = subName
+        self.wins = wins
+        self.losses = losses
+        self.winDescription = winDescription
+        self.lossesDescription = lossesDescription
     }
 }
 
 extension Submission {
-    init?(from dictionary: [String: String]) {
-        guard
-            let id = dictionary[Keys.id.rawValue],
-            let submName = dictionary[Keys.subName.rawValue],
-            let personName = dictionary[Keys.person.rawValue],
-            let description = dictionary[Keys.description.rawValue]
-        else {
-            return nil
-        }
-        self.init(id: id, subName: submName, personName: personName, description: description)
+    init(from dictionary: [String: Any], subName: String, personName: String) {
+        let wins = dictionary[SubmissionKeys.wins.rawValue] as? Int ?? 0
+        let losses = dictionary[SubmissionKeys.losses.rawValue] as? Int ?? 0
+        let winDescription = dictionary[SubmissionKeys.winsDescription.rawValue] as? String ?? ""
+        let lossesDescription = dictionary[SubmissionKeys.lossesDescription.rawValue] as? String ?? ""
+        self.init(personName: personName, subName: subName, wins: wins, losses: losses, winDescription: winDescription, lossesDescription: lossesDescription)
     }
 }

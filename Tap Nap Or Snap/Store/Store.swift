@@ -27,7 +27,7 @@ struct SubmissionNamesState: StoreState {
 
 struct SubmissionsState: StoreState {
     var stateType: StateType = .submissions
-    let subs: [String: SubmissionsModel]
+    let subs: [String: [Submission]]
 }
 
 struct GoalsState: StoreState {

@@ -39,16 +39,23 @@ class SubmissionsViewModel: ObservableObject {
     func reloadState() {
         dispatchOnMain {
             Store.shared.submissionsState?.subs.forEach({ key, value in
-                self.submissionsDict[key] = submissionCountsModel(wins: value.wins.count, losses: value.losses.count, total: value.losses.count + value.wins.count)
+                let wins = value.reduce(0, { partialResult, sub in
+                    partialResult + sub.wins
+                })
+                
+                let losses = value.reduce(0, { partialResult, sub in
+                    partialResult + sub.losses
+                })
+                self.submissionsDict[key] = submissionCountsModel(wins: wins, losses: losses, total: wins + losses)
             })
         }
     }
     
     func createSubmissionDetailsViewModel() -> SubmissionDetailsViewModel {
         guard let sub = Store.shared.submissionsState?.subs[currentSubName] else {
-            return SubmissionDetailsViewModel(submissionsModel: SubmissionsModel(wins: [], losses: []), name: "")
+            return SubmissionDetailsViewModel(submissionsList: [], submissionName: "")
         }
-        return SubmissionDetailsViewModel(submissionsModel: sub, name: currentSubName)
+        return SubmissionDetailsViewModel(submissionsList: sub, submissionName: currentSubName)
     }
     
     private func dispatchOnMain(_ action: @escaping () -> Void) {

@@ -163,31 +163,22 @@ class LogInAPI: LogInAPIProtocol {
                 throw NSError()
             }
             let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String] ?? []
-            let submissions = snapshot[Keys.submissions.rawValue] as? [String: [String: [[String: String]]]] ?? [:]
+            let submissions = snapshot[Keys.submissions.rawValue] as? [String: [String:[String: Any]]] ?? [:]
             let goalsList = snapshot[Keys.goals.rawValue] as? [[String: String]] ?? []
             
             let submissionNamesState = SubmissionNamesState(subs: submissionList.map { $0 })
             
-            let submissionsStateDict = submissions.keys.reduce([String: SubmissionsModel]()) { partialResult, nextItemName in
+            let submissionsStateDict = submissions.keys.reduce([String: [Submission]]()) { partialResult, nextSubName in
                 var currentResult = partialResult
-                let currentSubmission = submissions[nextItemName]
-                let wins = currentSubmission?[SubmissionKeys.wins.rawValue]?.map { Submission(
-                    id: $0[Keys.id.rawValue] ?? "",
-                    subName: $0[Keys.subName.rawValue] ?? "",
-                    personName: $0[Keys.person.rawValue],
-                    description: $0[Keys.description.rawValue]
-                )}
+                let currentSubmissionByname = submissions[nextSubName]
+                let subs = currentSubmissionByname?.reduce([Submission](), { partialResult, personDictionary in
+                    var current = partialResult
+                    let sub = Submission(from: personDictionary.value, subName: nextSubName, personName: personDictionary.key)
+                    current.append(sub)
+                    return current
+                })
                 
-                let losses = currentSubmission?[SubmissionKeys.losses.rawValue]?.map { Submission(
-                    id: $0[Keys.id.rawValue] ?? "",
-                    subName: $0[Keys.subName.rawValue] ?? "",
-                    personName: $0[Keys.person.rawValue],
-                    description: $0[Keys.description.rawValue]
-                )}
-                
-                currentResult[nextItemName] = SubmissionsModel(
-                    wins: wins ?? [],
-                    losses: losses ?? [])
+                currentResult[nextSubName] = subs
                 
                 return currentResult
             }
