@@ -14,7 +14,7 @@ struct CreateNewGoalView: View {
     var body: some View {
         ScrollView {
             VStack {
-                LoginTextField("title", keyBoard: .alphabet, text: $viewModel.title)
+                LoginTextField("Title".localized, keyBoard: .alphabet, text: $viewModel.title)
                     .focused($focusedField, equals: .title)
                     .onTapGesture {
                         self.focusedField = .title
@@ -44,7 +44,7 @@ struct CreateNewGoalView: View {
                         CustomRoundRectangle(color: .blue)
                             .standardHeightFillUp()
                         
-                        Text("submit")
+                        Text("Submit".localized)
                             .foregroundColor(ColorNames.text.color())
                     }
                 }
@@ -72,7 +72,7 @@ struct CreateNewGoalView: View {
                 .foregroundColor(.text)
             
             HStack {
-                LoginTextField("time", keyBoard: .numberPad, text: $viewModel.numberOfDays)
+                LoginTextField("Time".localized, keyBoard: .numberPad, text: $viewModel.numberOfDays)
                 
                 Spacer()
                 
@@ -80,7 +80,7 @@ struct CreateNewGoalView: View {
                     ZStack {
                         GoalsRectangle(isSelected: viewModel.timeToComplete == .weeks)
                         
-                        Text("Weeks")
+                        Text("Weeks".localized)
                             .foregroundColor(.text)
                     }
                 }
@@ -89,7 +89,7 @@ struct CreateNewGoalView: View {
                     ZStack {
                         GoalsRectangle(isSelected: viewModel.timeToComplete == .months)
                         
-                        Text("Months")
+                        Text("Months".localized)
                             .foregroundColor(.text)
                     }
                 }
@@ -98,7 +98,7 @@ struct CreateNewGoalView: View {
                     ZStack {
                         GoalsRectangle(isSelected: viewModel.timeToComplete == .years)
                         
-                        Text("Years")
+                        Text("Years".localized)
                             .foregroundColor(.text)
                     }
                 }

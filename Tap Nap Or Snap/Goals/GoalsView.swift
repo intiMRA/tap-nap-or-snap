@@ -30,7 +30,7 @@ struct GoalsView: View {
                     VStack {
                         ImageNames.add.icon(color: ColorNames.text.color())
                         
-                        Text("add new")
+                        Text("AddNew".localized)
                     }
                 }
             }
@@ -108,7 +108,7 @@ struct GoalView: View {
                 Button(action: { viewModel.completeGoal(with: goal.id, status: !goal.isComplete) }) {
                     ZStack {
                         CustomRoundRectangle(color: goal.isComplete ? .yellow : .green)
-                        Text(goal.isComplete ? "Reopen" : "Complete")
+                        Text(goal.isComplete ? "Reopen".localized : "Complete".localized)
                     }
                 }
                 Spacer()
@@ -116,7 +116,7 @@ struct GoalView: View {
                 Button(action: { viewModel.showEditGoal(currentGoal: goal) }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
-                        Text("Edit")
+                        Text("Edit".localized)
                     }
                 }
             }

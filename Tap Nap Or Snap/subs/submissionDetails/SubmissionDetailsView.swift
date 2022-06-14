@@ -35,7 +35,7 @@ struct SubmissionDetailsView: View {
                                 
                                 HStack {
                                     Spacer()
-                                    Text("Won:")
+                                    Text("Won:".localized)
                                         .font(.headline)
                                         .fontWeight(.bold)
                                         .padding(.trailing, length: .xxSmall)
@@ -46,7 +46,7 @@ struct SubmissionDetailsView: View {
                                     
                                     Spacer()
                                     
-                                    Text("Lost:")
+                                    Text("Lost:".localized)
                                         .font(.headline)
                                         .fontWeight(.bold)
                                         .padding(.trailing, length: .xxSmall)

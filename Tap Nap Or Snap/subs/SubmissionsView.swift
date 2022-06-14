@@ -23,7 +23,7 @@ struct SubmissionsView: View {
                 Button(action: { viewModel.showNewSub() }) {
                     VStack {
                         ImageNames.add.icon(color: ColorNames.text.color())
-                        Text("add new")
+                        Text("AddNew".localized)
                     }
                 }
             }
@@ -42,7 +42,7 @@ struct SubmissionsView: View {
                                     
                                     HStack {
                                         Spacer()
-                                        Text("Won:")
+                                        Text("Won:".localized)
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .padding(.trailing, length: .xxSmall)
@@ -53,7 +53,7 @@ struct SubmissionsView: View {
                                         
                                         Spacer()
                                         
-                                        Text("Lost:")
+                                        Text("Lost:".localized)
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .padding(.trailing, length: .xxSmall)

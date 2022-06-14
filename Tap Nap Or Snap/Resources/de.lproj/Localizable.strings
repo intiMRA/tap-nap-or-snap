@@ -1,0 +1,133 @@
+/* 
+  Localizable.strings
+  Tap Nap Or Snap
+
+  Created by Inti Albuquerque on 16/03/22.
+  
+*/
+
+"TapNapOrSnap" = "Tap Nap Or Snap";
+
+"Submit" = "Einreichen";
+
+"Ok" = "Ok";
+
+"Updated" = "Aktualisiert";
+
+"LogOut" = "Log Out";
+
+"WeAreSorry" = "Entschuldigung";
+
+"WeCouldNotLogOut" = "Wir könnten Sie nicth aus loggen, versuchen Sie bitte wieder.";
+
+"Settings" = "Einstellungen";
+
+"LogIn" = "Log In";
+
+"SignUp" = "Sign up";
+
+"Password" = "Passwort";
+
+"Email" = "Email";
+
+"UnkownErrorTitle" = "Etwas ist schief gelaufen";
+
+"UnkownErrorMessage" = "Ein unbekannter Fehler ist passiert, bitte versuchen Sie es später wieder.";
+
+"WrongCredentialsErrorTitle" = "Falsche Anmeldeinformationen";
+
+"WrongCredentialsErrorMessage" = "Bitte tragen Sie eine gültige E-Mail und ein Passwort ein.";
+
+"InvalidEmail" = "Ungültige Email";
+
+"InvalidEmailError" = "Diese E-Mail ist ungültig, bitte wählen Sie eine andere aus.";
+
+"InvalidPassword" = "Ungültige Passwort";
+
+"InvalidPasswordError" = "Bitte tragen Sie Ihr korrektes Passwort ein.";
+
+"NoSuchEmailError" = "Es gibt keinen Benutzer mit dieser E-Mail in unserer Datenbank, bitte geben Sie eine korrekte EMail ein.";
+
+"InvalidCredentials" = "Ungültige Credentials";
+
+"AccountExistsWithDifferentCredential" = "Bitte tragen Sie eine korrekte EMail und ein Passwort ein.";
+
+"NetworkErrorMessage" = "Bitte machen Sie sicher, dass Sie eine Internetverbindung haben, um die App zu verwenden.";
+
+"NetworkErrorTitle" = "Internetfehler";
+
+"CredentialAlreadyInUse" = "Bitte tragen Sie Ihre korrekte EMail und Ihr Passwort ein.";
+
+"WeakPassword" = "Das Passwort must mindestens 1 Ziffer enthalten und mindestens 6 Zeichen lang sein.";
+
+"UnableToSaveErrorTitle" = "Speichern nicht möglich";
+
+"UnableToSaveMessage" = "Beim Speichern Ihrer Daten ist ein Fehler passiert. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.";
+
+"Done" = "Fertig";
+
+"Reopen" = "Wieder öffnen";
+
+"Complete" = "Vollständig";
+
+"Edit" = "Bearbeiten";
+
+"Title" = "Titel";
+
+"Time" = "Mal";
+
+"Times" = "Mal";
+
+"Days" = "Tage";
+
+"Day" = "Tag";
+
+"Weeks" = "Wochen";
+
+"Week" = "Woche";
+
+"Months" = "Monate";
+
+"Month" = "Monat";
+
+"Years" = "Jahre";
+
+"Year" = "Jahr";
+
+"GoalsPlaceholder" = "Tragen Sie Ihre Zielbeschreibung ein";
+
+"AddSubPlaceholder" = "Tragen Sie Ihre Einreichungsbeschreibung ein";
+
+"Tapped" = "Du Hast Aufgegeben";
+
+"GotTapped" = "Sie haben Aufgegeben";
+
+"NewTap" = "Neuer Tap";
+
+"AddNew" = "Add";
+
+"ZeroDays" = "0 tage";
+
+"Submissions" = "Unterwerfung";
+
+"Goals" = "ziele";
+
+"Wins" = "Gewonnen";
+
+"PersonsName" = "Persons Name";
+
+"AddSub" = "Add";
+
+"SubmissionName" = "Unterwerfung Name";
+
+"Won:" = "Gewonnen:";
+
+"Lost:" = "Verliert:";
+
+"WinDescriptions:" = "Gewin Beschreibungen:";
+
+"LossDescriptions:" = "Verliert Beschreibungen:";
+
+"NoDescription" = "Keine Beschreibungen";
+
+"OneTime" = "1 mal";
