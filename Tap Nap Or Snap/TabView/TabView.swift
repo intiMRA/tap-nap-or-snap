@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabItemsView: View {
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = TabItemsViewModel()
     
     init() {
@@ -69,6 +70,16 @@ struct TabItemsView: View {
         .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(Text(viewModel.title))
+        .toolbar {
+            Button("Log.Out") {
+                viewModel.logOut()
+            }
+        }
+        .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
+            if shouldDismiss {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
 }
 

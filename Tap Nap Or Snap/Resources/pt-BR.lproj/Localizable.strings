@@ -6,7 +6,7 @@
   
 */
 
-"TapNapOrSnap" = "Tap Nap Or Snap";
+"Tap.Nap.Or.Snap" = "Tap Nap Or Snap";
 
 "Submit" = "Confirmar";
 
@@ -14,55 +14,53 @@
 
 "Updated" = "Atualizado";
 
-"LogOut" = "Log Out";
+"We.Are.Sorry" = "Sentimos Muinto";
 
-"WeAreSorry" = "Sentimos Muinto";
-
-"WeCouldNotLogOut" = "Houve um error fazendo o log out, por favor tente de novo.";
+"We.Could.Not.Log.Out" = "Houve um error fazendo o log out, por favor tente de novo.";
 
 "Settings" = "Configurações";
 
-"LogIn" = "Log In";
+"Log.In" = "Log In";
 
-"SignUp" = "Inscrever-se";
+"Sign.Up" = "Inscrever-se";
 
 "Password" = "Senha";
 
 "Email" = "Email";
 
-"UnkownErrorTitle" = "Algo Deu Errado";
+"Unkown.Error.Title" = "Algo Deu Errado";
 
-"UnkownErrorMessage" = "Ocorreu um error, tente de novo mais tarde.";
+"Unkown.Error.Message" = "Ocorreu um error, tente de novo mais tarde.";
 
-"WrongCredentialsErrorTitle" = "Credenciais Errados";
+"Wrong.Credentials.Error.Title" = "Credenciais Errados";
 
-"WrongCredentialsErrorMessage" = "Por favor entre um email valido.";
+"Wrong.Credentials.Error.Message" = "Por favor entre um email valido.";
 
-"InvalidEmail" = "Email Ivalido";
+"Invalid.Email" = "Email Ivalido";
 
-"InvalidEmailError" = "Este email é invalido, por favor use outro.";
+"Invalid.Email.Error" = "Este email é invalido, por favor use outro.";
 
-"InvalidPassword" = "Senha Invalida";
+"Invalid.Password" = "Senha Invalida";
 
-"InvalidPasswordError" = "Entre uma senha valida por favor.";
+"Invalid.Password.Error" = "Entre uma senha valida por favor.";
 
-"NoSuchEmailError" = "Este email não existe no nosso sistema, por favor entre um email correto.";
+"No.Such.Email.Error" = "Este email não existe no nosso sistema, por favor entre um email correto.";
 
-"InvalidCredentials" = "Credenciais Invalidos";
+"Invalid.Credentials" = "Credenciais Invalidos";
 
-"AccountExistsWithDifferentCredential" = "Entre uma senha e um email validos.";
+"Account.Exists.With.Different.Credential" = "Entre uma senha e um email validos.";
 
-"NetworkErrorMessage" = "Por favor certifique-se que a sua internete está ligada.";
+"Network.Error.Message" = "Por favor certifique-se que a sua internete está ligada.";
 
-"NetworkErrorTitle" = "Erro Na Conexão";
+"Network.Error.Title" = "Erro Na Conexão";
 
-"CredentialAlreadyInUse" = "Entre sua senha e email corretos por favor.";
+"Credential.Already.In.Use" = "Entre sua senha e email corretos por favor.";
 
-"WeakPassword" = "A senha precisa ter no mínimo um numero e tem que ter seis letras no mínimo.";
+"Weak.Password" = "A senha precisa ter no mínimo um numero e tem que ter seis letras no mínimo.";
 
-"UnableToSaveErrorTitle" = "Não Deu Para Salvar";
+"Unable.To.Save.Error.Title" = "Não Deu Para Salvar";
 
-"UnableToSaveMessage" = "Algo deu errado salvando sua informação, por favor verifique sua conexão com a internet e tente novamente.";
+"Unable.To.Save.Message" = "Algo deu errado salvando sua informação, por favor verifique sua conexão com a internet e tente novamente.";
 
 "Done" = "Completo";
 
@@ -94,19 +92,19 @@
 
 "Year" = "Ano";
 
-"GoalsPlaceholder" = "Insira a descrição da sua meta";
+"Goals.Placeholder" = "Insira a descrição da sua meta";
 
-"AddSubPlaceholder" = "Insira a descrição do golpe";
+"Add.Sub.Placeholder" = "Insira a descrição do golpe";
 
 "Tapped" = "Bateu";
 
-"GotTapped" = "Foi Batido";
+"Got.Tapped" = "Foi Batido";
 
-"NewTap" = "Nova Batida";
+"New.Tap" = "Nova Batida";
 
-"AddNew" = "Adicione";
+"Add.New" = "Adicione";
 
-"ZeroDays" = "0 dias";
+"Zero.Days" = "0 dias";
 
 "Submissions" = "Golpes";
 
@@ -114,20 +112,22 @@
 
 "Wins" = "Vitórias";
 
-"PersonsName" = "Nome Da Pessoa";
+"Persons.Name" = "Nome Da Pessoa";
 
-"AddSub" = "Adicionar golpe";
+"Add.Sub" = "Adicionar golpe";
 
-"SubmissionName" = "Nome Do Golpe";
+"Submission.Name" = "Nome Do Golpe";
 
-"Won:" = "Ganhou:";
+"Won" = "Ganhou:";
 
-"Lost:" = "Perdeu:";
+"Lost" = "Perdeu:";
 
-"WinDescriptions:" = "Descrições das vitórias:";
+"Win.Descriptions" = "Descrições das vitórias:";
 
-"LossDescriptions:" = "Descrições de Perdas:";
+"Loss.Descriptions" = "Descrições de Perdas:";
 
-"NoDescription" = "Sem descrição";
+"No.Description" = "Sem descrição";
 
-"OneTime" = "1 vez";
+"One.Time" = "1 vez";
+
+"Log.Out" = "Sair";

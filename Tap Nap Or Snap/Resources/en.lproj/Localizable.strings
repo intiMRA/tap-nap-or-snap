@@ -6,7 +6,7 @@
   
 */
 
-"TapNapOrSnap" = "Tap Nap Or Snap";
+"Tap.Nap.Or.Snap" = "Tap Nap Or Snap";
 
 "Submit" = "Submit";
 
@@ -14,55 +14,55 @@
 
 "Updated" = "Updated";
 
-"LogOut" = "Log Out";
+"Log.Out" = "Log Out";
 
-"WeAreSorry" = "We are sorry";
+"We.Are.Sorry" = "We are sorry";
 
-"WeCouldNotLogOut" = "We could not log you out, please try again.";
+"We.Could.Not.Log.Out" = "We could not log you out, please try again.";
 
 "Settings" = "Settings";
 
-"LogIn" = "Log In";
+"Log.In" = "Log In";
 
-"SignUp" = "Sign up";
+"Sign.Up" = "Sign up";
 
 "Password" = "Password";
 
 "Email" = "Email";
 
-"UnkownErrorTitle" = "Something went wrong";
+"Unkown.Error.Title" = "Something went wrong";
 
-"UnkownErrorMessage" = "An unknown error occurred, please try again later.";
+"Unkown.Error.Message" = "An unknown error occurred, please try again later.";
 
-"WrongCredentialsErrorTitle" = "Wrong Credentials";
+"Wrong.Credentials.Error.Title" = "Wrong Credentials";
 
-"WrongCredentialsErrorMessage" = "Please enter a valid email and password.";
+"Wrong.Credentials.Error.Message" = "Please enter a valid email and password.";
 
-"InvalidEmail" = "Invalid Email";
+"Invalid.Email" = "Invalid Email";
 
-"InvalidEmailError" = "This email is invalid, please choose a different one.";
+"Invalid.Email.Error" = "This email is invalid, please choose a different one.";
 
-"InvalidPassword" = "Invalid Password";
+"Invalid.Password" = "Invalid Password";
 
-"InvalidPasswordError" = "Please enter your correct password.";
+"Invalid.Password.Error" = "Please enter your correct password.";
 
-"NoSuchEmailError" = "There is no user with that email in our database, please enter a correct email.";
+"No.Such.Email.Error" = "There is no user with that email in our database, please enter a correct email.";
 
-"InvalidCredentials" = "Invalid Credentials";
+"Invalid.Credentials" = "Invalid Credentials";
 
-"AccountExistsWithDifferentCredential" = "Please enter a correct email and password.";
+"Account.Exists.With.Different.Credential" = "Please enter a correct email and password.";
 
-"NetworkErrorMessage" = "Please make sure you have an internet connection to use the app.";
+"Network.Error.Message" = "Please make sure you have an internet connection to use the app.";
 
-"NetworkErrorTitle" = "Network Error";
+"Network.Error.Title" = "Network Error";
 
-"CredentialAlreadyInUse" = "Please enter your correct email and password.";
+"Credential.Already.In.Use" = "Please enter your correct email and password.";
 
-"WeakPassword" = "Passwords need to contain at least 1 number and need to be at least 6 characters long.";
+"Weak.Password" = "Passwords need to contain at least 1 number and need to be at least 6 characters long.";
 
-"UnableToSaveErrorTitle" = "Unable To Save";
+"Unable.To.Save.Error.Title" = "Unable To Save";
 
-"UnableToSaveMessage" = "Something went wrong while saving your data, please check your internet connection and try again.";
+"Unable.To.Save.Message" = "Something went wrong while saving your data, please check your internet connection and try again.";
 
 "Done" = "Done";
 
@@ -94,19 +94,19 @@
 
 "Year" = "Year";
 
-"GoalsPlaceholder" = "Enter your goal description";
+"Goals.Placeholder" = "Enter your goal description";
 
-"AddSubPlaceholder" = "Enter your submission description";
+"Add.Sub.Placeholder" = "Enter your submission description";
 
 "Tapped" = "Tapped";
 
-"GotTapped" = "Got Tapped";
+"Got.Tapped" = "Got Tapped";
 
-"NewTap" = "New Tap";
+"New.Tap" = "New Tap";
 
-"AddNew" = "Add New";
+"Add.New" = "Add New";
 
-"ZeroDays" = "0 days";
+"Zero.Days" = "0 days";
 
 "Submissions" = "Submissions";
 
@@ -114,20 +114,20 @@
 
 "Wins" = "Wins";
 
-"PersonsName" = "Persons Name";
+"Persons.Name" = "Persons Name";
 
-"AddSub" = "Add sub";
+"Add.Sub" = "Add sub";
 
-"SubmissionName" = "Submission Name";
+"Submission.Name" = "Submission Name";
 
-"Won:" = "Won:";
+"Won" = "Won";
 
-"Lost:" = "Lost:";
+"Lost" = "Lost";
 
-"WinDescriptions:" = "Win Descriptions:";
+"Win.Descriptions" = "Win Descriptions:";
 
-"LossDescriptions:" = "Loss Descriptions:";
+"Loss.Descriptions" = "Loss Descriptions:";
 
-"NoDescription" = "No description";
+"No.Description" = "No description";
 
-"OneTime" = "1 time";
+"One.Time" = "1 time";

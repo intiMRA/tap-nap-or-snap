@@ -16,7 +16,11 @@ class TabItemsViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var selection: ViewSelection = .submissions
     @Published var title = "Wins".localized
-    init() {
+    @Published var shouldDismiss = false
+    
+    let logInApi: LogInAPIProtocol
+    init(logInApi: LogInAPIProtocol = LogInAPI()) {
+        self.logInApi = logInApi
         $selection
             .sink { selection in
                 switch selection {
@@ -27,5 +31,18 @@ class TabItemsViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    func logOut() {
+        Task {
+            do {
+                try await logInApi.signOut()
+                await MainActor.run {
+                    self.shouldDismiss = true
+                }
+            } catch {
+                //TODO: Error handling
+            }
+        }
     }
 }

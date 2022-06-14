@@ -24,7 +24,7 @@ extension Date {
         let toDate = Constants.calendar.startOfDay(for: date)
         let numberOfDays = Constants.calendar.dateComponents([.day], from: fromDate, to: toDate).day
         guard var numberOfDays = numberOfDays else {
-            return "ZeroDays".localized
+            return "Zero.Days".localized
         }
         let years = numberOfDays/365
         numberOfDays = numberOfDays - years * 365
@@ -42,12 +42,12 @@ extension Date {
         } else if numberOfDays > 0 {
             return"\(numberOfDays) \(numberOfDays > 1 ? "Days".localized : "Day".localized)"
         } else {
-           return "ZeroDays".localized
+            return "Zero.Days".localized
         }
     }
     
     func isPastDueDate() -> Bool {
-        self.difference(from: Date()) == "ZeroDays".localized
+        self.difference(from: Date()) == "Zero.Days".localized
     }
 }
 

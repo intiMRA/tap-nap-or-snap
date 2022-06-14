@@ -15,10 +15,11 @@ protocol LogInAPIProtocol: AnyObject {
     func logInUserAlreadySignedIn() async throws
     func signUp(email: String, password: String) async throws
     func getData() async throws
+    func signOut() async throws
 }
 
 struct LogInError: Error {
-    static let unkownError = LogInError(title: "UnkownErrorTtitle".localized, message: "UnkownErrorMessage".localized)
+    static let unkownError = LogInError(title: "Unkown.Error.Title", message: "Unkown.Error.Message")
     let title: String
     let message: String
 }
@@ -30,25 +31,25 @@ class LogInAPI: LogInAPIProtocol {
     static func logInError(from errorCode: AuthErrorCode) -> LogInError {
         switch errorCode {
         case .invalidCredential:
-            return LogInError(title: "WrongCredentialsErrorTitle".localized, message: "WrongCredentialsErrorMessage".localized)
+            return LogInError(title: "Wrong.Credentials.Error.Title", message: "Wrong.Credentials.Error.Message")
         case .emailAlreadyInUse:
-            return LogInError(title: "InvalidEmail".localized, message: "CredentialAlreadyInUse".localized)
+            return LogInError(title: "Invalid.Email", message: "Credential.Already.In.Use")
         case .invalidEmail:
-            return LogInError(title: "InvalidEmail".localized, message: "InvalidEmailError".localized)
+            return LogInError(title: "Invalid.Email", message: "Invalid.Email.Error")
         case .wrongPassword:
-            return LogInError(title: "InvalidPassword".localized, message: "InvalidPasswordError".localized)
+            return LogInError(title: "Invalid.Password", message: "Invalid.Password.Error")
         case .userNotFound:
-            return LogInError(title: "InvalidEmail".localized, message: "NoSuchEmailError".localized)
+            return LogInError(title: "Invalid.Email", message: "No.Such.Email.Error")
         case .accountExistsWithDifferentCredential:
-            return LogInError(title: "InvalidCredentials".localized, message: "AccountExistsWithDifferentCredential".localized)
+            return LogInError(title: "Invalid.Credentials", message: "Account.Exists.With.Different.Credential")
         case .networkError:
-            return LogInError(title: "NetworkErrorTitle".localized, message: "NetworkErrorMessage".localized)
+            return LogInError(title: "Network.Error.Title", message: "Network.Error.Message")
         case .credentialAlreadyInUse:
-            return LogInError(title: "InvalidCredentials".localized, message: "CredentialAlreadyInUse".localized)
+            return LogInError(title: "Invalid.Credentials", message: "Credential.Already.In.Use")
         case .weakPassword:
-            return LogInError(title: "InvalidPassword".localized, message: "WeakPassword".localized)
+            return LogInError(title: "Invalid.Password", message: "Weak.Password")
         case .webNetworkRequestFailed:
-            return LogInError(title: "NetworkErrorTitle".localized, message: "NetworkErrorMessage".localized)
+            return LogInError(title: "Network.Error.Title", message: "Network.Error.Message")
         default:
             return LogInError.unkownError
         }
@@ -118,6 +119,10 @@ class LogInAPI: LogInAPIProtocol {
             try Auth.auth().signOut()
             throw LogInError.unkownError
         }
+    }
+    
+    func signOut() async throws {
+        try Auth.auth().signOut()
     }
     
     func signUp(email: String, password: String) async throws {
