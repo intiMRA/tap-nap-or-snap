@@ -94,7 +94,7 @@
 
 "Goals.Placeholder" = "Insira a descrição da sua meta";
 
-"Add.Sub.Placeholder" = "Insira a descrição do golpe";
+"Add.Sub.Placeholder" = "Insira a descrição da finalização";
 
 "Tapped" = "Bateu";
 
@@ -106,7 +106,7 @@
 
 "Zero.Days" = "0 dias";
 
-"Submissions" = "Golpes";
+"Submissions" = "Finalizações";
 
 "Goals" = "Metas";
 
@@ -114,9 +114,9 @@
 
 "Persons.Name" = "Nome Da Pessoa";
 
-"Add.Sub" = "Adicionar golpe";
+"Add.Sub" = "Adicionar Finalização";
 
-"Submission.Name" = "Nome Do Golpe";
+"Submission.Name" = "Nome Da Finalização";
 
 "Won" = "Ganhou:";
 
