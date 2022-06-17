@@ -22,7 +22,7 @@ struct LogInView: View {
                         .frame(width: 270, height: 200)
                         .foregroundColor(ColorNames.text.color())
                     
-                    Text("TapNapOrSnap".localized)
+                    Text("Tap.Nap.Or.Snap".localized)
                         .foregroundColor(ColorNames.text.color())
                         .font(.title)
                         .fontWeight(.bold)
@@ -32,12 +32,14 @@ struct LogInView: View {
                     LoginTextField("Password".localized, text: $viewModel.password, isSecureEntry: true)
                     
                     Button(action: viewModel.login) {
-                        Text("LogIn".localized)
+                        Text("Log.In".localized)
+                            .bold()
                             .foregroundColor(ColorNames.text.color())
                     }
                     
                     Button(action: viewModel.signup) {
-                        Text("SignUp".localized)
+                        Text("Sign.Up".localized)
+                            .bold()
                             .foregroundColor(ColorNames.text.color())
                     }
                 }

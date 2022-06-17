@@ -30,7 +30,7 @@ struct GoalsView: View {
                     VStack {
                         ImageNames.add.icon(color: ColorNames.text.color())
                         
-                        Text("AddNew".localized)
+                        Text("Add.New".localized)
                     }
                 }
             }

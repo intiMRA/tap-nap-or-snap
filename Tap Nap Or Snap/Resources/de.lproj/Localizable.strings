@@ -6,7 +6,7 @@
   
 */
 
-"TapNapOrSnap" = "Tap Nap Or Snap";
+"Tap.Nap.Or.Snap" = "Tap Nap Or Snap";
 
 "Submit" = "Einreichen";
 
@@ -14,55 +14,53 @@
 
 "Updated" = "Aktualisiert";
 
-"LogOut" = "Log Out";
+"We.Are.Sorry" = "Entschuldigung";
 
-"WeAreSorry" = "Entschuldigung";
-
-"WeCouldNotLogOut" = "Wir könnten Sie nicth aus loggen, versuchen Sie bitte wieder.";
+"We.Could.Not.Log.Out" = "Wir könnten Sie nicth aus loggen, versuchen Sie bitte wieder.";
 
 "Settings" = "Einstellungen";
 
-"LogIn" = "Log In";
+"Log.In" = "Log In";
 
-"SignUp" = "Sign up";
+"Sign.Up" = "Sign up";
 
 "Password" = "Passwort";
 
 "Email" = "Email";
 
-"UnkownErrorTitle" = "Etwas ist schief gelaufen";
+"Unkown.Error.Title" = "Etwas ist schief gelaufen";
 
-"UnkownErrorMessage" = "Ein unbekannter Fehler ist passiert, bitte versuchen Sie es später wieder.";
+"Unkown.Error.Message" = "Ein unbekannter Fehler ist passiert, bitte versuchen Sie es später wieder.";
 
-"WrongCredentialsErrorTitle" = "Falsche Anmeldeinformationen";
+"Wrong.Credentials.Error.Title" = "Falsche Anmeldeinformationen";
 
-"WrongCredentialsErrorMessage" = "Bitte tragen Sie eine gültige E-Mail und ein Passwort ein.";
+"Wrong.Credentials.Error.Message" = "Bitte tragen Sie eine gültige E-Mail und ein Passwort ein.";
 
-"InvalidEmail" = "Ungültige Email";
+"Invalid.Email" = "Ungültige Email";
 
-"InvalidEmailError" = "Diese E-Mail ist ungültig, bitte wählen Sie eine andere aus.";
+"Invalid.Email.Error" = "Diese E-Mail ist ungültig, bitte wählen Sie eine andere aus.";
 
-"InvalidPassword" = "Ungültige Passwort";
+"Invalid.Password" = "Ungültige Passwort";
 
-"InvalidPasswordError" = "Bitte tragen Sie Ihr korrektes Passwort ein.";
+"Invalid.Password.Error" = "Bitte tragen Sie Ihr korrektes Passwort ein.";
 
-"NoSuchEmailError" = "Es gibt keinen Benutzer mit dieser E-Mail in unserer Datenbank, bitte geben Sie eine korrekte EMail ein.";
+"No.Such.Email.Error" = "Es gibt keinen Benutzer mit dieser E-Mail in unserer Datenbank, bitte geben Sie eine korrekte EMail ein.";
 
-"InvalidCredentials" = "Ungültige Credentials";
+"Invalid.Credentials" = "Ungültige Credentials";
 
-"AccountExistsWithDifferentCredential" = "Bitte tragen Sie eine korrekte EMail und ein Passwort ein.";
+"Account.Exists.With.Different.Credential" = "Bitte tragen Sie eine korrekte EMail und ein Passwort ein.";
 
-"NetworkErrorMessage" = "Bitte machen Sie sicher, dass Sie eine Internetverbindung haben, um die App zu verwenden.";
+"Network.Error.Message" = "Bitte machen Sie sicher, dass Sie eine Internetverbindung haben, um die App zu verwenden.";
 
-"NetworkErrorTitle" = "Internetfehler";
+"Network.Error.Title" = "Internetfehler";
 
-"CredentialAlreadyInUse" = "Bitte tragen Sie Ihre korrekte EMail und Ihr Passwort ein.";
+"Credential.Already.In.Use" = "Bitte tragen Sie Ihre korrekte EMail und Ihr Passwort ein.";
 
-"WeakPassword" = "Das Passwort must mindestens 1 Ziffer enthalten und mindestens 6 Zeichen lang sein.";
+"Weak.Password" = "Das Passwort must mindestens 1 Ziffer enthalten und mindestens 6 Zeichen lang sein.";
 
-"UnableToSaveErrorTitle" = "Speichern nicht möglich";
+"Unable.To.Save.Error.Title" = "Speichern nicht möglich";
 
-"UnableToSaveMessage" = "Beim Speichern Ihrer Daten ist ein Fehler passiert. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.";
+"Unable.To.Save.Message" = "Beim Speichern Ihrer Daten ist ein Fehler passiert. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.";
 
 "Done" = "Fertig";
 
@@ -94,19 +92,19 @@
 
 "Year" = "Jahr";
 
-"GoalsPlaceholder" = "Tragen Sie Ihre Zielbeschreibung ein";
+"Goals.Placeholder" = "Tragen Sie Ihre Zielbeschreibung ein";
 
-"AddSubPlaceholder" = "Tragen Sie Ihre Einreichungsbeschreibung ein";
+"Add.Sub.Placeholder" = "Tragen Sie Ihre Einreichungsbeschreibung ein";
 
 "Tapped" = "Du Hast Aufgegeben";
 
-"GotTapped" = "Sie haben Aufgegeben";
+"Got.Tapped" = "Sie haben Aufgegeben";
 
-"NewTap" = "Neuer Tap";
+"New.Tap" = "Neuer Tap";
 
-"AddNew" = "Add";
+"Add.New" = "Add";
 
-"ZeroDays" = "0 tage";
+"Zero.Days" = "0 tage";
 
 "Submissions" = "Unterwerfung";
 
@@ -114,20 +112,22 @@
 
 "Wins" = "Gewonnen";
 
-"PersonsName" = "Persons Name";
+"Persons.Name" = "Persons Name";
 
-"AddSub" = "Add";
+"Add.Sub" = "Add";
 
-"SubmissionName" = "Unterwerfung Name";
+"Submission.Name" = "Unterwerfung Name";
 
-"Won:" = "Gewonnen:";
+"Won" = "Gewonnen:";
 
-"Lost:" = "Verliert:";
+"Lost" = "Verliert:";
 
-"WinDescriptions:" = "Gewin Beschreibungen:";
+"Win.Descriptions" = "Gewin Beschreibungen:";
 
-"LossDescriptions:" = "Verliert Beschreibungen:";
+"Loss.Descriptions" = "Verliert Beschreibungen:";
 
-"NoDescription" = "Keine Beschreibungen";
+"No.Description" = "Keine Beschreibungen";
 
-"OneTime" = "1 mal";
+"One.Time" = "1 mal";
+
+"Log.Out" = "Ausloggen";
