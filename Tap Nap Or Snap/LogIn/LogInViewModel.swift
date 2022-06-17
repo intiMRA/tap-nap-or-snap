@@ -12,6 +12,8 @@ class LogInViewModel: ObservableObject {
     @Published var navigateToTabView = false
     @Published var email = ""
     @Published var password = ""
+    @Published var showAlert = false
+    var error: LogInError?
     var cancellable = Set<AnyCancellable>()
     let api: LogInAPIProtocol
     init(api: LogInAPIProtocol = LogInAPI()) {
@@ -28,7 +30,15 @@ class LogInViewModel: ObservableObject {
                     self.navigateToTabView = true
                 }
             } catch {
-                print(error)
+                if let error = error as? LogInError {
+                    self.error = error
+                    await MainActor.run {
+                        self.showAlert = true
+                    }
+                } else {
+                    print(error)
+                }
+                
             }
         }
     }
@@ -41,7 +51,14 @@ class LogInViewModel: ObservableObject {
                     self.navigateToTabView = true
                 }
             } catch {
-                print(error)
+                if let error = error as? LogInError {
+                    self.error = error
+                    await MainActor.run {
+                        self.showAlert = true
+                    }
+                } else {
+                    print(error)
+                }
             }
         }
     }
@@ -55,6 +72,7 @@ class LogInViewModel: ObservableObject {
                     self.navigateToTabView = true
                 }
             } catch {
+                //no error handling
                 print(error)
             }
         }

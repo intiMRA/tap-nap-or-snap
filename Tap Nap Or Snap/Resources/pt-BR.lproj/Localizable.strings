@@ -30,7 +30,7 @@
 
 "Unkown.Error.Title" = "Algo Deu Errado";
 
-"Unkown.Error.Message" = "Ocorreu um error, tente de novo mais tarde.";
+"Unkown.Error.Message" = "Um error ocorreu, tente de novo mais tarde.";
 
 "Wrong.Credentials.Error.Title" = "Credenciais Errados";
 
