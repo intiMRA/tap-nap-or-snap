@@ -50,7 +50,7 @@
 
 "Account.Exists.With.Different.Credential" = "Entre uma senha e um email validos.";
 
-"Network.Error.Message" = "Por favor certifique-se que a sua internete está ligada.";
+"Network.Error.Message" = "Por favor certifique que a sua internete está ligada.";
 
 "Network.Error.Title" = "Erro Na Conexão";
 
