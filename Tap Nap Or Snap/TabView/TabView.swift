@@ -71,7 +71,7 @@ struct TabItemsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(Text(viewModel.title))
         .toolbar {
-            Button("Log.Out") {
+            Button("Log.Out".localized) {
                 viewModel.logOut()
             }
         }
@@ -79,6 +79,9 @@ struct TabItemsView: View {
             if shouldDismiss {
                 self.presentationMode.wrappedValue.dismiss()
             }
+        }
+        .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
+            Text(viewModel.error?.message ?? "")
         }
     }
 }

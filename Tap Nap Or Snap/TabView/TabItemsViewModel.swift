@@ -17,6 +17,8 @@ class TabItemsViewModel: ObservableObject {
     @Published var selection: ViewSelection = .submissions
     @Published var title = "Wins".localized
     @Published var shouldDismiss = false
+    @Published var showAlert = false
+    var error: LogInError?
     
     let logInApi: LogInAPIProtocol
     init(logInApi: LogInAPIProtocol = LogInAPI()) {
@@ -41,7 +43,14 @@ class TabItemsViewModel: ObservableObject {
                     self.shouldDismiss = true
                 }
             } catch {
-                //TODO: Error handling
+                if let error = error as? LogInError {
+                    self.error = error
+                    await MainActor.run(body: {
+                        self.showAlert = true
+                    })
+                } else {
+                    print(error)
+                }
             }
         }
     }
