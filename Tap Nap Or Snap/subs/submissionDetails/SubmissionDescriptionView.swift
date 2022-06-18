@@ -86,6 +86,9 @@ struct SubmissionDescriptionView: View {
                 presentationMode.wrappedValue.dismiss()
             }
         }
+        .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
+            Text(viewModel.error?.message ?? "")
+        }
     }
 }
 

@@ -116,6 +116,8 @@
 
 "Persons.Name" = "Persons Name";
 
+"Persons.Name.Error" = "Missing name";
+
 "Add.Sub" = "Add sub";
 
 "Submission.Name" = "Submission Name";

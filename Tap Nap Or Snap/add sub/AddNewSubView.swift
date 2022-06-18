@@ -18,8 +18,15 @@ struct AddNewSubView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                LoginTextField("Persons.Name", text: $viewModel.name)
-                    .focused($focusedField, equals: .title)
+                VStack(alignment: .leading) {
+                    CustomTextField("Persons.Name".localized, text: $viewModel.name)
+                        .focused($focusedField, equals: .title)
+                    if viewModel.fieldsToHighlight.name {
+                        Text("Persons.Name.Error".localized)
+                            .bold()
+                            .foregroundColor(ColorNames.warning.color())
+                    }
+                }
                 Button(action: { viewModel.presentSubsList() }) {
                     if let sub = viewModel.chosenSub {
                         HStack {
@@ -35,7 +42,7 @@ struct AddNewSubView: View {
                             Text("Add.Sub".localized)
                                 .font(.title3)
                                 .bold()
-                                .foregroundColor(ColorNames.text.color())
+                                .foregroundColor(viewModel.fieldsToHighlight.subName ? ColorNames.warning.color() : ColorNames.text.color())
                             Spacer()
                             ImageNames.edit.icon()
                         }
@@ -123,6 +130,9 @@ struct AddNewSubView: View {
                     .padding(.top, length: .large)
             }
         }
+        .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
+            Text(viewModel.error?.message ?? "")
+        }
     }
     
     @ViewBuilder
@@ -175,7 +185,7 @@ struct AddNewSubView: View {
     @ViewBuilder
     var createNewSub: some View {
         VStack {
-            LoginTextField("Submission.Name".localized, text: $viewModel.newSubName)
+            CustomTextField("Submission.Name".localized, text: $viewModel.newSubName)
             
             Button(action: { viewModel.chooseNewSubmission() }) {
                 ZStack {

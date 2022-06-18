@@ -14,7 +14,7 @@ struct CreateNewGoalView: View {
     var body: some View {
         ScrollView {
             VStack {
-                LoginTextField("Title".localized, keyBoard: .alphabet, text: $viewModel.title)
+                CustomTextField("Title".localized, keyBoard: .alphabet, text: $viewModel.title)
                     .focused($focusedField, equals: .title)
                     .onTapGesture {
                         self.focusedField = .title
@@ -72,7 +72,7 @@ struct CreateNewGoalView: View {
                 .foregroundColor(.text)
             
             HStack {
-                LoginTextField("Time".localized, keyBoard: .numberPad, text: $viewModel.numberOfDays)
+                CustomTextField("Time".localized, keyBoard: .numberPad, text: $viewModel.numberOfDays)
                 
                 Spacer()
                 
