@@ -114,6 +114,8 @@
 
 "Persons.Name" = "Nome Da Pessoa";
 
+"Persons.Name.Error" = "Nome faltando";
+
 "Add.Sub" = "Adicionar Finalização";
 
 "Submission.Name" = "Nome Da Finalização";

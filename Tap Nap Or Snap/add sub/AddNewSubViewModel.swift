@@ -18,6 +18,11 @@ enum AddSubsViewFocusField: Hashable {
     case title, description
 }
 
+struct FieldsToHighlight {
+    let name: Bool
+    let subName: Bool
+}
+
 @MainActor
 class AddNewSubViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
@@ -33,6 +38,9 @@ class AddNewSubViewModel: ObservableObject {
     @Published var isWin: Bool = true
     @Published var description = ""
     @Published var placeholder = "Add.Sub.Placeholder".localized
+    @Published var fieldsToHighlight = FieldsToHighlight(name: false, subName: false)
+    @Published var showAlert = false
+    var error: CustomError?
     let originalPH = "Add.Sub.Placeholder".localized
     let api = SubmissionsAPI()
     var cancellable = Set<AnyCancellable>()
@@ -55,6 +63,21 @@ class AddNewSubViewModel: ObservableObject {
                     withAnimation {
                         self.placeholder = self.originalPH
                     }
+                }
+            }
+            .store(in: &cancellable)
+        
+        $name
+            .dropFirst()
+            .sink { name in
+                guard !name.isEmpty else {
+                    withAnimation {
+                        self.fieldsToHighlight = FieldsToHighlight(name: true, subName: self.fieldsToHighlight.subName)
+                    }
+                    return
+                }
+                withAnimation {
+                    self.fieldsToHighlight = FieldsToHighlight(name: false, subName: self.fieldsToHighlight.subName)
                 }
             }
             .store(in: &cancellable)
@@ -96,6 +119,11 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func setChosenSub(_ submission: String) {
+        guard !submission.isEmpty else {
+            self.fieldsToHighlight = FieldsToHighlight(name: self.fieldsToHighlight.name, subName: true)
+            return
+        }
+        self.fieldsToHighlight = FieldsToHighlight(name: self.fieldsToHighlight.name, subName: false)
         DispatchQueue.main.async {
             self.chosenSub = submission
             self.showSubsList = false
@@ -110,8 +138,25 @@ class AddNewSubViewModel: ObservableObject {
         self.isWin = false
     }
     
+    private func checkInfoIsValid() async throws {
+        let nameIsEmpty = self.name.isEmpty
+        let subIsEmpty = self.chosenSub?.isEmpty ?? true
+        await MainActor.run {
+            withAnimation {
+                self.fieldsToHighlight = FieldsToHighlight(name: nameIsEmpty, subName: subIsEmpty)
+            }
+        }
+
+        if nameIsEmpty || subIsEmpty {
+            throw NSError()
+        }
+    }
+    
     func saveWholeSub() {
+        
         Task {
+            try await checkInfoIsValid()
+            
             let sub = SubmissionUploadModel(subName: chosenSub ?? "", personName: self.name, description: self.description)
             do {
                 if isWin {
@@ -120,11 +165,19 @@ class AddNewSubViewModel: ObservableObject {
                     try await self.api.saveLoss(submission: sub)
                 }
                 
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.dismissState = .screen
                 }
+                
             } catch {
-                print(error)
+                if let error = error as? CustomError {
+                    self.error = error
+                    await MainActor.run {
+                        self.showAlert = true
+                    }
+                } else {
+                    print(error)
+                }
             }
         }
     }

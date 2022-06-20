@@ -18,42 +18,42 @@ protocol LogInAPIProtocol: AnyObject {
     func signOut() async throws
 }
 
-struct LogInError: Error {
-    static let unkownError = LogInError(title: "Unkown.Error.Title".localized, message: "Unkown.Error.Message".localized)
+struct CustomError: Error {
+    static let unkownError = CustomError(title: "Unkown.Error.Title".localized, message: "Unkown.Error.Message".localized)
     let title: String
     let message: String
+    
+    static func error(from errorCode: AuthErrorCode) -> CustomError {
+        switch errorCode {
+        case .invalidCredential:
+            return CustomError(title: "Wrong.Credentials.Error.Title".localized, message: "Wrong.Credentials.Error.Message".localized)
+        case .emailAlreadyInUse:
+            return CustomError(title: "Invalid.Email".localized, message: "Credential.Already.In.Use".localized)
+        case .invalidEmail:
+            return CustomError(title: "Invalid.Email".localized, message: "Invalid.Email.Error".localized)
+        case .wrongPassword:
+            return CustomError(title: "Invalid.Password".localized, message: "Invalid.Password.Error".localized)
+        case .userNotFound:
+            return CustomError(title: "Invalid.Email".localized, message: "No.Such.Email.Error".localized)
+        case .accountExistsWithDifferentCredential:
+            return CustomError(title: "Invalid.Credentials".localized, message: "Account.Exists.With.Different.Credential".localized)
+        case .networkError:
+            return CustomError(title: "Network.Error.Title".localized, message: "Network.Error.Message".localized)
+        case .credentialAlreadyInUse:
+            return CustomError(title: "Invalid.Credentials".localized, message: "Credential.Already.In.Use".localized)
+        case .weakPassword:
+            return CustomError(title: "Invalid.Password".localized, message: "Weak.Password".localized)
+        case .webNetworkRequestFailed:
+            return CustomError(title: "Network.Error.Title".localized, message: "Network.Error.Message".localized)
+        default:
+            return CustomError.unkownError
+        }
+    }
 }
 
 
 class LogInAPI: LogInAPIProtocol {
     lazy var fireStore = Firestore.firestore()
-    
-    static func logInError(from errorCode: AuthErrorCode) -> LogInError {
-        switch errorCode {
-        case .invalidCredential:
-            return LogInError(title: "Wrong.Credentials.Error.Title".localized, message: "Wrong.Credentials.Error.Message".localized)
-        case .emailAlreadyInUse:
-            return LogInError(title: "Invalid.Email".localized, message: "Credential.Already.In.Use".localized)
-        case .invalidEmail:
-            return LogInError(title: "Invalid.Email".localized, message: "Invalid.Email.Error".localized)
-        case .wrongPassword:
-            return LogInError(title: "Invalid.Password".localized, message: "Invalid.Password.Error".localized)
-        case .userNotFound:
-            return LogInError(title: "Invalid.Email".localized, message: "No.Such.Email.Error".localized)
-        case .accountExistsWithDifferentCredential:
-            return LogInError(title: "Invalid.Credentials".localized, message: "Account.Exists.With.Different.Credential".localized)
-        case .networkError:
-            return LogInError(title: "Network.Error.Title".localized, message: "Network.Error.Message".localized)
-        case .credentialAlreadyInUse:
-            return LogInError(title: "Invalid.Credentials".localized, message: "Credential.Already.In.Use".localized)
-        case .weakPassword:
-            return LogInError(title: "Invalid.Password".localized, message: "Weak.Password".localized)
-        case .webNetworkRequestFailed:
-            return LogInError(title: "Network.Error.Title".localized, message: "Network.Error.Message".localized)
-        default:
-            return LogInError.unkownError
-        }
-    }
     
     func login(email: String, password: String) async throws {
         
@@ -62,7 +62,7 @@ class LogInAPI: LogInAPIProtocol {
             splitEmail[safe: 0] != nil,
             splitEmail[safe: 1] != nil
         else {
-            throw LogInError.unkownError
+            throw CustomError.unkownError
         }
         
         do {
@@ -71,7 +71,7 @@ class LogInAPI: LogInAPIProtocol {
             let snapshot = try await self.fireStore.collection("users").document(result.user.uid).getDocument()
             
             guard snapshot.exists == true else {
-                throw LogInError.unkownError
+                throw CustomError.unkownError
             }
             
             let model = LogInState(id: result.user.uid)
@@ -79,9 +79,9 @@ class LogInAPI: LogInAPIProtocol {
             await Store.shared.changeState(newState: model)
         } catch {
             if let errorCode = AuthErrorCode(rawValue: error._code) {
-                throw LogInAPI.logInError(from: errorCode)
+                throw CustomError.error(from: errorCode)
             } else {
-                throw LogInError.unkownError
+                throw CustomError.unkownError
             }
         }
         
@@ -126,7 +126,7 @@ class LogInAPI: LogInAPIProtocol {
             splitEmail[safe: 0] != nil,
             splitEmail[safe: 1] != nil
         else {
-            throw LogInError.unkownError
+            throw CustomError.unkownError
         }
         
         do {
@@ -141,9 +141,9 @@ class LogInAPI: LogInAPIProtocol {
             await Store.shared.changeState(newState: model)
         } catch {
             if let errorCode = AuthErrorCode(rawValue: error._code) {
-                throw LogInAPI.logInError(from: errorCode)
+                throw CustomError.error(from: errorCode)
             } else {
-                throw LogInError.unkownError
+                throw CustomError.unkownError
             }
         }
     }
@@ -152,14 +152,14 @@ class LogInAPI: LogInAPIProtocol {
         do {
             let fireStore = Firestore.firestore()
             guard let uid = Store.shared.loginState?.id else {
-                throw LogInError.unkownError
+                throw CustomError.unkownError
             }
             let snapshot = try await fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
             
             guard snapshot.exists == true,
                   let snapshot = snapshot.data()
             else {
-                throw LogInError.unkownError
+                throw CustomError.unkownError
             }
             let submissionList = snapshot[Keys.subMissionList.rawValue] as? [String] ?? []
             let submissions = snapshot[Keys.submissions.rawValue] as? [String: [String:[String: Any]]] ?? [:]
@@ -202,9 +202,9 @@ class LogInAPI: LogInAPIProtocol {
             
         } catch {
             if let errorCode = AuthErrorCode(rawValue: error._code) {
-                throw LogInAPI.logInError(from: errorCode)
+                throw CustomError.error(from: errorCode)
             } else {
-                throw LogInError.unkownError
+                throw CustomError.unkownError
             }
         }
     }

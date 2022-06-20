@@ -114,6 +114,8 @@
 
 "Persons.Name" = "Persons Name";
 
+"Persons.Name.Error" = "Name nicht ausgefüllt";
+
 "Add.Sub" = "Add";
 
 "Submission.Name" = "Unterwerfung Name";

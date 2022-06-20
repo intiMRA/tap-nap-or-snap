@@ -25,6 +25,8 @@ class SubmissionDescriptionViewModel: ObservableObject {
     @Published var winPlaceholder = "No.Description".localized
     @Published var lossesPlaceholder = "No.Description".localized
     @Published var shouldDismiss = false
+    @Published var showAlert = false
+    var error: CustomError?
     let originalPH = "No.Description".localized
     var cancellable = Set<AnyCancellable>()
     let api: SubmissionsAPIProtocol
@@ -104,11 +106,21 @@ class SubmissionDescriptionViewModel: ObservableObject {
     
     func saveDescriptions() {
         Task {
-            withAnimation {
-                self.shouldDismiss = true
+            do {
+                try await api.saveSubmissionDescriptions(submissionName: subName, personName: personName, winDescription: winDescription, lossDescription: lossesDescription)
+                withAnimation {
+                    self.shouldDismiss = true
+                }
+            } catch {
+                if let error = error as? CustomError {
+                    self.error = error
+                    await MainActor.run {
+                        self.showAlert = true
+                    }
+                } else {
+                    print(error)
+                }
             }
-            
-            try? await api.saveSubmissionDescriptions(submissionName: subName, personName: personName, winDescription: winDescription, lossDescription: lossesDescription)
         }
     }
 }

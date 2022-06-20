@@ -27,9 +27,9 @@ struct LogInView: View {
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    LoginTextField("Email".localized, keyBoard: .emailAddress, text: $viewModel.email)
+                    CustomTextField("Email".localized, keyBoard: .emailAddress, text: $viewModel.email)
                     
-                    LoginTextField("Password".localized, text: $viewModel.password, isSecureEntry: true)
+                    CustomTextField("Password".localized, text: $viewModel.password, isSecureEntry: true)
                     
                     Button(action: viewModel.login) {
                         Text("Log.In".localized)
@@ -57,17 +57,19 @@ struct LogInView: View {
     }
 }
 
-struct LoginTextField: View {
+struct CustomTextField: View {
     let name: String
     let keyBoard: UIKeyboardType
     let isSecureEntry: Bool
+    let isWarning: Bool
     @Binding var text: String
     @State var isVisible = false
-    init(_ name: String, keyBoard: UIKeyboardType = .alphabet, text: Binding<String>, isSecureEntry: Bool = false) {
+    init(_ name: String, keyBoard: UIKeyboardType = .alphabet, text: Binding<String>, isSecureEntry: Bool = false, isWarning: Bool = false) {
         self.name = name
         self._text = text
         self.keyBoard = keyBoard
         self.isSecureEntry = isSecureEntry
+        self.isWarning = isWarning
     }
     
     var body: some View {
@@ -79,14 +81,14 @@ struct LoginTextField: View {
                         if isVisible {
                             TextField(name, text: $text)
                                 .keyboardType(keyBoard)
-                                .foregroundColor(ColorNames.text.color())
-                                .accentColor(ColorNames.text.color())
+                                .foregroundColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
+                                .accentColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
                                 .padding(length: .small)
                         } else {
                             SecureField(name, text: $text)
                                 .keyboardType(keyBoard)
-                                .foregroundColor(ColorNames.text.color())
-                                .accentColor(ColorNames.text.color())
+                                .foregroundColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
+                                .accentColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
                                 .padding(length: .small)
                         }
                     }
@@ -99,8 +101,8 @@ struct LoginTextField: View {
             } else {
                 TextField(name, text: $text)
                     .keyboardType(keyBoard)
-                    .foregroundColor(ColorNames.text.color())
-                    .accentColor(ColorNames.text.color())
+                    .foregroundColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
+                    .accentColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
                     .padding(length: .small)
             }
         }
