@@ -28,8 +28,9 @@ class EditGoalDetailsViewModel: ObservableObject {
                     self.shouldDismiss = true
                 }
             } catch {
+                self.error = CustomError(title: "Edit.Goal.Error.Title".localized, message: "Edit.Goal.Error.Message".localized)
                 await  MainActor.run {
-                     self.shouldDismiss = true
+                    self.showAlert = true
                  }
             }
         }
