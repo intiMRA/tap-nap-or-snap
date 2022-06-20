@@ -16,7 +16,7 @@
 
 "We.Are.Sorry" = "Entschuldigung";
 
-"We.Could.Not.Log.Out" = "Wir könnten Sie nicth aus loggen, versuchen Sie bitte wieder.";
+"We.Could.Not.Log.Out" = "Wir könnten Sie nicth aus loggen, versuchen Sie bitte wieder";
 
 "Settings" = "Einstellungen";
 
@@ -30,37 +30,37 @@
 
 "Unkown.Error.Title" = "Etwas ist schief gelaufen";
 
-"Unkown.Error.Message" = "Ein unbekannter Fehler ist passiert, bitte versuchen Sie es später wieder.";
+"Unkown.Error.Message" = "Ein unbekannter Fehler ist passiert, bitte versuchen Sie es später wieder";
 
 "Wrong.Credentials.Error.Title" = "Falsche Anmeldeinformationen";
 
-"Wrong.Credentials.Error.Message" = "Bitte tragen Sie eine gültige E-Mail und ein Passwort ein.";
+"Wrong.Credentials.Error.Message" = "Bitte tragen Sie eine gültige E-Mail und ein Passwort ein";
 
 "Invalid.Email" = "Ungültige Email";
 
-"Invalid.Email.Error" = "Diese E-Mail ist ungültig, bitte wählen Sie eine andere aus.";
+"Invalid.Email.Error" = "Diese E-Mail ist ungültig, bitte wählen Sie eine andere aus";
 
 "Invalid.Password" = "Ungültige Passwort";
 
-"Invalid.Password.Error" = "Bitte tragen Sie Ihr korrektes Passwort ein.";
+"Invalid.Password.Error" = "Bitte tragen Sie Ihr korrektes Passwort ein";
 
-"No.Such.Email.Error" = "Es gibt keinen Benutzer mit dieser E-Mail in unserer Datenbank, bitte geben Sie eine korrekte EMail ein.";
+"No.Such.Email.Error" = "Es gibt keinen Benutzer mit dieser E-Mail in unserer Datenbank, bitte geben Sie eine korrekte EMail ein";
 
 "Invalid.Credentials" = "Ungültige Credentials";
 
-"Account.Exists.With.Different.Credential" = "Bitte tragen Sie eine korrekte EMail und ein Passwort ein.";
+"Account.Exists.With.Different.Credential" = "Bitte tragen Sie eine korrekte EMail und ein Passwort ein";
 
-"Network.Error.Message" = "Bitte machen Sie sicher, dass Sie eine Internetverbindung haben, um die App zu verwenden.";
+"Network.Error.Message" = "Bitte machen Sie sicher, dass Sie eine Internetverbindung haben, um die App zu verwenden";
 
 "Network.Error.Title" = "Internetfehler";
 
-"Credential.Already.In.Use" = "Bitte tragen Sie Ihre korrekte EMail und Ihr Passwort ein.";
+"Credential.Already.In.Use" = "Bitte tragen Sie Ihre korrekte EMail und Ihr Passwort ein";
 
-"Weak.Password" = "Das Passwort must mindestens 1 Ziffer enthalten und mindestens 6 Zeichen lang sein.";
+"Weak.Password" = "Das Passwort must mindestens 1 Ziffer enthalten und mindestens 6 Zeichen lang sein";
 
 "Unable.To.Save.Error.Title" = "Speichern nicht möglich";
 
-"Unable.To.Save.Message" = "Beim Speichern Ihrer Daten ist ein Fehler passiert. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.";
+"Unable.To.Save.Message" = "Beim Speichern Ihrer Daten ist ein Fehler passiert. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut";
 
 "Done" = "Fertig";
 
@@ -133,3 +133,7 @@
 "One.Time" = "1 mal";
 
 "Log.Out" = "Ausloggen";
+
+"Edit.Goal.Error.Title" = "Ziel Bearbeiten";
+
+"Edit.Goal.Error.Message" = "Ihren Ziel könnte nicht gespeischert werden,vesuchen sie es später wieder";

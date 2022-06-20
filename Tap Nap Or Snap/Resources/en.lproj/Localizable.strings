@@ -18,7 +18,7 @@
 
 "We.Are.Sorry" = "We are sorry";
 
-"We.Could.Not.Log.Out" = "We could not log you out, please try again.";
+"We.Could.Not.Log.Out" = "We could not log you out, please try again";
 
 "Settings" = "Settings";
 
@@ -32,37 +32,37 @@
 
 "Unkown.Error.Title" = "Something went wrong";
 
-"Unkown.Error.Message" = "An unknown error occurred, please try again later.";
+"Unkown.Error.Message" = "An unknown error occurred, please try again later";
 
 "Wrong.Credentials.Error.Title" = "Wrong Credentials";
 
-"Wrong.Credentials.Error.Message" = "Please enter a valid email and password.";
+"Wrong.Credentials.Error.Message" = "Please enter a valid email and password";
 
 "Invalid.Email" = "Invalid Email";
 
-"Invalid.Email.Error" = "This email is invalid, please choose a different one.";
+"Invalid.Email.Error" = "This email is invalid, please choose a different one";
 
 "Invalid.Password" = "Invalid Password";
 
-"Invalid.Password.Error" = "Please enter your correct password.";
+"Invalid.Password.Error" = "Please enter your correct password";
 
-"No.Such.Email.Error" = "There is no user with that email in our database, please enter a correct email.";
+"No.Such.Email.Error" = "There is no user with that email in our database, please enter a correct email";
 
 "Invalid.Credentials" = "Invalid Credentials";
 
-"Account.Exists.With.Different.Credential" = "Please enter a correct email and password.";
+"Account.Exists.With.Different.Credential" = "Please enter a correct email and password";
 
-"Network.Error.Message" = "Please make sure you have an internet connection to use the app.";
+"Network.Error.Message" = "Please make sure you have an internet connection to use the app";
 
 "Network.Error.Title" = "Network Error";
 
-"Credential.Already.In.Use" = "Please enter your correct email and password.";
+"Credential.Already.In.Use" = "Please enter your correct email and password";
 
-"Weak.Password" = "Passwords need to contain at least 1 number and need to be at least 6 characters long.";
+"Weak.Password" = "Passwords need to contain at least 1 number and need to be at least 6 characters long";
 
 "Unable.To.Save.Error.Title" = "Unable To Save";
 
-"Unable.To.Save.Message" = "Something went wrong while saving your data, please check your internet connection and try again.";
+"Unable.To.Save.Message" = "Something went wrong while saving your data, please check your internet connection and try again";
 
 "Done" = "Done";
 
@@ -133,3 +133,7 @@
 "No.Description" = "No description";
 
 "One.Time" = "1 time";
+
+"Edit.Goal.Error.Title" = "Edit Goal";
+
+"Edit.Goal.Error.Message" = "Your goal could not be saved, please try again later";
