@@ -3,6 +3,16 @@
     {
       "filename" : "TargetDisabled.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "TargetDarkDisable.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
