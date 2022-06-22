@@ -11,6 +11,7 @@ import SwiftUI
 enum ImageNames: String {
     case tomoeNage = "TomoeNage"
     case dead = "Dead"
+    case deadDisabled = "DeadDisabled"
     case medal = "Medal"
     case user = "User"
     case add = "Add"

@@ -34,8 +34,7 @@ struct TabItemsView: View {
                 }
                 .tabItem {
                     VStack {
-                        ImageNames.dead.image()
-                            .renderingMode(.template)
+                        viewModel.selection == .submissions ? ImageNames.dead.image() : ImageNames.deadDisabled.image()
                         
                         Text("Submissions".localized)
                     }
