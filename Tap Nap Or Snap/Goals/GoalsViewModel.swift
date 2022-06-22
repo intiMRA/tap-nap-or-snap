@@ -34,6 +34,7 @@ extension GoalModel {
 class GoalsViewModel: ObservableObject {
     @Published var navigateToAddGoal = false
     @Published var goalModels = [GoalModel]()
+    @Published var goalCollapsed = [String: Bool]()
     @Published var navigateToEditGoal = false
     var currentGoal: GoalModel?
     let goalsApi = GoalsAPI()
@@ -77,5 +78,9 @@ class GoalsViewModel: ObservableObject {
             try? await self.goalsApi.goalCompletion(status: status, id: id)
             self.reloadState()
         }
+    }
+    
+    func flipGoal(with id: String) {
+        self.goalCollapsed[id] = !(self.goalCollapsed[id] ?? false)
     }
 }
