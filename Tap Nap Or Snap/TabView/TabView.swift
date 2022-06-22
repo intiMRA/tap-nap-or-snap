@@ -56,8 +56,7 @@ struct TabItemsView: View {
                 }
                 .tabItem {
                     VStack {
-                        ImageNames.user.image()
-                            .renderingMode(.template)
+                        viewModel.selection == .goals ? ImageNames.target.image() : ImageNames.targetDisabled.image()
                         
                         Text("Goals".localized)
                     }
