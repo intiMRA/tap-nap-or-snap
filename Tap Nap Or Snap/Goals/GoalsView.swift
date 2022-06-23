@@ -28,7 +28,7 @@ struct GoalsView: View {
                 Spacer()
                 Button(action: { viewModel.showAddGoal() }) {
                     VStack {
-                        ImageNames.add.icon(color: ColorNames.text.color())
+                        ImageNames.add.rawIcon()
                         
                         Text("Add.New".localized)
                     }
@@ -79,14 +79,14 @@ struct GoalView: View {
                 }
                 
                 HStack {
-                    Text("done date:")
+                    Text("Done.Date".localized)
                         .bold()
                     Spacer()
                     Text(goal.timeStamp.asString())
                 }
                 
                 HStack {
-                    Text("time remaining:")
+                    Text("Time.Remaining".localized)
                         .bold()
                     Spacer()
                     Text(Date().difference(from: goal.timeStamp))
@@ -94,7 +94,7 @@ struct GoalView: View {
                 VStack(alignment: .leading) {
                     if viewModel.goalCollapsed[goal.id] ?? false {
                         HStack {
-                            Text("Expand")
+                            Text("Expand".localized)
                             Image(systemName: "chevron.down")
                         }
                         .standardHeight()

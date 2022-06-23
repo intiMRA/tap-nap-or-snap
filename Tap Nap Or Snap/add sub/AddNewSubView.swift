@@ -35,7 +35,7 @@ struct AddNewSubView: View {
                                 .bold()
                                 .foregroundColor(ColorNames.text.color())
                             Spacer()
-                            ImageNames.edit.icon()
+                            ImageNames.edit.rawIcon()
                         }
                     } else {
                         HStack {
@@ -44,7 +44,7 @@ struct AddNewSubView: View {
                                 .bold()
                                 .foregroundColor(viewModel.fieldsToHighlight.subName ? ColorNames.warning.color() : ColorNames.text.color())
                             Spacer()
-                            ImageNames.edit.icon()
+                            ImageNames.edit.rawIcon()
                         }
                     }
                 }
@@ -153,7 +153,7 @@ struct AddNewSubView: View {
                         }
                         
                         Button(action: {}) {
-                            ImageNames.trash.icon()
+                            ImageNames.trash.rawIcon()
                         }
                     }
                     .padding(length: .medium)
@@ -163,7 +163,7 @@ struct AddNewSubView: View {
             }
             Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {
-                    ImageNames.add.icon()
+                    ImageNames.add.rawIcon()
                     Text("Add.New".localized)
                         .foregroundColor(.text)
                 }

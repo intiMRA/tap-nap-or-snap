@@ -29,15 +29,11 @@ enum ImageNames: String {
     
     func icon(color: Color = ColorNames.text.color()) -> some View {
         Image(self.rawValue)
-            .resizable()
             .renderingMode(.template)
             .foregroundColor(color)
-            .frame(width: 24, height: 24)
     }
     
     func rawIcon() -> some View {
         Image(self.rawValue)
-            .resizable()
-            .frame(width: 24, height: 24)
     }
 }

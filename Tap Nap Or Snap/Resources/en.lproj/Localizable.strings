@@ -137,3 +137,9 @@
 "Edit.Goal.Error.Title" = "Edit Goal";
 
 "Edit.Goal.Error.Message" = "Your goal could not be saved, please try again later";
+
+"Done.Date" = "done date:";
+
+"Time.Remaining" = "time remaining:";
+
+"Expand" = "Expand";

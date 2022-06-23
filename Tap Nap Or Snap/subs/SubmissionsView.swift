@@ -22,7 +22,7 @@ struct SubmissionsView: View {
                 Spacer()
                 Button(action: { viewModel.showNewSub() }) {
                     VStack {
-                        ImageNames.add.icon(color: ColorNames.text.color())
+                        ImageNames.add.rawIcon()
                         Text("Add.New".localized)
                     }
                 }

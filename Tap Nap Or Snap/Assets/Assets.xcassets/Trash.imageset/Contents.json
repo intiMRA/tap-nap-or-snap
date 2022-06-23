@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "delete.pdf",
+      "filename" : "trashLight.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "trashDark.pdf",
       "idiom" : "universal"
     }
   ],

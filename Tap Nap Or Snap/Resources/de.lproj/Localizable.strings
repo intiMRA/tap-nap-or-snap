@@ -137,3 +137,9 @@
 "Edit.Goal.Error.Title" = "Ziel Bearbeiten";
 
 "Edit.Goal.Error.Message" = "Ihren Ziel könnte nicht gespeischert werden,vesuchen sie es später wieder";
+
+"Done.Date" = "Enddatum:";
+
+"Time.Remaining" = "übrige Zeit:";
+
+"Expand" = "Expandieren";

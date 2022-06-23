@@ -137,3 +137,9 @@
 "Edit.Goal.Error.Title" = "Editando Meta";
 
 "Edit.Goal.Error.Message" = "Sua meta não pode ser salva, tente de novo mais tarde";
+
+"Done.Date" = "data final:";
+
+"Time.Remaining" = "tempo sobrando:";
+
+"Expand" = "Expandir";
