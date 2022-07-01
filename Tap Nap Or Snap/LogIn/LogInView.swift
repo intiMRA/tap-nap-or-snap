@@ -80,6 +80,8 @@ struct CustomTextField: View {
                     Group {
                         if isVisible {
                             TextField(name, text: $text)
+                                .disableAutocorrection(true)
+                                .textInputAutocapitalization(.never)
                                 .keyboardType(keyBoard)
                                 .foregroundColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
                                 .accentColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
@@ -101,6 +103,8 @@ struct CustomTextField: View {
             } else {
                 TextField(name, text: $text)
                     .keyboardType(keyBoard)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .foregroundColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
                     .accentColor(self.isWarning ? ColorNames.warning.color() : ColorNames.text.color())
                     .padding(length: .small)

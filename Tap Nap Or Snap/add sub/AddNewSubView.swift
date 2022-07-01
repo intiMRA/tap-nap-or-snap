@@ -152,7 +152,7 @@ struct AddNewSubView: View {
                             Spacer()
                         }
                         
-                        Button(action: {}) {
+                        Button(action: { viewModel.deleteSubFromList(with: index)}) {
                             ImageNames.trash.rawIcon()
                         }
                     }
@@ -160,6 +160,7 @@ struct AddNewSubView: View {
                 }
                 .standardHeight()
                 .padding(.bottom, length: .medium)
+                .offset(x: viewModel.shakeAnimationIndex == index ? -10 : 0)
             }
             Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {

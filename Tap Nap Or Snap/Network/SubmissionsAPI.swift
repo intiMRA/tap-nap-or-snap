@@ -12,6 +12,7 @@ protocol SubmissionsAPIProtocol {
     func addNewSubToList(submissionName: String) async throws
     func saveWin(submission: SubmissionUploadModel) async throws
     func saveLoss(submission: SubmissionUploadModel) async throws
+    func deleteSubFromList(with submissionName: String) async throws
     func saveSubmissionDescriptions(submissionName: String, personName: String, winDescription: String?, lossDescription: String?) async throws
 }
 
@@ -33,7 +34,7 @@ enum SubmissionKeys: String {
 }
 
 class SubmissionsAPI: SubmissionsAPIProtocol {
-    
+
     lazy var fireStore = Firestore.firestore()
     
     func addNewSubToList(submissionName: String) async throws {
@@ -59,6 +60,32 @@ class SubmissionsAPI: SubmissionsAPIProtocol {
         }
         
         list.append(submissionName)
+        snapshot[Keys.subMissionList.rawValue] = list
+        await Store.shared.changeState(newState: SubmissionNamesState(subs: list))
+        try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
+    }
+    
+    func deleteSubFromList(with submissionName: String) async throws {
+        guard let uid = Store.shared.loginState?.id else {
+            return
+        }
+        let snapshot = try await self.fireStore.collection(Keys.users.rawValue).document(uid).getDocument()
+        
+        guard snapshot.exists == true,
+              var snapshot = snapshot.data()
+        else {
+            return
+        }
+        
+        guard var list = snapshot[Keys.subMissionList.rawValue] as? [String] else {
+            return
+        }
+        
+        guard list.contains(where: { $0 == submissionName }) else {
+            return
+        }
+        
+        list.removeAll(where: { $0 == submissionName })
         snapshot[Keys.subMissionList.rawValue] = list
         await Store.shared.changeState(newState: SubmissionNamesState(subs: list))
         try await self.fireStore.collection(Keys.users.rawValue).document(uid).setData(snapshot)
