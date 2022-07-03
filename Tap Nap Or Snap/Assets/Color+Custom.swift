@@ -23,7 +23,6 @@ enum ColorNames: String {
     case background = "Background"
     case text = "Text"
     case bar = "Bar"
-    case toggle = "Toggle"
     case warning = "Warning"
     func color(opacity: ColorOpacity = .hundred) -> Color {
         Color(self.rawValue)
