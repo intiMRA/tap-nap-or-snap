@@ -56,7 +56,7 @@ struct GoalsView: View {
     }
     
     func color(for goal: GoalModel) -> Color {
-        goal.isComplete ? .green : (goal.timeStamp.isPastDueDate() ? .blue : Color.red)
+        goal.isComplete ? .green : (goal.timeStamp.isPastDueDate() ? .blue : .red)
     }
 }
 

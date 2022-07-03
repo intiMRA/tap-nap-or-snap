@@ -111,7 +111,7 @@ struct CreateNewGoalView: View {
 struct GoalsRectangle: View {
     let isSelected: Bool
     var body: some View {
-        CustomRoundRectangle(color: isSelected ? ColorNames.bar.color() : Color.gray)
+        CustomRoundRectangle(color: isSelected ? .blue : .gray)
             .standardHeightFillUp()
     }
 }
