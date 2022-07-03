@@ -18,12 +18,12 @@ enum TimeToCompleteGoal: String {
 
 class CreateNewGoalViewModel: ObservableObject {
     @Published var title = ""
-    @Published var placeholder = "Goals.Placeholder"
+    @Published var placeholder = "Goals.Placeholder".localized
     @Published var shouldDismiss = false
-    let originalPH = "Goals.Placeholder"
+    let originalPH = "Goals.Placeholder".localized
     let api = GoalsAPI()
     @Published var description = ""
-    @Published var numberOfDays = ""
+    @Published var numberOfDays = "1"
     @Published var timeToComplete: TimeToCompleteGoal = .weeks
     private var cancellable = Set<AnyCancellable>()
     init() {
@@ -65,9 +65,7 @@ class CreateNewGoalViewModel: ObservableObject {
     
     func saveGoal() {
         //TODO: proper error
-        guard let numberOfDays = Int(numberOfDays) else {
-            return
-        }
+        let numberOfDays = Int(numberOfDays) ?? 1
         Task {
             do {
                 var date: Date?
