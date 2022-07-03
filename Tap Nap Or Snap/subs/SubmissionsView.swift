@@ -29,7 +29,7 @@ struct SubmissionsView: View {
             }
             
             ScrollView {
-                VStack(alignment: .leading) {
+                LazyVStack(alignment: .leading) {
                     ForEach(viewModel.submissionsDict.sorted(by: { $0.1.total > $1.1.total }), id: \.0) { sub in
                         Button(action: { viewModel.showSubmissionDetails(for: sub.key) }) {
                             ZStack {

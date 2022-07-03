@@ -13,7 +13,7 @@ struct CreateNewGoalView: View {
     @StateObject var viewModel = CreateNewGoalViewModel()
     var body: some View {
         ScrollView {
-            VStack {
+            LazyVStack {
                 CustomTextField("Title".localized, keyBoard: .alphabet, text: $viewModel.title)
                     .focused($focusedField, equals: .title)
                     .onTapGesture {

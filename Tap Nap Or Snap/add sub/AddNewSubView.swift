@@ -17,7 +17,7 @@ struct AddNewSubView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            LazyVStack(spacing: 20) {
                 VStack(alignment: .leading) {
                     CustomTextField("Persons.Name".localized, text: $viewModel.name)
                         .focused($focusedField, equals: .title)

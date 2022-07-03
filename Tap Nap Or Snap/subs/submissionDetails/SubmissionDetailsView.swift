@@ -16,7 +16,7 @@ struct SubmissionDetailsView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading){
+            LazyVStack(alignment: .leading) {
                 NavigationLink(isActive: $viewModel.navigateToDescription, destination: { SubmissionDescriptionView(viewModel: viewModel.createDescriptionViewModel()) }, label: { EmptyView() })
                 
                 Text(viewModel.submissionName)

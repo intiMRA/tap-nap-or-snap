@@ -95,21 +95,29 @@ struct GoalView: View {
                     if viewModel.goalCollapsed[goal.id] ?? false {
                         HStack {
                             Text("Expand".localized)
+                                .bold()
+                            
                             Image(systemName: "chevron.down")
                         }
                         .standardHeight()
                     } else {
-                        HStack(alignment: .top) {
+                        VStack(alignment: .leading) {
+                            if goal.description.filter({ $0 == "\n" }).count > 1 {
+                                HStack {
+                                    Text("Collapse".localized)
+                                        .bold()
+                                    
+                                    Image(systemName: "chevron.up")
+                                }
+                                .standardHeight()
+                            }
+                            
                         Text(goal.description)
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
                             .font(.body)
                             .foregroundColor(ColorNames.text.color())
                             .padding(.bottom, length: .xxxSmall)
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.up")
                         }
                     }
                 }

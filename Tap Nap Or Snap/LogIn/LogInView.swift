@@ -16,7 +16,7 @@ struct LogInView: View {
                 EmptyView()
             }
             ScrollView {
-                VStack(alignment: .center, spacing: 10) {
+                LazyVStack(alignment: .center, spacing: 10) {
                     ImageNames.tomoeNage.image()
                         .renderingMode(.template)
                         .frame(width: 270, height: 200)
