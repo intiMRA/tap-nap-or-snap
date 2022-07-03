@@ -21,6 +21,11 @@ struct AddNewSubView: View {
                 VStack(alignment: .leading) {
                     CustomTextField("Persons.Name".localized, text: $viewModel.name)
                         .focused($focusedField, equals: .title)
+                        .onTapGesture {
+                            self.focusedField = .title
+                            viewModel.isFocused(.title)
+                        }
+                    
                     if viewModel.fieldsToHighlight.name {
                         Text("Persons.Name.Error".localized)
                             .bold()
