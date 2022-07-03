@@ -6,12 +6,13 @@
 //
 
 import Foundation
-@MainActor
 class EditGoalDetailsViewModel: ObservableObject {
     let currentGoal: GoalModel?
     let api: GoalsAPIProtocol
+    var error: CustomError?
     @Published var description: String
     @Published var shouldDismiss = false
+    @Published var showAlert = false
     
     init(currentGoal: GoalModel?, api: GoalsAPIProtocol = GoalsAPI()) {
         self.description = currentGoal?.description ?? ""
@@ -21,8 +22,17 @@ class EditGoalDetailsViewModel: ObservableObject {
     
     func saveDescription() {
         Task {
-            try? await api.editGoalDescription(with: currentGoal?.id ?? "", description: description)
-            self.shouldDismiss = true
+            do {
+                try await api.editGoalDescription(with: currentGoal?.id ?? "", description: description)
+               await  MainActor.run {
+                    self.shouldDismiss = true
+                }
+            } catch {
+                self.error = CustomError(title: "Edit.Goal.Error.Title".localized, message: "Edit.Goal.Error.Message".localized)
+                await  MainActor.run {
+                    self.showAlert = true
+                 }
+            }
         }
     }
 }

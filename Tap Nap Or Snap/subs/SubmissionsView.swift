@@ -22,14 +22,14 @@ struct SubmissionsView: View {
                 Spacer()
                 Button(action: { viewModel.showNewSub() }) {
                     VStack {
-                        ImageNames.add.icon(color: ColorNames.text.color())
+                        ImageNames.add.rawIcon()
                         Text("Add.New".localized)
                     }
                 }
             }
             
             ScrollView {
-                VStack(alignment: .leading) {
+                LazyVStack(alignment: .leading) {
                     ForEach(viewModel.submissionsDict.sorted(by: { $0.1.total > $1.1.total }), id: \.0) { sub in
                         Button(action: { viewModel.showSubmissionDetails(for: sub.key) }) {
                             ZStack {

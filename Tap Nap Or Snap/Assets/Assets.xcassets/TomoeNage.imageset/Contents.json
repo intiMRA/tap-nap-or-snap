@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bg1.pdf",
+      "filename" : "tomoenage.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "tomoenageDark.pdf",
       "idiom" : "universal"
     }
   ],

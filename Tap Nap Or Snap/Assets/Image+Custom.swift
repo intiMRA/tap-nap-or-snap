@@ -11,8 +11,10 @@ import SwiftUI
 enum ImageNames: String {
     case tomoeNage = "TomoeNage"
     case dead = "Dead"
+    case deadDisabled = "DeadDisabled"
     case medal = "Medal"
-    case user = "User"
+    case target = "Target"
+    case targetDisabled = "TargetDisabled"
     case add = "Add"
     case trash = "Trash"
     case cancel = "Cancel"
@@ -27,15 +29,11 @@ enum ImageNames: String {
     
     func icon(color: Color = ColorNames.text.color()) -> some View {
         Image(self.rawValue)
-            .resizable()
             .renderingMode(.template)
             .foregroundColor(color)
-            .frame(width: 24, height: 24)
     }
     
     func rawIcon() -> some View {
         Image(self.rawValue)
-            .resizable()
-            .frame(width: 24, height: 24)
     }
 }

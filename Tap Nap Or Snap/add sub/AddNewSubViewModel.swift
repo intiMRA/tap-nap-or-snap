@@ -40,6 +40,7 @@ class AddNewSubViewModel: ObservableObject {
     @Published var placeholder = "Add.Sub.Placeholder".localized
     @Published var fieldsToHighlight = FieldsToHighlight(name: false, subName: false)
     @Published var showAlert = false
+    @Published var shakeAnimationIndex: Int? = nil
     var error: CustomError?
     let originalPH = "Add.Sub.Placeholder".localized
     let api = SubmissionsAPI()
@@ -84,7 +85,9 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func reloadState() {
-        self.listOfSubs = Store.shared.submissionNamesState?.subs ?? []
+        withAnimation {
+            self.listOfSubs = Store.shared.submissionNamesState?.subs ?? []
+        }
     }
     
     func presentSubsList() {
@@ -153,11 +156,10 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func saveWholeSub() {
-        
         Task {
             try await checkInfoIsValid()
             
-            let sub = SubmissionUploadModel(subName: chosenSub ?? "", personName: self.name, description: self.description)
+            let sub = SubmissionUploadModel(subName: chosenSub?.capitalized ?? "", personName: self.name, description: self.description)
             do {
                 if isWin {
                     try await self.api.saveWin(submission: sub)
@@ -189,6 +191,24 @@ class AddNewSubViewModel: ObservableObject {
                 self.placeholder = self.originalPH
             case .description:
                 self.placeholder = ""
+            }
+        }
+    }
+    
+    func deleteSubFromList(with index: Int) {
+        let name = self.listOfSubs[index]
+        Task {
+            do {
+                try await api.deleteSubFromList(with: name)
+                self.reloadState()
+            } catch {
+                withAnimation {
+                    self.shakeAnimationIndex = index
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    self.shakeAnimationIndex = nil
+                }
             }
         }
     }

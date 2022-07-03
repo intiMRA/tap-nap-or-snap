@@ -16,7 +16,7 @@ struct SubmissionDescriptionView: View {
     }
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            LazyVStack(alignment: .leading) {
                 LeftAlignedTextView(viewModel.title)
                     .font(.title)
                     .padding(.bottom, length: .large)

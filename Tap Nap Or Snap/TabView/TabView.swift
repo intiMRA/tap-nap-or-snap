@@ -34,8 +34,7 @@ struct TabItemsView: View {
                 }
                 .tabItem {
                     VStack {
-                        ImageNames.dead.image()
-                            .renderingMode(.template)
+                        viewModel.selection == .submissions ? ImageNames.dead.image() : ImageNames.deadDisabled.image()
                         
                         Text("Submissions".localized)
                     }
@@ -57,8 +56,7 @@ struct TabItemsView: View {
                 }
                 .tabItem {
                     VStack {
-                        ImageNames.user.image()
-                            .renderingMode(.template)
+                        viewModel.selection == .goals ? ImageNames.target.image() : ImageNames.targetDisabled.image()
                         
                         Text("Goals".localized)
                     }

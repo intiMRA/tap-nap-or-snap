@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "DeadLight.pdf",
+      "filename" : "TargetDisabled.pdf",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "DeadDark.pdf",
+      "filename" : "TargetDarkDisable.pdf",
       "idiom" : "universal"
     }
   ],

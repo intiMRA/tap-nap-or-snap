@@ -17,7 +17,7 @@ struct EditGoalDetailsView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            LazyVStack {
                 Text(viewModel.currentGoal?.title ?? "")
                     .font(.title)
                     .bold()
@@ -55,6 +55,9 @@ struct EditGoalDetailsView: View {
             if value {
                 self.presentationMode.wrappedValue.dismiss()
             }
+        }
+        .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
+            Text(viewModel.error?.message ?? "")
         }
     }
 }

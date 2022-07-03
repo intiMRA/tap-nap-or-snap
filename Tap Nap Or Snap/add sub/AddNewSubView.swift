@@ -17,10 +17,15 @@ struct AddNewSubView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            LazyVStack(spacing: 20) {
                 VStack(alignment: .leading) {
                     CustomTextField("Persons.Name".localized, text: $viewModel.name)
                         .focused($focusedField, equals: .title)
+                        .onTapGesture {
+                            self.focusedField = .title
+                            viewModel.isFocused(.title)
+                        }
+                    
                     if viewModel.fieldsToHighlight.name {
                         Text("Persons.Name.Error".localized)
                             .bold()
@@ -35,7 +40,7 @@ struct AddNewSubView: View {
                                 .bold()
                                 .foregroundColor(ColorNames.text.color())
                             Spacer()
-                            ImageNames.edit.icon()
+                            ImageNames.edit.rawIcon()
                         }
                     } else {
                         HStack {
@@ -44,7 +49,7 @@ struct AddNewSubView: View {
                                 .bold()
                                 .foregroundColor(viewModel.fieldsToHighlight.subName ? ColorNames.warning.color() : ColorNames.text.color())
                             Spacer()
-                            ImageNames.edit.icon()
+                            ImageNames.edit.rawIcon()
                         }
                     }
                 }
@@ -152,18 +157,19 @@ struct AddNewSubView: View {
                             Spacer()
                         }
                         
-                        Button(action: {}) {
-                            ImageNames.trash.icon()
+                        Button(action: { viewModel.deleteSubFromList(with: index)}) {
+                            ImageNames.trash.rawIcon()
                         }
                     }
                     .padding(length: .medium)
                 }
                 .standardHeight()
                 .padding(.bottom, length: .medium)
+                .offset(x: viewModel.shakeAnimationIndex == index ? -10 : 0)
             }
             Button(action: { viewModel.presentCreateSubView() }) {
                 VStack {
-                    ImageNames.add.icon()
+                    ImageNames.add.rawIcon()
                     Text("Add.New".localized)
                         .foregroundColor(.text)
                 }

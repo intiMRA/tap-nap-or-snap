@@ -16,7 +16,7 @@
 
 "We.Are.Sorry" = "Sentimos Muinto";
 
-"We.Could.Not.Log.Out" = "Houve um error fazendo o log out, por favor tente de novo.";
+"We.Could.Not.Log.Out" = "Houve um error fazendo o log out, por favor tente de novo";
 
 "Settings" = "Configurações";
 
@@ -30,37 +30,37 @@
 
 "Unkown.Error.Title" = "Algo Deu Errado";
 
-"Unkown.Error.Message" = "Um error ocorreu, tente de novo mais tarde.";
+"Unkown.Error.Message" = "Um error ocorreu, tente de novo mais tarde";
 
 "Wrong.Credentials.Error.Title" = "Credenciais Errados";
 
-"Wrong.Credentials.Error.Message" = "Por favor entre um email valido.";
+"Wrong.Credentials.Error.Message" = "Por favor entre um email valido";
 
 "Invalid.Email" = "Email Ivalido";
 
-"Invalid.Email.Error" = "Este email é invalido, por favor use outro.";
+"Invalid.Email.Error" = "Este email é invalido, por favor use outro";
 
 "Invalid.Password" = "Senha Invalida";
 
-"Invalid.Password.Error" = "Entre uma senha valida por favor.";
+"Invalid.Password.Error" = "Entre uma senha valida por favor";
 
-"No.Such.Email.Error" = "Este email não existe no nosso sistema, por favor entre um email correto.";
+"No.Such.Email.Error" = "Este email não existe no nosso sistema, por favor entre um email correto";
 
 "Invalid.Credentials" = "Credenciais Invalidos";
 
-"Account.Exists.With.Different.Credential" = "Entre uma senha e um email validos.";
+"Account.Exists.With.Different.Credential" = "Entre uma senha e um email validos";
 
-"Network.Error.Message" = "Por favor certifique que a sua internete está ligada.";
+"Network.Error.Message" = "Por favor certifique que a sua internete está ligada";
 
 "Network.Error.Title" = "Erro Na Conexão";
 
-"Credential.Already.In.Use" = "Entre sua senha e email corretos por favor.";
+"Credential.Already.In.Use" = "Entre sua senha e email corretos por favor";
 
-"Weak.Password" = "A senha precisa ter no mínimo um numero e tem que ter seis letras no mínimo.";
+"Weak.Password" = "A senha precisa ter no mínimo um numero e tem que ter seis letras no mínimo";
 
 "Unable.To.Save.Error.Title" = "Não Deu Para Salvar";
 
-"Unable.To.Save.Message" = "Algo deu errado salvando sua informação, por favor verifique sua conexão com a internet e tente novamente.";
+"Unable.To.Save.Message" = "Algo deu errado salvando sua informação, por favor verifique sua conexão com a internet e tente novamente";
 
 "Done" = "Completo";
 
@@ -133,3 +133,15 @@
 "One.Time" = "1 vez";
 
 "Log.Out" = "Sair";
+
+"Edit.Goal.Error.Title" = "Editando Meta";
+
+"Edit.Goal.Error.Message" = "Sua meta não pode ser salva, tente de novo mais tarde";
+
+"Done.Date" = "data final:";
+
+"Time.Remaining" = "tempo sobrando:";
+
+"Expand" = "Expandir";
+
+"Collapse" = "Encolher";

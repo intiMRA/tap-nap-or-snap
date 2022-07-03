@@ -190,7 +190,8 @@ class LogInAPI: LogInAPIProtocol {
                     title: $0[Keys.title.rawValue] ?? "",
                     description: $0[Keys.description.rawValue] ?? "",
                     timeStamp: $0[Keys.timeStamp.rawValue]?.asDate() ?? Date(),
-                    isComplete: Bool($0[GoalKeys.isComplete.rawValue] ?? "false") ?? false
+                    isComplete: Bool($0[GoalKeys.isComplete.rawValue] ?? "false") ?? false,
+                    isMultiline: ($0[Keys.description.rawValue]?.filter({ $0 == "\n" }).count ?? 0) > 1
                 )
             })
             
