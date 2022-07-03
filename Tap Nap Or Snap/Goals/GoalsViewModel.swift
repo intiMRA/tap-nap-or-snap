@@ -13,6 +13,7 @@ struct GoalModel: Identifiable {
     let description: String
     let timeStamp: Date
     let isComplete: Bool
+    let isMultiline: Bool
 }
 
 extension GoalModel {
@@ -25,7 +26,7 @@ extension GoalModel {
             return nil
         }
         
-        self.init(id: id, title: title, description: description, timeStamp: timeStamp, isComplete: isComplete)
+        self.init(id: id, title: title, description: description, timeStamp: timeStamp, isComplete: isComplete, isMultiline: description.filter({ $0 == "\n" }).count > 1)
             
     }
 }
@@ -81,6 +82,6 @@ class GoalsViewModel: ObservableObject {
     }
     
     func flipGoal(with id: String) {
-        self.goalCollapsed[id] = !(self.goalCollapsed[id] ?? false)
+        self.goalCollapsed[id] = !(self.goalCollapsed[id] ?? true)
     }
 }

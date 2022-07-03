@@ -25,6 +25,9 @@ class CreateNewGoalViewModel: ObservableObject {
     @Published var description = ""
     @Published var numberOfDays = "1"
     @Published var timeToComplete: TimeToCompleteGoal = .weeks
+    @Published var highlightField = false
+    @Published var showAlert = false
+    var error: CustomError?
     private var cancellable = Set<AnyCancellable>()
     init() {
         $placeholder
@@ -38,12 +41,24 @@ class CreateNewGoalViewModel: ObservableObject {
 
             }
             .store(in: &cancellable)
+        
         $description
             .dropFirst()
             .sink { description in
                 if description.isEmpty {
                     withAnimation {
                         self.placeholder = self.originalPH
+                    }
+                }
+            }
+            .store(in: &cancellable)
+        
+        $title
+            .dropFirst()
+            .sink { title in
+                if !title.isEmpty, self.highlightField {
+                    withAnimation {
+                        self.highlightField = false
                     }
                 }
             }
@@ -66,6 +81,16 @@ class CreateNewGoalViewModel: ObservableObject {
     func saveGoal() {
         //TODO: proper error
         let numberOfDays = Int(numberOfDays) ?? 1
+        guard !title.isEmpty else {
+            Task {
+                await MainActor.run {
+                    withAnimation {
+                        self.highlightField = true
+                    }
+                }
+            }
+            return
+        }
         Task {
             do {
                 var date: Date?
@@ -82,12 +107,19 @@ class CreateNewGoalViewModel: ObservableObject {
                     return
                 }
                 
-                try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date, isComplete: false))
-                DispatchQueue.main.async {
+                try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date, isComplete: false, isMultiline: self.description.filter( { $0 == "\n" }).count > 1))
+                await MainActor.run {
                     self.shouldDismiss = true
                 }
             } catch {
-                print(error)
+                if let error = error as? CustomError {
+                    self.error = error
+                    await MainActor.run {
+                        self.showAlert = true
+                    }
+                } else {
+                    print(error)
+                }
             }
         }
     }

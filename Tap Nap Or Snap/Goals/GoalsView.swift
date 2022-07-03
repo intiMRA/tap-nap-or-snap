@@ -92,7 +92,7 @@ struct GoalView: View {
                     Text(Date().difference(from: goal.timeStamp))
                 }
                 VStack(alignment: .leading) {
-                    if viewModel.goalCollapsed[goal.id] ?? false {
+                    if viewModel.goalCollapsed[goal.id] ?? true, goal.isMultiline {
                         HStack {
                             Text("Expand".localized)
                                 .bold()
@@ -102,7 +102,7 @@ struct GoalView: View {
                         .standardHeight()
                     } else {
                         VStack(alignment: .leading) {
-                            if goal.description.filter({ $0 == "\n" }).count > 1 {
+                            if goal.isMultiline {
                                 HStack {
                                     Text("Collapse".localized)
                                         .bold()
@@ -124,7 +124,9 @@ struct GoalView: View {
                 .padding(.vertical, length: .xSmall)
                 .onTapGesture {
                     withAnimation {
-                        viewModel.flipGoal(with: goal.id)
+                        if goal.isMultiline {
+                            viewModel.flipGoal(with: goal.id)
+                        }
                     }
                 }
                 

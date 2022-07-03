@@ -13,13 +13,19 @@ struct CreateNewGoalView: View {
     @StateObject var viewModel = CreateNewGoalViewModel()
     var body: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(alignment: .leading) {
                 CustomTextField("Title".localized, keyBoard: .alphabet, text: $viewModel.title)
                     .focused($focusedField, equals: .title)
                     .onTapGesture {
                         self.focusedField = .title
                         viewModel.isFocused(.title)
                     }
+                
+                if viewModel.highlightField {
+                    Text("Persons.Name.Error".localized)
+                        .bold()
+                        .foregroundColor(ColorNames.warning.color())
+                }
                 
                 ZStack {
                     CustomRoundRectangle(color: ColorNames.text.color(opacity: .ten))
@@ -61,6 +67,9 @@ struct CreateNewGoalView: View {
             .background(.background)
         }
         .padding(.top, length: .large)
+        .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
+            Text(viewModel.error?.message ?? "")
+        }
     }
     
     @ViewBuilder
