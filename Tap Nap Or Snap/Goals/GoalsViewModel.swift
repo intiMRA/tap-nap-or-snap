@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-struct GoalModel: Identifiable {
+struct GoalModel: Identifiable, Equatable {
     let id: String
     let title: String
     let description: String
@@ -38,9 +38,13 @@ class GoalsViewModel: ObservableObject {
     @Published var goalCollapsed = [String: Bool]()
     @Published var navigateToEditGoal = false
     var currentGoal: GoalModel?
-    let goalsApi = GoalsAPI()
+    let goalsApi: GoalsAPIProtocol
+    let store: StoreProtocol
     
-    init() {
+    init(goalsApi: GoalsAPIProtocol = GoalsAPI(), store: StoreProtocol = Store.shared) {
+        self.goalsApi = goalsApi
+        self.store = store
+        
         reloadState()
     }
     
@@ -58,8 +62,11 @@ class GoalsViewModel: ObservableObject {
     }
     
     func reloadState() {
-        withAnimation {
-            self.goalModels = Store.shared.goalsState?.goals ?? []
+        Task {
+            let model = await store.goalsState?.goals ?? []
+            withAnimation {
+                self.goalModels = model
+            }
         }
     }
     

@@ -35,7 +35,16 @@ struct GoalsState: StoreState {
     let goals: [GoalModel]
 }
 
-actor Store {
+protocol StoreProtocol: Actor {
+    var loginState: LogInState? { get }
+    var submissionNamesState: SubmissionNamesState? { get }
+    var submissionsState: SubmissionsState? { get }
+    var goalsState: GoalsState? { get }
+    func changeState(newState: any StoreState)
+    func changeStates(states: [StoreState])
+}
+
+actor Store: StoreProtocol {
     private(set) static var shared = Store()
     
     let loginState: LogInState?
