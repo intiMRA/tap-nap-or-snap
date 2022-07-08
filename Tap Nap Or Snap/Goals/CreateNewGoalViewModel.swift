@@ -21,7 +21,7 @@ class CreateNewGoalViewModel: ObservableObject {
     @Published var placeholder = "Goals.Placeholder".localized
     @Published var shouldDismiss = false
     let originalPH = "Goals.Placeholder".localized
-    let api = GoalsAPI()
+    let api: GoalsAPIProtocol
     @Published var description = ""
     @Published var numberOfDays = "1"
     @Published var timeToComplete: TimeToCompleteGoal = .weeks
@@ -29,7 +29,8 @@ class CreateNewGoalViewModel: ObservableObject {
     @Published var showAlert = false
     var error: CustomError?
     private var cancellable = Set<AnyCancellable>()
-    init() {
+    init(api: GoalsAPIProtocol = GoalsAPI()) {
+        self.api = api
         $placeholder
             .dropFirst()
             .sink { value in
@@ -79,7 +80,6 @@ class CreateNewGoalViewModel: ObservableObject {
     }
     
     func saveGoal() {
-        //TODO: proper error
         let numberOfDays = Int(numberOfDays) ?? 1
         guard !title.isEmpty else {
             Task {

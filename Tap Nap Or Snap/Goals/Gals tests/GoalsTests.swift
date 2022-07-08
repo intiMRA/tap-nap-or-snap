@@ -97,6 +97,27 @@ class GoalsTests: XCTestCase {
             XCTAssertEqual(goal, current)
         }
     }
+    
+    func testAddGoal() {
+        Task {
+            let store = MockStore()
+            let goal = GoalModel(id: "test", title: "test", description: "test", timeStamp: "01/02/1999".asDate()!, isComplete: true, isMultiline: true)
+            let api = MockGoalsApi()
+            api.store = store
+            
+            let vm = CreateNewGoalViewModel(api: api)
+            
+            vm.description = "test"
+            vm.title = "test"
+            vm.numberOfDays = "1"
+            
+            vm.saveGoal()
+            
+            let savedGoal = await store.goalsState?.goals[0]
+            
+            XCTAssertEqual(savedGoal?.title, goal.title)
+        }
+    }
 }
 
 class MockGoalsApi: GoalsAPIProtocol {
