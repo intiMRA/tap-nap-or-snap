@@ -49,12 +49,8 @@ class GoalsViewModel: ObservableObject {
     }
     
     func showEditGoal(currentGoal: GoalModel) {
-        Task {
             self.currentGoal = currentGoal
-            await MainActor.run {
-                self.navigateToEditGoal = true
-            }
-        }
+            self.navigateToEditGoal = true
     }
     
     func reloadState() {
@@ -67,18 +63,14 @@ class GoalsViewModel: ObservableObject {
         EditGoalDetailsViewModel(currentGoal: self.currentGoal)
     }
     
-    func deleteGoal(with id: String) {
-        Task {
-            try? await self.goalsApi.deleteGoal(with: id)
-            self.reloadState()
-        }
+    func deleteGoal(with id: String) async {
+        try? await self.goalsApi.deleteGoal(with: id)
+        self.reloadState()
     }
     
-    func completeGoal(with id: String, status: Bool) {
-        Task {
-            try? await self.goalsApi.goalCompletion(status: status, id: id)
-            self.reloadState()
-        }
+    func completeGoal(with id: String, status: Bool) async {
+        try? await self.goalsApi.goalCompletion(status: status, id: id)
+        self.reloadState()
     }
     
     func flipGoal(with id: String) {

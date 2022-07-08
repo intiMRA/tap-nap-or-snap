@@ -37,7 +37,11 @@ struct EditGoalDetailsView: View {
                     self.focusState = true
                 }
                 
-                Button(action: { viewModel.saveDescription() }) {
+                Button(action: {
+                    Task {
+                        await viewModel.saveDescription()
+                    }
+                }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
                         Text("Done".localized)
