@@ -31,7 +31,6 @@
 		354A946B27E5BA4F00E966B2 /* AddNewSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946A27E5BA4F00E966B2 /* AddNewSubView.swift */; };
 		354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */; };
 		354A947027E5BCFC00E966B2 /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946F27E5BCFC00E966B2 /* Submission.swift */; };
-		35B6F503287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F502287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift */; };
 		35B6F50A2872670B0020EC26 /* GoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F5092872670B0020EC26 /* GoalsTests.swift */; };
 		35B6F50C28755C960020EC26 /* MockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F50B28755C960020EC26 /* MockStore.swift */; };
 		35B6F50F2877C0E20020EC26 /* AddSubsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F50E2877C0E10020EC26 /* AddSubsTest.swift */; };
@@ -85,7 +84,6 @@
 		354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubViewModel.swift; sourceTree = "<group>"; };
 		354A946F27E5BCFC00E966B2 /* Submission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
 		35B6F500287266C70020EC26 /* Tap Nap Or SnapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tap Nap Or SnapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35B6F502287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tap_Nap_Or_SnapTests.swift; sourceTree = "<group>"; };
 		35B6F5092872670B0020EC26 /* GoalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsTests.swift; sourceTree = "<group>"; };
 		35B6F50B28755C960020EC26 /* MockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStore.swift; sourceTree = "<group>"; };
 		35B6F50E2877C0E10020EC26 /* AddSubsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubsTest.swift; sourceTree = "<group>"; };
@@ -221,14 +219,6 @@
 			path = "Gals tests";
 			sourceTree = "<group>";
 		};
-		35B6F501287266C70020EC26 /* Tap Nap Or SnapTests */ = {
-			isa = PBXGroup;
-			children = (
-				35B6F502287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift */,
-			);
-			path = "Tap Nap Or SnapTests";
-			sourceTree = "<group>";
-		};
 		35B6F50D2877C0B30020EC26 /* test */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +232,6 @@
 			children = (
 				35BEC7B027E1C3D700E3A23D /* GoogleService-Info.plist */,
 				35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */,
-				35B6F501287266C70020EC26 /* Tap Nap Or SnapTests */,
 				35BEC79427E1A5C300E3A23D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -441,7 +430,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B6F50A2872670B0020EC26 /* GoalsTests.swift in Sources */,
-				35B6F503287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift in Sources */,
 				35B6F50F2877C0E20020EC26 /* AddSubsTest.swift in Sources */,
 				35B6F50C28755C960020EC26 /* MockStore.swift in Sources */,
 			);
