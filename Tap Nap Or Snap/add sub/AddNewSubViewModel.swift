@@ -146,7 +146,7 @@ class AddNewSubViewModel: ObservableObject {
         self.isWin = false
     }
     
-    private func checkInfoIsValid() async throws {
+    func checkInfoIsValid() async throws {
         let nameIsEmpty = self.name.isEmpty
         let subIsEmpty = self.chosenSub?.isEmpty ?? true
         await MainActor.run {

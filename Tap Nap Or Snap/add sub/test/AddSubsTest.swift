@@ -35,6 +35,42 @@ class AddSubsTest: XCTestCase {
             XCTAssertEqual(sub?.personName, "test")
         }
     }
+    
+    func testInputIsValid() {
+        Task {
+            let store = MockStore()
+            let api = MockSubmissionsApi()
+            api.store = store
+            
+            let vm = await AddNewSubViewModel(api: api, store: store)
+            
+            try? await vm.checkInfoIsValid()
+            var subNameHighlight = await vm.fieldsToHighlight.subName
+            var nameIsHighlight = await vm.fieldsToHighlight.name
+            
+            XCTAssertTrue(subNameHighlight && nameIsHighlight)
+            
+            await MainActor.run {
+                vm.name = "test"
+            }
+            
+            try? await vm.checkInfoIsValid()
+            subNameHighlight = await vm.fieldsToHighlight.subName
+            nameIsHighlight = await vm.fieldsToHighlight.name
+            XCTAssertTrue(subNameHighlight)
+            XCTAssertFalse(nameIsHighlight)
+            
+            await MainActor.run {
+                vm.newSubName = "test"
+            }
+            
+            try? await vm.checkInfoIsValid()
+            subNameHighlight = await vm.fieldsToHighlight.subName
+            nameIsHighlight = await vm.fieldsToHighlight.name
+            XCTAssertFalse(subNameHighlight)
+            XCTAssertFalse(nameIsHighlight)
+        }
+    }
 }
 
 class MockSubmissionsApi: SubmissionsAPIProtocol {
