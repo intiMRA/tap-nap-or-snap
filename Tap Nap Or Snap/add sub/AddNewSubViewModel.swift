@@ -33,7 +33,6 @@ class AddNewSubViewModel: ObservableObject {
     @Published var showCreateSubView = false
     @Published var showImagePicker = false
     @Published var dismissState: DismissState?
-    @Published var inputImage: UIImage?
     @Published var listOfSubs = [String]()
     @Published var isWin: Bool = true
     @Published var description = ""
@@ -43,9 +42,12 @@ class AddNewSubViewModel: ObservableObject {
     @Published var shakeAnimationIndex: Int? = nil
     var error: CustomError?
     let originalPH = "Add.Sub.Placeholder".localized
-    let api = SubmissionsAPI()
+    let api: SubmissionsAPIProtocol
+    let store: StoreProtocol
     var cancellable = Set<AnyCancellable>()
-    init() {
+    init(api: SubmissionsAPIProtocol = SubmissionsAPI(), store: StoreProtocol = Store.shared) {
+        self.api = api
+        self.store = store
         reloadState()
         $placeholder
             .dropFirst()
@@ -85,8 +87,11 @@ class AddNewSubViewModel: ObservableObject {
     }
     
     func reloadState() {
-        withAnimation {
-            self.listOfSubs = Store.shared.submissionNamesState?.subs ?? []
+        Task {
+            let list = await store.submissionNamesState?.subs ?? []
+            withAnimation {
+                self.listOfSubs = list
+            }
         }
     }
     

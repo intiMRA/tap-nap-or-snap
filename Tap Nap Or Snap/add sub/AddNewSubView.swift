@@ -205,17 +205,4 @@ struct AddNewSubView: View {
             Spacer()
         }
     }
-    
-    @ViewBuilder
-    var submissionImage: some View {
-        if let image = viewModel.inputImage {
-            Image(uiImage: image)
-                .resizable()
-                .frame(width: 100, height: 100)
-        } else {
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 100, height: 100)
-        }
-    }
 }

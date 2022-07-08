@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452A27E708F90074EF2C /* ImagePickerView.swift */; };
 		3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */; };
 		351909762824A1E400AC6783 /* SubmissionDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */; };
 		351909782824A21900AC6783 /* SubmissionDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */; };
@@ -35,6 +34,7 @@
 		35B6F503287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F502287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift */; };
 		35B6F50A2872670B0020EC26 /* GoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F5092872670B0020EC26 /* GoalsTests.swift */; };
 		35B6F50C28755C960020EC26 /* MockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F50B28755C960020EC26 /* MockStore.swift */; };
+		35B6F50F2877C0E20020EC26 /* AddSubsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F50E2877C0E10020EC26 /* AddSubsTest.swift */; };
 		35B7D6AB2850BB0E00E77FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35B7D6AD2850BB0E00E77FE0 /* Localizable.strings */; };
 		35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */; };
 		35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* LogInView.swift */; };
@@ -62,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3517452A27E708F90074EF2C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsAPI.swift; sourceTree = "<group>"; };
 		351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionView.swift; sourceTree = "<group>"; };
 		351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionViewModel.swift; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		35B6F502287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tap_Nap_Or_SnapTests.swift; sourceTree = "<group>"; };
 		35B6F5092872670B0020EC26 /* GoalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsTests.swift; sourceTree = "<group>"; };
 		35B6F50B28755C960020EC26 /* MockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStore.swift; sourceTree = "<group>"; };
+		35B6F50E2877C0E10020EC26 /* AddSubsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubsTest.swift; sourceTree = "<group>"; };
 		35B7D6AC2850BB0E00E77FE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		35B7D6AE2850BB1400E77FE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		35B7D6AF2850C79800E77FE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -128,14 +128,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3517452927E708CD0074EF2C /* Image picker */ = {
-			isa = PBXGroup;
-			children = (
-				3517452A27E708F90074EF2C /* ImagePickerView.swift */,
-			);
-			path = "Image picker";
-			sourceTree = "<group>";
-		};
 		353D4660283CDEEB006C0A07 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +205,7 @@
 		354A946C27E5BA5A00E966B2 /* add sub */ = {
 			isa = PBXGroup;
 			children = (
+				35B6F50D2877C0B30020EC26 /* test */,
 				354A946A27E5BA4F00E966B2 /* AddNewSubView.swift */,
 				354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */,
 				354A946F27E5BCFC00E966B2 /* Submission.swift */,
@@ -234,6 +227,14 @@
 				35B6F502287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift */,
 			);
 			path = "Tap Nap Or SnapTests";
+			sourceTree = "<group>";
+		};
+		35B6F50D2877C0B30020EC26 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				35B6F50E2877C0E10020EC26 /* AddSubsTest.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		35BEC78A27E1A5C200E3A23D = {
@@ -260,7 +261,6 @@
 			children = (
 				353D4660283CDEEB006C0A07 /* Components */,
 				35CDD40727FFF74E00668A58 /* Goals */,
-				3517452927E708CD0074EF2C /* Image picker */,
 				354A946C27E5BA5A00E966B2 /* add sub */,
 				354A945F27E315E100E966B2 /* subs */,
 				354A89CF27E1CD8700078008 /* Utils */,
@@ -442,6 +442,7 @@
 			files = (
 				35B6F50A2872670B0020EC26 /* GoalsTests.swift in Sources */,
 				35B6F503287266C70020EC26 /* Tap_Nap_Or_SnapTests.swift in Sources */,
+				35B6F50F2877C0E20020EC26 /* AddSubsTest.swift in Sources */,
 				35B6F50C28755C960020EC26 /* MockStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +482,6 @@
 				35CDD40927FFF76400668A58 /* GoalsView.swift in Sources */,
 				35CDD40B27FFF77D00668A58 /* GoalsViewModel.swift in Sources */,
 				354A946927E32A2B00E966B2 /* TabItemsViewModel.swift in Sources */,
-				3517452B27E708F90074EF2C /* ImagePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
