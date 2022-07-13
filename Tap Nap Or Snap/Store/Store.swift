@@ -42,6 +42,7 @@ actor Store {
     let submissionNamesState: SubmissionNamesState?
     let submissionsState: SubmissionsState?
     let goalsState: GoalsState?
+    var notificationCenter: NotificationCenter
     
     private init(
         loginState: LogInState? = nil,
@@ -53,6 +54,7 @@ actor Store {
         self.submissionNamesState = submissionNamesState
         self.submissionsState = submissionsState
         self.goalsState = goalsState
+        self.notificationCenter = NotificationCenter.default
     }
     
     func changeState(newState: any StoreState) {
@@ -97,8 +99,9 @@ actor Store {
                 goalsState: self.goalsState)
             
         }
+        let center = self.notificationCenter
         DispatchQueue.main.async {
-            NotificationCenter.default.post(Notification(name: NSNotification.reloadNotification))
+            center.post(Notification(name: NSNotification.reloadNotification))
         }
     }
     
@@ -124,8 +127,9 @@ actor Store {
             submissionNamesState: submissionNamesState,
             submissionsState: submissionsState,
             goalsState: goalsState)
+        let center = self.notificationCenter
         DispatchQueue.main.async {
-            NotificationCenter.default.post(Notification(name: NSNotification.reloadNotification))
+            center.post(Notification(name: NSNotification.reloadNotification))
         }
     }
     
@@ -156,6 +160,12 @@ actor Store {
         }
         return state
     }
+    
+    #if DEBUG
+        func setNotificationCenter(notificationCenter: NotificationCenter) {
+            self.notificationCenter = notificationCenter
+        }
+    #endif
     
 }
 

@@ -32,6 +32,7 @@
 		354A946B27E5BA4F00E966B2 /* AddNewSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946A27E5BA4F00E966B2 /* AddNewSubView.swift */; };
 		354A946E27E5BCAB00E966B2 /* AddNewSubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */; };
 		354A947027E5BCFC00E966B2 /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946F27E5BCFC00E966B2 /* Submission.swift */; };
+		35B6F544287ED1DD0020EC26 /* EditGoalViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F543287ED1DD0020EC26 /* EditGoalViewModelTests.swift */; };
 		35B7D6AB2850BB0E00E77FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35B7D6AD2850BB0E00E77FE0 /* Localizable.strings */; };
 		35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */; };
 		35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* LogInView.swift */; };
@@ -47,6 +48,16 @@
 		35E234E128211308001E9871 /* SubmissionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E234E028211308001E9871 /* SubmissionDetailsView.swift */; };
 		35E234E32821161E001E9871 /* SubmissionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E234E22821161E001E9871 /* SubmissionDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35B6F53E287ED17D0020EC26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35BEC78B27E1A5C200E3A23D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35BEC79227E1A5C300E3A23D;
+			remoteInfo = "Tap Nap Or Snap";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3517452A27E708F90074EF2C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
@@ -72,6 +83,8 @@
 		354A946A27E5BA4F00E966B2 /* AddNewSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubView.swift; sourceTree = "<group>"; };
 		354A946D27E5BCAB00E966B2 /* AddNewSubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubViewModel.swift; sourceTree = "<group>"; };
 		354A946F27E5BCFC00E966B2 /* Submission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
+		35B6F53A287ED17D0020EC26 /* Tap Nap Or SnapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tap Nap Or SnapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35B6F543287ED1DD0020EC26 /* EditGoalViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalViewModelTests.swift; sourceTree = "<group>"; };
 		35B7D6AC2850BB0E00E77FE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		35B7D6AE2850BB1400E77FE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		35B7D6AF2850C79800E77FE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -92,6 +105,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		35B6F537287ED17D0020EC26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35BEC79027E1A5C300E3A23D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,6 +215,14 @@
 			path = "add sub";
 			sourceTree = "<group>";
 		};
+		35B6F535287ED1010020EC26 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				35B6F543287ED1DD0020EC26 /* EditGoalViewModelTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		35BEC78A27E1A5C200E3A23D = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				35BEC79327E1A5C300E3A23D /* Tap Nap Or Snap.app */,
+				35B6F53A287ED17D0020EC26 /* Tap Nap Or SnapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,6 +293,7 @@
 		35CDD40727FFF74E00668A58 /* Goals */ = {
 			isa = PBXGroup;
 			children = (
+				35B6F535287ED1010020EC26 /* tests */,
 				353D4663283DCEF4006C0A07 /* edit goal */,
 				35CDD40827FFF76400668A58 /* GoalsView.swift */,
 				35CDD40A27FFF77D00668A58 /* GoalsViewModel.swift */,
@@ -287,6 +317,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		35B6F539287ED17D0020EC26 /* Tap Nap Or SnapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35B6F540287ED17D0020EC26 /* Build configuration list for PBXNativeTarget "Tap Nap Or SnapTests" */;
+			buildPhases = (
+				35B6F536287ED17D0020EC26 /* Sources */,
+				35B6F537287ED17D0020EC26 /* Frameworks */,
+				35B6F538287ED17D0020EC26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35B6F53F287ED17D0020EC26 /* PBXTargetDependency */,
+			);
+			name = "Tap Nap Or SnapTests";
+			productName = "Tap Nap Or SnapTests";
+			productReference = 35B6F53A287ED17D0020EC26 /* Tap Nap Or SnapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		35BEC79227E1A5C300E3A23D /* Tap Nap Or Snap */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35BEC7A127E1A5C600E3A23D /* Build configuration list for PBXNativeTarget "Tap Nap Or Snap" */;
@@ -315,9 +363,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					35B6F539287ED17D0020EC26 = {
+						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
+						TestTargetID = 35BEC79227E1A5C300E3A23D;
+					};
 					35BEC79227E1A5C300E3A23D = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -342,11 +395,19 @@
 			projectRoot = "";
 			targets = (
 				35BEC79227E1A5C300E3A23D /* Tap Nap Or Snap */,
+				35B6F539287ED17D0020EC26 /* Tap Nap Or SnapTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		35B6F538287ED17D0020EC26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35BEC79127E1A5C300E3A23D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +423,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		35B6F536287ED17D0020EC26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35B6F544287ED1DD0020EC26 /* EditGoalViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35BEC78F27E1A5C300E3A23D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -403,6 +472,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		35B6F53F287ED17D0020EC26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35BEC79227E1A5C300E3A23D /* Tap Nap Or Snap */;
+			targetProxy = 35B6F53E287ED17D0020EC26 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		35B7D6AD2850BB0E00E77FE0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -417,6 +494,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		35B6F541287ED17D0020EC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "inti.Tap-Nap-Or-SnapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tap Nap Or Snap.app/Tap Nap Or Snap";
+			};
+			name = Debug;
+		};
+		35B6F542287ED17D0020EC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6K524MKAFK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "inti.Tap-Nap-Or-SnapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tap Nap Or Snap.app/Tap Nap Or Snap";
+			};
+			name = Release;
+		};
 		35BEC79F27E1A5C600E3A23D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -596,6 +724,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		35B6F540287ED17D0020EC26 /* Build configuration list for PBXNativeTarget "Tap Nap Or SnapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35B6F541287ED17D0020EC26 /* Debug */,
+				35B6F542287ED17D0020EC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		35BEC78E27E1A5C200E3A23D /* Build configuration list for PBXProject "Tap Nap Or Snap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
