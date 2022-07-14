@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-struct GoalModel: Identifiable {
+struct GoalModel: Identifiable, Equatable {
     let id: String
     let title: String
     let description: String
@@ -27,7 +27,7 @@ extension GoalModel {
         }
         
         self.init(id: id, title: title, description: description, timeStamp: timeStamp, isComplete: isComplete, isMultiline: description.filter({ $0 == "\n" }).count > 1)
-            
+        
     }
 }
 
@@ -38,9 +38,10 @@ class GoalsViewModel: ObservableObject {
     @Published var goalCollapsed = [String: Bool]()
     @Published var navigateToEditGoal = false
     var currentGoal: GoalModel?
-    let goalsApi = GoalsAPI()
+    private let goalsApi: GoalsAPIProtocol
     
-    init() {
+    init(goalsApi: GoalsAPIProtocol = GoalsAPI()) {
+        self.goalsApi = goalsApi
         reloadState()
     }
     
@@ -49,8 +50,8 @@ class GoalsViewModel: ObservableObject {
     }
     
     func showEditGoal(currentGoal: GoalModel) {
-            self.currentGoal = currentGoal
-            self.navigateToEditGoal = true
+        self.currentGoal = currentGoal
+        self.navigateToEditGoal = true
     }
     
     func reloadState() {
@@ -73,7 +74,7 @@ class GoalsViewModel: ObservableObject {
         self.reloadState()
     }
     
-    func flipGoal(with id: String) {
+    func collapseGoal(with id: String) {
         self.goalCollapsed[id] = !(self.goalCollapsed[id] ?? true)
     }
 }

@@ -42,7 +42,7 @@ actor Store {
     let submissionNamesState: SubmissionNamesState?
     let submissionsState: SubmissionsState?
     let goalsState: GoalsState?
-    var notificationCenter: NotificationCenter
+    private var notificationCenter: NotificationCenter
     
     private init(
         loginState: LogInState? = nil,

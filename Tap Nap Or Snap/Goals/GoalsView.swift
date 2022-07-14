@@ -129,7 +129,7 @@ struct GoalView: View {
             .onTapGesture {
                 withAnimation {
                     if goal.isMultiline {
-                        viewModel.flipGoal(with: goal.id)
+                        viewModel.collapseGoal(with: goal.id)
                     }
                 }
             }

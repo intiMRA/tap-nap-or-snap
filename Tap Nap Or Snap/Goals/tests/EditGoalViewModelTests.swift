@@ -56,6 +56,8 @@ class MockGoalsAPI: GoalsAPIProtocol {
                                timeStamp: goal.timeStamp,
                                isComplete: status,
                                isMultiline: goal.isMultiline))
+        print(goal)
+        print(goals)
         await Store.shared.changeState(newState: GoalsState(goals: goals))
     }
     
