@@ -34,6 +34,7 @@
 		354A947027E5BCFC00E966B2 /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354A946F27E5BCFC00E966B2 /* Submission.swift */; };
 		35B6F544287ED1DD0020EC26 /* EditGoalViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F543287ED1DD0020EC26 /* EditGoalViewModelTests.swift */; };
 		35B6F546288027A20020EC26 /* GoalsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F545288027A20020EC26 /* GoalsViewModelTests.swift */; };
+		35B6F54828811F7B0020EC26 /* CreateGoalsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54728811F7B0020EC26 /* CreateGoalsViewModelTests.swift */; };
 		35B7D6AB2850BB0E00E77FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35B7D6AD2850BB0E00E77FE0 /* Localizable.strings */; };
 		35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */; };
 		35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* LogInView.swift */; };
@@ -87,6 +88,7 @@
 		35B6F53A287ED17D0020EC26 /* Tap Nap Or SnapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tap Nap Or SnapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B6F543287ED1DD0020EC26 /* EditGoalViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalViewModelTests.swift; sourceTree = "<group>"; };
 		35B6F545288027A20020EC26 /* GoalsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModelTests.swift; sourceTree = "<group>"; };
+		35B6F54728811F7B0020EC26 /* CreateGoalsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalsViewModelTests.swift; sourceTree = "<group>"; };
 		35B7D6AC2850BB0E00E77FE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		35B7D6AE2850BB1400E77FE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		35B7D6AF2850C79800E77FE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				35B6F543287ED1DD0020EC26 /* EditGoalViewModelTests.swift */,
 				35B6F545288027A20020EC26 /* GoalsViewModelTests.swift */,
+				35B6F54728811F7B0020EC26 /* CreateGoalsViewModelTests.swift */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B6F54828811F7B0020EC26 /* CreateGoalsViewModelTests.swift in Sources */,
 				35B6F544287ED1DD0020EC26 /* EditGoalViewModelTests.swift in Sources */,
 				35B6F546288027A20020EC26 /* GoalsViewModelTests.swift in Sources */,
 			);

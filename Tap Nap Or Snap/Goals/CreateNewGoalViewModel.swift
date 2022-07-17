@@ -9,19 +9,20 @@ import Foundation
 import Combine
 import SwiftUI
 enum GoalsViewFocusField: Hashable {
-  case title, description
+    case title, description
 }
 
 enum TimeToCompleteGoal: String {
     case weeks, months, years
 }
 
+@MainActor
 class CreateNewGoalViewModel: ObservableObject {
     @Published var title = ""
     @Published var placeholder = "Goals.Placeholder".localized
     @Published var shouldDismiss = false
     let originalPH = "Goals.Placeholder".localized
-    let api = GoalsAPI()
+    let api: GoalsAPIProtocol
     @Published var description = ""
     @Published var numberOfDays = "1"
     @Published var timeToComplete: TimeToCompleteGoal = .weeks
@@ -29,7 +30,8 @@ class CreateNewGoalViewModel: ObservableObject {
     @Published var showAlert = false
     var error: CustomError?
     private var cancellable = Set<AnyCancellable>()
-    init() {
+    init(api: GoalsAPIProtocol = GoalsAPI()) {
+        self.api = api
         $placeholder
             .dropFirst()
             .sink { value in
@@ -38,7 +40,7 @@ class CreateNewGoalViewModel: ObservableObject {
                         self.description = String(lastCharacter)
                     }
                 }
-
+                
             }
             .store(in: &cancellable)
         
@@ -78,48 +80,37 @@ class CreateNewGoalViewModel: ObservableObject {
         }
     }
     
-    func saveGoal() {
-        //TODO: proper error
+    func saveGoal() async {
         let numberOfDays = Int(numberOfDays) ?? 1
         guard !title.isEmpty else {
-            Task {
-                await MainActor.run {
-                    withAnimation {
-                        self.highlightField = true
-                    }
-                }
+            withAnimation {
+                self.highlightField = true
             }
             return
         }
-        Task {
-            do {
-                var date: Date?
-                switch self.timeToComplete {
-                case .weeks:
-                    date = Calendar.current.date(byAdding: .weekOfYear, value: numberOfDays, to: Date())
-                case .months:
-                    date = Calendar.current.date(byAdding: .month, value: numberOfDays, to: Date())
-                case .years:
-                    date = Calendar.current.date(byAdding: .year, value: numberOfDays, to: Date())
-                }
-                
-                guard let date = date else {
-                    return
-                }
-                
-                try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date, isComplete: false, isMultiline: self.description.filter( { $0 == "\n" }).count > 1))
-                await MainActor.run {
-                    self.shouldDismiss = true
-                }
-            } catch {
-                if let error = error as? CustomError {
-                    self.error = error
-                    await MainActor.run {
-                        self.showAlert = true
-                    }
-                } else {
-                    print(error)
-                }
+        do {
+            var date: Date?
+            switch self.timeToComplete {
+            case .weeks:
+                date = Calendar.current.date(byAdding: .weekOfYear, value: numberOfDays, to: Date())
+            case .months:
+                date = Calendar.current.date(byAdding: .month, value: numberOfDays, to: Date())
+            case .years:
+                date = Calendar.current.date(byAdding: .year, value: numberOfDays, to: Date())
+            }
+            
+            guard let date = date else {
+                return
+            }
+            
+            try await api.addNewGoal(goal: GoalModel(id: UUID().uuidString, title: self.title, description: self.description, timeStamp: date, isComplete: false, isMultiline: self.description.filter( { $0 == "\n" }).count > 1))
+            self.shouldDismiss = true
+        } catch {
+            if let error = error as? CustomError {
+                self.error = error
+                self.showAlert = true
+            } else {
+                print(error)
             }
         }
     }
