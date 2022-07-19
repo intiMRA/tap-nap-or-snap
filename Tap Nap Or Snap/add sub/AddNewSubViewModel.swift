@@ -25,7 +25,6 @@ struct FieldsToHighlight {
 
 @MainActor
 class AddNewSubViewModel: ObservableObject {
-    private var cancellables = Set<AnyCancellable>()
     @Published var name = ""
     @Published var newSubName = ""
     @Published var chosenSub: String?
@@ -44,7 +43,7 @@ class AddNewSubViewModel: ObservableObject {
     var error: CustomError?
     let originalPH = "Add.Sub.Placeholder".localized
     let api: SubmissionsAPIProtocol
-    var cancellable = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     init(api: SubmissionsAPIProtocol = SubmissionsAPI()) {
         self.api = api
         reloadState()

@@ -30,6 +30,41 @@ class AddNewSubViewModelTests: XCTestCase {
         XCTAssertFalse(nameState)
         XCTAssertEqual(set, nil)
     }
+    
+    func testSaveSub() async {
+        let api = MockSubmissionsApi()
+        let center = MockNotificationCenter()
+        center.expectation = self.expectation(description: "wait for sub to be saved")
+        await Store.shared.setNotificationCenter(notificationCenter: center)
+        let vm = await AddNewSubViewModel(api: api)
+        await MainActor.run {
+            vm.chosenSub = "armbar"
+            vm.name = "testName"
+            vm.description = "description"
+            vm.newSubName = "armbar"
+        }
+        await vm.saveWholeSub()
+        await waitForExpectations(timeout: 10)
+        let subs = await Store.shared.submissionsState?.subs["Armbar"]
+        let names = await Store.shared.submissionNamesState?.subs[0]
+        XCTAssertEqual(names, "Armbar")
+        XCTAssertEqual(subs![0].subName, "Armbar")
+        XCTAssertEqual(subs![0].personName, "testName")
+        XCTAssertEqual(subs![0].winDescription, "description")
+    }
+    
+    func testDeleteSub() async {
+        let api = MockSubmissionsApi()
+        let center = MockNotificationCenter()
+        center.expectation = self.expectation(description: "wait for sub to be deleted")
+        await Store.shared.setNotificationCenter(notificationCenter: center)
+        await Store.shared.changeState(newState: SubmissionNamesState(subs: ["Armbar"]))
+        let vm = await AddNewSubViewModel(api: api)
+        await vm.deleteSubFromList(with: 0)
+        await waitForExpectations(timeout: 10)
+        let names = await Store.shared.submissionNamesState?.subs
+        XCTAssertEqual(names, [])
+    }
 }
 
 class MockSubmissionsApi: SubmissionsAPIProtocol {
