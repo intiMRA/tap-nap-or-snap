@@ -69,7 +69,11 @@ struct SubmissionDescriptionView: View {
                 }
                 .frame(maxWidth: .infinity)
                 
-                Button(action: { viewModel.saveDescriptions() }) {
+                Button(action: {
+                    Task {
+                        await viewModel.saveDescriptions()
+                    }  
+                }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
                         Text("Done".localized)

@@ -35,6 +35,8 @@
 		35B6F546288027A20020EC26 /* GoalsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F545288027A20020EC26 /* GoalsViewModelTests.swift */; };
 		35B6F54828811F7B0020EC26 /* CreateGoalsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54728811F7B0020EC26 /* CreateGoalsViewModelTests.swift */; };
 		35B6F54B2886A7120020EC26 /* AddNewSubViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54A2886A7110020EC26 /* AddNewSubViewModelTests.swift */; };
+		35B6F54E288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54D288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift */; };
+		35B6F550288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54F288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift */; };
 		35B7D6AB2850BB0E00E77FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35B7D6AD2850BB0E00E77FE0 /* Localizable.strings */; };
 		35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */; };
 		35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* LogInView.swift */; };
@@ -89,6 +91,8 @@
 		35B6F545288027A20020EC26 /* GoalsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModelTests.swift; sourceTree = "<group>"; };
 		35B6F54728811F7B0020EC26 /* CreateGoalsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalsViewModelTests.swift; sourceTree = "<group>"; };
 		35B6F54A2886A7110020EC26 /* AddNewSubViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubViewModelTests.swift; sourceTree = "<group>"; };
+		35B6F54D288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		35B6F54F288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionViewModelTests.swift; sourceTree = "<group>"; };
 		35B7D6AC2850BB0E00E77FE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		35B7D6AE2850BB1400E77FE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		35B7D6AF2850C79800E77FE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -230,6 +234,15 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
+		35B6F54C288A6A910020EC26 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				35B6F54D288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift */,
+				35B6F54F288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		35BEC78A27E1A5C200E3A23D = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +325,7 @@
 		35E234DF2821124E001E9871 /* submissionDetails */ = {
 			isa = PBXGroup;
 			children = (
+				35B6F54C288A6A910020EC26 /* tests */,
 				35E234E028211308001E9871 /* SubmissionDetailsView.swift */,
 				35E234E22821161E001E9871 /* SubmissionDetailsViewModel.swift */,
 				351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */,
@@ -434,8 +448,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B6F54B2886A7120020EC26 /* AddNewSubViewModelTests.swift in Sources */,
+				35B6F550288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift in Sources */,
 				35B6F54828811F7B0020EC26 /* CreateGoalsViewModelTests.swift in Sources */,
 				35B6F544287ED1DD0020EC26 /* EditGoalViewModelTests.swift in Sources */,
+				35B6F54E288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift in Sources */,
 				35B6F546288027A20020EC26 /* GoalsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -109,6 +109,7 @@ class MockSubmissionsApi: SubmissionsAPIProtocol {
     func saveSubmissionDescriptions(submissionName: String, personName: String, winDescription: String?, lossDescription: String?) async throws {
         var list = await Store.shared.submissionsState?.subs[submissionName] ?? []
         let sub = list.first(where: { $0.personName == personName })
+        list.removeAll(where: { $0.personName == personName })
         let newSub = Submission(personName: personName,
                                 subName: submissionName,
                                 wins: sub?.wins ?? 0,
