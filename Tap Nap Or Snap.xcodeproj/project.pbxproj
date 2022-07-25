@@ -37,6 +37,8 @@
 		35B6F54B2886A7120020EC26 /* AddNewSubViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54A2886A7110020EC26 /* AddNewSubViewModelTests.swift */; };
 		35B6F54E288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54D288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift */; };
 		35B6F550288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F54F288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift */; };
+		35B6F553288E68610020EC26 /* SubmissionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F552288E68600020EC26 /* SubmissionsViewModelTests.swift */; };
+		35B6F556288E6C180020EC26 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6F555288E6C180020EC26 /* StoreTests.swift */; };
 		35B7D6AB2850BB0E00E77FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35B7D6AD2850BB0E00E77FE0 /* Localizable.strings */; };
 		35BEC79727E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */; };
 		35BEC79927E1A5C300E3A23D /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BEC79827E1A5C300E3A23D /* LogInView.swift */; };
@@ -93,6 +95,8 @@
 		35B6F54A2886A7110020EC26 /* AddNewSubViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSubViewModelTests.swift; sourceTree = "<group>"; };
 		35B6F54D288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		35B6F54F288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionViewModelTests.swift; sourceTree = "<group>"; };
+		35B6F552288E68600020EC26 /* SubmissionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsViewModelTests.swift; sourceTree = "<group>"; };
+		35B6F555288E6C180020EC26 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		35B7D6AC2850BB0E00E77FE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		35B7D6AE2850BB1400E77FE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		35B7D6AF2850C79800E77FE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 		354A89BD27E1C8BD00078008 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				35B6F554288E6BF70020EC26 /* tests */,
 				354A89BE27E1C8EE00078008 /* Store.swift */,
 			);
 			path = Store;
@@ -198,6 +203,7 @@
 		354A945F27E315E100E966B2 /* subs */ = {
 			isa = PBXGroup;
 			children = (
+				35B6F551288E68420020EC26 /* tests */,
 				35E234DF2821124E001E9871 /* submissionDetails */,
 				354A946027E315FD00E966B2 /* SubmissionsViewModel.swift */,
 				354A946227E3161100E966B2 /* SubmissionsView.swift */,
@@ -239,6 +245,22 @@
 			children = (
 				35B6F54D288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift */,
 				35B6F54F288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		35B6F551288E68420020EC26 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				35B6F552288E68600020EC26 /* SubmissionsViewModelTests.swift */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		35B6F554288E6BF70020EC26 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				35B6F555288E6C180020EC26 /* StoreTests.swift */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -449,6 +471,8 @@
 			files = (
 				35B6F54B2886A7120020EC26 /* AddNewSubViewModelTests.swift in Sources */,
 				35B6F550288A70100020EC26 /* SubmissionDescriptionViewModelTests.swift in Sources */,
+				35B6F553288E68610020EC26 /* SubmissionsViewModelTests.swift in Sources */,
+				35B6F556288E6C180020EC26 /* StoreTests.swift in Sources */,
 				35B6F54828811F7B0020EC26 /* CreateGoalsViewModelTests.swift in Sources */,
 				35B6F544287ED1DD0020EC26 /* EditGoalViewModelTests.swift in Sources */,
 				35B6F54E288A6AAE0020EC26 /* SubmissionDetailsViewModelTests.swift in Sources */,

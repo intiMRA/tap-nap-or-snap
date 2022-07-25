@@ -22,7 +22,6 @@ class SubmissionsViewModel: ObservableObject {
     @Published var submissionsDict = [String: submissionCountsModel]()
     var currentSubName = ""
     
-    let api = SubmissionsAPI()
     init() {
         reloadState()
     }
@@ -37,18 +36,16 @@ class SubmissionsViewModel: ObservableObject {
     }
     
     func reloadState() {
-        dispatchOnMain {
-            Store.shared.submissionsState?.subs.forEach({ key, value in
-                let wins = value.reduce(0, { partialResult, sub in
-                    partialResult + sub.wins
-                })
-                
-                let losses = value.reduce(0, { partialResult, sub in
-                    partialResult + sub.losses
-                })
-                self.submissionsDict[key] = submissionCountsModel(wins: wins, losses: losses, total: wins + losses)
+        Store.shared.submissionsState?.subs.forEach({ key, value in
+            let wins = value.reduce(0, { partialResult, sub in
+                partialResult + sub.wins
             })
-        }
+            
+            let losses = value.reduce(0, { partialResult, sub in
+                partialResult + sub.losses
+            })
+            self.submissionsDict[key] = submissionCountsModel(wins: wins, losses: losses, total: wins + losses)
+        })
     }
     
     func createSubmissionDetailsViewModel() -> SubmissionDetailsViewModel {
@@ -56,12 +53,6 @@ class SubmissionsViewModel: ObservableObject {
             return SubmissionDetailsViewModel(submissionsList: [], submissionName: "")
         }
         return SubmissionDetailsViewModel(submissionsList: sub, submissionName: currentSubName)
-    }
-    
-    private func dispatchOnMain(_ action: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            action()
-        }
     }
     
     func createAddViewModel() -> AddNewSubViewModel {
