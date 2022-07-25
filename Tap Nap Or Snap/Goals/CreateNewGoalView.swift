@@ -45,7 +45,11 @@ struct CreateNewGoalView: View {
                 
                 timeToCompleteView
                 
-                Button(action: viewModel.saveGoal) {
+                Button(action: {
+                    Task {
+                        await viewModel.saveGoal()
+                    }
+                    }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
                             .standardHeightFillUp()

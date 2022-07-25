@@ -25,7 +25,6 @@ struct FieldsToHighlight {
 
 @MainActor
 class AddNewSubViewModel: ObservableObject {
-    private var cancellables = Set<AnyCancellable>()
     @Published var name = ""
     @Published var newSubName = ""
     @Published var chosenSub: String?
@@ -43,9 +42,10 @@ class AddNewSubViewModel: ObservableObject {
     @Published var shakeAnimationIndex: Int? = nil
     var error: CustomError?
     let originalPH = "Add.Sub.Placeholder".localized
-    let api = SubmissionsAPI()
-    var cancellable = Set<AnyCancellable>()
-    init() {
+    let api: SubmissionsAPIProtocol
+    private var cancellable = Set<AnyCancellable>()
+    init(api: SubmissionsAPIProtocol = SubmissionsAPI()) {
+        self.api = api
         reloadState()
         $placeholder
             .dropFirst()
@@ -127,10 +127,8 @@ class AddNewSubViewModel: ObservableObject {
             return
         }
         self.fieldsToHighlight = FieldsToHighlight(name: self.fieldsToHighlight.name, subName: false)
-        DispatchQueue.main.async {
-            self.chosenSub = submission
-            self.showSubsList = false
-        }
+        self.chosenSub = submission
+        self.showSubsList = false
     }
     
     func selectedWin() {
@@ -144,42 +142,34 @@ class AddNewSubViewModel: ObservableObject {
     private func checkInfoIsValid() async throws {
         let nameIsEmpty = self.name.isEmpty
         let subIsEmpty = self.chosenSub?.isEmpty ?? true
-        await MainActor.run {
-            withAnimation {
-                self.fieldsToHighlight = FieldsToHighlight(name: nameIsEmpty, subName: subIsEmpty)
-            }
+        withAnimation {
+            self.fieldsToHighlight = FieldsToHighlight(name: nameIsEmpty, subName: subIsEmpty)
         }
-
+        
         if nameIsEmpty || subIsEmpty {
             throw NSError()
         }
     }
     
-    func saveWholeSub() {
-        Task {
+    func saveWholeSub() async {
+        do {
             try await checkInfoIsValid()
             
             let sub = SubmissionUploadModel(subName: chosenSub?.capitalized ?? "", personName: self.name, description: self.description)
-            do {
-                if isWin {
-                    try await self.api.saveWin(submission: sub)
-                } else {
-                    try await self.api.saveLoss(submission: sub)
-                }
-                
-                await MainActor.run {
-                    self.dismissState = .screen
-                }
-                
-            } catch {
-                if let error = error as? CustomError {
-                    self.error = error
-                    await MainActor.run {
-                        self.showAlert = true
-                    }
-                } else {
-                    print(error)
-                }
+            if isWin {
+                try await self.api.saveWin(submission: sub)
+            } else {
+                try await self.api.saveLoss(submission: sub)
+            }
+            
+            self.dismissState = .screen
+            
+        } catch {
+            if let error = error as? CustomError {
+                self.error = error
+                self.showAlert = true
+            } else {
+                print(error)
             }
         }
     }
@@ -195,20 +185,18 @@ class AddNewSubViewModel: ObservableObject {
         }
     }
     
-    func deleteSubFromList(with index: Int) {
+    func deleteSubFromList(with index: Int) async {
         let name = self.listOfSubs[index]
-        Task {
-            do {
-                try await api.deleteSubFromList(with: name)
-                self.reloadState()
-            } catch {
-                withAnimation {
-                    self.shakeAnimationIndex = index
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    self.shakeAnimationIndex = nil
-                }
+        do {
+            try await api.deleteSubFromList(with: name)
+            self.reloadState()
+        } catch {
+            withAnimation {
+                self.shakeAnimationIndex = index
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.shakeAnimationIndex = nil
             }
         }
     }

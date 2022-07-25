@@ -92,7 +92,11 @@ struct AddNewSubView: View {
                     viewModel.isFocused(.description)
                 }
                 
-                Button(action: { viewModel.saveWholeSub() }) {
+                Button(action: {
+                    Task {
+                        await viewModel.saveWholeSub()
+                    } 
+                }) {
                     ZStack {
                         CustomRoundRectangle(color: .blue)
                             .standardHeightFillUp()
@@ -157,7 +161,11 @@ struct AddNewSubView: View {
                             Spacer()
                         }
                         
-                        Button(action: { viewModel.deleteSubFromList(with: index)}) {
+                        Button(action: {
+                            Task {
+                                await viewModel.deleteSubFromList(with: index)
+                            }
+                        }) {
                             ImageNames.trash.rawIcon()
                         }
                     }

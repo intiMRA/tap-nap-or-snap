@@ -18,7 +18,7 @@ struct SubmissionUploadModel {
     }
 }
 
-struct Submission {
+struct Submission: Equatable {
     let personName: String
     let subName: String
     let wins: Int

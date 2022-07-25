@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-struct GoalModel: Identifiable {
+struct GoalModel: Identifiable, Equatable {
     let id: String
     let title: String
     let description: String
@@ -27,7 +27,7 @@ extension GoalModel {
         }
         
         self.init(id: id, title: title, description: description, timeStamp: timeStamp, isComplete: isComplete, isMultiline: description.filter({ $0 == "\n" }).count > 1)
-            
+        
     }
 }
 
@@ -38,9 +38,10 @@ class GoalsViewModel: ObservableObject {
     @Published var goalCollapsed = [String: Bool]()
     @Published var navigateToEditGoal = false
     var currentGoal: GoalModel?
-    let goalsApi = GoalsAPI()
+    private let goalsApi: GoalsAPIProtocol
     
-    init() {
+    init(goalsApi: GoalsAPIProtocol = GoalsAPI()) {
+        self.goalsApi = goalsApi
         reloadState()
     }
     
@@ -49,12 +50,8 @@ class GoalsViewModel: ObservableObject {
     }
     
     func showEditGoal(currentGoal: GoalModel) {
-        Task {
-            self.currentGoal = currentGoal
-            await MainActor.run {
-                self.navigateToEditGoal = true
-            }
-        }
+        self.currentGoal = currentGoal
+        self.navigateToEditGoal = true
     }
     
     func reloadState() {
@@ -67,21 +64,17 @@ class GoalsViewModel: ObservableObject {
         EditGoalDetailsViewModel(currentGoal: self.currentGoal)
     }
     
-    func deleteGoal(with id: String) {
-        Task {
-            try? await self.goalsApi.deleteGoal(with: id)
-            self.reloadState()
-        }
+    func deleteGoal(with id: String) async {
+        try? await self.goalsApi.deleteGoal(with: id)
+        self.reloadState()
     }
     
-    func completeGoal(with id: String, status: Bool) {
-        Task {
-            try? await self.goalsApi.goalCompletion(status: status, id: id)
-            self.reloadState()
-        }
+    func completeGoal(with id: String, status: Bool) async {
+        try? await self.goalsApi.goalCompletion(status: status, id: id)
+        self.reloadState()
     }
     
-    func flipGoal(with id: String) {
+    func collapseGoal(with id: String) {
         self.goalCollapsed[id] = !(self.goalCollapsed[id] ?? true)
     }
 }

@@ -29,7 +29,7 @@ class SubmissionDescriptionViewModel: ObservableObject {
     var error: CustomError?
     let originalPH = "No.Description".localized
     var cancellable = Set<AnyCancellable>()
-    let api: SubmissionsAPIProtocol
+    private let api: SubmissionsAPIProtocol
     
     init(title: String, subName: String, personName: String, submission: Submission, api: SubmissionsAPIProtocol = SubmissionsAPI()) {
         self.title = title
@@ -90,7 +90,6 @@ class SubmissionDescriptionViewModel: ObservableObject {
     }
     
     func isFocused(_ field: SubmissionDescriptionViewFocusField) {
-        DispatchQueue.main.async {
             withAnimation {
                 switch field {
                 case .wins:
@@ -101,11 +100,9 @@ class SubmissionDescriptionViewModel: ObservableObject {
                     self.winPlaceholder = self.originalPH
                 }
             }
-        }
     }
     
-    func saveDescriptions() {
-        Task {
+    func saveDescriptions() async {
             do {
                 try await api.saveSubmissionDescriptions(submissionName: subName, personName: personName, winDescription: winDescription, lossDescription: lossesDescription)
                 withAnimation {
@@ -114,13 +111,10 @@ class SubmissionDescriptionViewModel: ObservableObject {
             } catch {
                 if let error = error as? CustomError {
                     self.error = error
-                    await MainActor.run {
-                        self.showAlert = true
-                    }
+                    self.showAlert = true
                 } else {
                     print(error)
                 }
             }
-        }
     }
 }

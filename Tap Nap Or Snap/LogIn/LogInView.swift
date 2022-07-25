@@ -31,13 +31,22 @@ struct LogInView: View {
                     
                     CustomTextField("Password".localized, text: $viewModel.password, isSecureEntry: true)
                     
-                    Button(action: viewModel.login) {
+                    Button(action: {
+                        Task {
+                            await viewModel.login()
+                        }
+                    }) {
                         Text("Log.In".localized)
                             .bold()
                             .foregroundColor(ColorNames.text.color())
                     }
                     
-                    Button(action: viewModel.signup) {
+                    Button(action:
+                            {
+                        Task {
+                            await viewModel.signup()
+                        }
+                    }) {
                         Text("Sign.Up".localized)
                             .bold()
                             .foregroundColor(ColorNames.text.color())
