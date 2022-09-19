@@ -17,6 +17,7 @@ struct Tap_Nap_Or_SnapApp: App {
                 LogInView()
                     .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationViewStyle(.stack)
             .accentColor(ColorNames.text.color())
         }
     }

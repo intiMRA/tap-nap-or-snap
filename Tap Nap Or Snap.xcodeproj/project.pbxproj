@@ -102,6 +102,7 @@
 		35B7D6AC2850BB0E00E77FE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		35B7D6AE2850BB1400E77FE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		35B7D6AF2850C79800E77FE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		35B8CE3728D36AA200945F21 /* Tap-Nap-Or-Snap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tap-Nap-Or-Snap-Info.plist"; sourceTree = SOURCE_ROOT; };
 		35BEC79327E1A5C300E3A23D /* Tap Nap Or Snap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tap Nap Or Snap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BEC79627E1A5C300E3A23D /* Tap_Nap_Or_SnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tap_Nap_Or_SnapApp.swift; sourceTree = "<group>"; };
 		35BEC79827E1A5C300E3A23D /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -296,6 +297,7 @@
 		35BEC79527E1A5C300E3A23D /* Tap Nap Or Snap */ = {
 			isa = PBXGroup;
 			children = (
+				35B8CE3728D36AA200945F21 /* Tap-Nap-Or-Snap-Info.plist */,
 				353D4660283CDEEB006C0A07 /* Components */,
 				35CDD40727FFF74E00668A58 /* Goals */,
 				354A946C27E5BA5A00E966B2 /* add sub */,
@@ -734,6 +736,7 @@
 				DEVELOPMENT_TEAM = 6K524MKAFK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tap-Nap-Or-Snap-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -763,6 +766,7 @@
 				DEVELOPMENT_TEAM = 6K524MKAFK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tap-Nap-Or-Snap-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
