@@ -56,6 +56,11 @@ struct LogInView: View {
                 .padding(.top, length: .large)
             }
             .padding(.top, length: .large)
+            .onAppear {
+                Task {
+                    await viewModel.clearDetails()
+                }
+            }
         }
         .ignoresSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

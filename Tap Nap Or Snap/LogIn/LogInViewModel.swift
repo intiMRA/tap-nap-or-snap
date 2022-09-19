@@ -64,4 +64,9 @@ class LogInViewModel: ObservableObject {
             print(error)
         }
     }
+    
+    func clearDetails() async {
+        self.email = ""
+        self.password = ""
+    }
 }
