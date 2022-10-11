@@ -11,10 +11,11 @@ import Firebase
 @main
 struct Tap_Nap_Or_SnapApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State var stack = [LogInDestinations]()
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                LogInView()
+            NavigationStack(path: $stack) {
+                LogInView(stack: $stack)
                     .navigationBarTitleDisplayMode(.inline)
             }
             .navigationViewStyle(.stack)

@@ -10,7 +10,6 @@ import Combine
 
 @MainActor
 class LogInViewModel: ObservableObject {
-    @Published var navigateToTabView = false
     @Published var email = ""
     @Published var password = ""
     @Published var showAlert = false
@@ -19,16 +18,13 @@ class LogInViewModel: ObservableObject {
     let api: LogInAPIProtocol
     init(api: LogInAPIProtocol = LogInAPI()) {
         self.api = api
-        Task {
-            await logInUserAlreadySignedIn()
-        }
     }
     
-    func login() async {
+    func login() async -> Bool {
         do {
             try await api.login(email: email, password: password)
             try await api.getData()
-            self.navigateToTabView = true
+            return true
         } catch {
             if let error = error as? CustomError {
                 self.error = error
@@ -36,14 +32,14 @@ class LogInViewModel: ObservableObject {
             } else {
                 print(error)
             }
-            
+            return false
         }
     }
     
-    func signup() async {
+    func signup() async -> Bool {
         do {
             try await api.signUp(email: email, password: password)
-            self.navigateToTabView = true
+            return true
         } catch {
             if let error = error as? CustomError {
                 self.error = error
@@ -51,17 +47,19 @@ class LogInViewModel: ObservableObject {
             } else {
                 print(error)
             }
+            return false
         }
     }
     
-    func logInUserAlreadySignedIn() async {
+    func logInUserAlreadySignedIn() async -> Bool {
         do {
             try await api.logInUserAlreadySignedIn()
             try await api.getData()
-            self.navigateToTabView = true
+            return true
         } catch {
             //no error handling
             print(error)
+            return false
         }
     }
     

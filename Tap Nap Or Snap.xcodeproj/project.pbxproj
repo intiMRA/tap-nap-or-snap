@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350F8AB628F55C0F008F3A32 /* NavigationDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F8AB528F55C0F008F3A32 /* NavigationDestinations.swift */; };
 		3517452D27E84FEB0074EF2C /* SubmissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */; };
 		351909762824A1E400AC6783 /* SubmissionDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */; };
 		351909782824A21900AC6783 /* SubmissionDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		350F8AB528F55C0F008F3A32 /* NavigationDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestinations.swift; sourceTree = "<group>"; };
 		3517452C27E84FEB0074EF2C /* SubmissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsAPI.swift; sourceTree = "<group>"; };
 		351909752824A1E400AC6783 /* SubmissionDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionView.swift; sourceTree = "<group>"; };
 		351909772824A21900AC6783 /* SubmissionDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDescriptionViewModel.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				354A89CD27E1CD7900078008 /* Collection+Safe.swift */,
 				352D86992802B005002B931C /* DateFormatter.swift */,
 				353D465E283CDB58006C0A07 /* View+CutomPadding.swift */,
+				350F8AB528F55C0F008F3A32 /* NavigationDestinations.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				35CDD40D27FFFC8000668A58 /* CreateNewGoalView.swift in Sources */,
 				354A89CE27E1CD7900078008 /* Collection+Safe.swift in Sources */,
 				354A89CC27E1CC9700078008 /* String+Localizable.swift in Sources */,
+				350F8AB628F55C0F008F3A32 /* NavigationDestinations.swift in Sources */,
 				35CDD40927FFF76400668A58 /* GoalsView.swift in Sources */,
 				35CDD40B27FFF77D00668A58 /* GoalsViewModel.swift in Sources */,
 				354A946927E32A2B00E966B2 /* TabItemsViewModel.swift in Sources */,
@@ -659,7 +663,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -715,7 +719,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -65,6 +65,7 @@ struct TabItemsView: View {
             }
             .accentColor(ColorNames.text.color())
         }
+        .navigationBarBackButtonHidden(true)
         .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(Text(viewModel.title))
@@ -81,11 +82,5 @@ struct TabItemsView: View {
         .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
             Text(viewModel.error?.message ?? "")
         }
-    }
-}
-
-struct TabView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabItemsView()
     }
 }
