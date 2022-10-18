@@ -10,8 +10,8 @@ enum LogInDestinations: String, Hashable {
     case tabView
 }
 
-enum SubmissionDestinations: String, Hashable {
-    case addNewSub
-    case submissionDetails
+enum TabDestinations: String, Hashable {
+    case sub
+    case goals
 }
 

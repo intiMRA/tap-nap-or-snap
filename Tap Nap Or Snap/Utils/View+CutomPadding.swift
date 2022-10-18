@@ -39,4 +39,8 @@ extension View {
     func standardHeightFillUp() -> some View {
         self.frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44)
     }
+    
+    func frame(size: CGFloat) -> some View {
+        self.frame(width: 44, height: 44)
+    }
 }

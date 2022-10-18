@@ -17,56 +17,58 @@ struct TabItemsView: View {
     
     var body: some View {
         ZStack {
-            ColorNames.bar.color()
-            TabView(selection: $viewModel.selection) {
-                ZStack {
-                    ColorNames.background.color()
-                    VStack {
-                        
-                        SubmissionsView()
-                            .padding(.top, length: .small)
-                        
-                        Rectangle()
-                            .fill(ColorNames.text.color())
-                            .frame(height: 1)
-                            .opacity(0.3)
-                    }
+            ColorNames.background.color()
+            VStack(spacing: 0) {
+                switch viewModel.selection {
+                case .submissions:
+                    SubmissionsView()
+                        .padding(.top, length: .large)
+                case .goals:
+                    GoalsView()
+                        .padding(.top, length: .large)
                 }
-                .tabItem {
-                    VStack {
-                        viewModel.selection == .submissions ? ImageNames.dead.image() : ImageNames.deadDisabled.image()
-                        
-                        Text("Submissions".localized)
-                    }
-                }
-                .tag(ViewSelection.submissions)
                 
                 ZStack {
-                    ColorNames.background.color()
-                    VStack {
+                    ColorNames.bar.color()
+                        .ignoresSafeArea(.all, edges: .bottom)
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                viewModel.selection = .submissions
+                            }
+                        }) {
+                            VStack {
+                                (viewModel.selection == .submissions ? ImageNames.dead.image() : ImageNames.deadDisabled.image())
+                                    .frame(size: 50)
+                                
+                                Text("Submissions".localized)
+                            }
+                        }
                         
-                        GoalsView()
-                            .padding(.top, length: .small)
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                viewModel.selection = .goals
+                            }
+                        }) {
+                            VStack {
+                                (viewModel.selection == .goals ? ImageNames.target.image() : ImageNames.targetDisabled.image())
+                                    .frame(size: 50)
+                                
+                                Text("Goals".localized)
+                            }
+                        }
                         
-                        Rectangle()
-                            .fill(ColorNames.text.color())
-                            .frame(height: 1)
-                            .opacity(0.3)
+                        Spacer()
                     }
+                    .padding(.top, length: .medium)
                 }
-                .tabItem {
-                    VStack {
-                        viewModel.selection == .goals ? ImageNames.target.image() : ImageNames.targetDisabled.image()
-                        
-                        Text("Goals".localized)
-                    }
-                }
-                .tag(ViewSelection.goals)
+                .frame(height: 80)
             }
             .accentColor(ColorNames.text.color())
         }
         .navigationBarBackButtonHidden(true)
-        .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(Text(viewModel.title))
         .toolbar {
