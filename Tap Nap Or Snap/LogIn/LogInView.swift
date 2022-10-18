@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LogInView: View {
     @StateObject var viewModel = LogInViewModel()
-    @Binding var stack: [LogInDestinations]
+    @EnvironmentObject var router: Router
     var body: some View {
         VStack {
             NavigationLink(value: LogInDestinations.tabView) {
@@ -34,7 +34,7 @@ struct LogInView: View {
                     Button(action: {
                         Task {
                             if await viewModel.login() {
-                                stack.append(.tabView)
+                                router.stack.append(LogInDestinations.tabView)
                             }
                         }
                     }) {
@@ -47,7 +47,7 @@ struct LogInView: View {
                             {
                         Task {
                             if await viewModel.signup() {
-                                stack.append(.tabView)
+                                router.stack.append(LogInDestinations.tabView)
                             }
                         }
                     }) {
@@ -70,6 +70,7 @@ struct LogInView: View {
             switch nextView {
             case .tabView:
                 TabItemsView()
+                    .environmentObject(router)
             }
         }
         .ignoresSafeArea(.all)
@@ -81,7 +82,7 @@ struct LogInView: View {
         .onAppear {
             Task {
                 if await viewModel.logInUserAlreadySignedIn() {
-                    stack.append(.tabView)
+                    router.stack.append(LogInDestinations.tabView)
                 }
             }
         }

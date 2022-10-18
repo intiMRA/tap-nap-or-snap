@@ -6,12 +6,17 @@
 //
 
 import Foundation
-enum LogInDestinations: String, Hashable {
+import SwiftUI
+
+enum LogInDestinations: String {
     case tabView
 }
 
-enum TabDestinations: String, Hashable {
-    case sub
-    case goals
+enum SubmissionsDestinations: String {
+    case addNewSub
+    case subDetails
 }
 
+class Router: ObservableObject {
+    @Published var stack = NavigationPath()
+}

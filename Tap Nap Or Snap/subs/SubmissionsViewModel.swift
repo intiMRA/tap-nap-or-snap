@@ -30,9 +30,9 @@ class SubmissionsViewModel: ObservableObject {
         self.navigateToNewSub = true
     }
     
-    func showSubmissionDetails(for submissionName: String) {
+    func showSubmissionDetails(for submissionName: String) async {
         self.currentSubName = submissionName
-        self.navigateToSubmissionDetails = true
+        //self.navigateToSubmissionDetails = true
     }
     
     func reloadState() {

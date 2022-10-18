@@ -10,6 +10,7 @@ import SwiftUI
 struct TabItemsView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = TabItemsViewModel()
+    @EnvironmentObject var router: Router
     
     init() {
         UITabBar.appearance().isTranslucent = false
@@ -23,6 +24,7 @@ struct TabItemsView: View {
                 case .submissions:
                     SubmissionsView()
                         .padding(.top, length: .large)
+                        .environmentObject(router)
                 case .goals:
                     GoalsView()
                         .padding(.top, length: .large)

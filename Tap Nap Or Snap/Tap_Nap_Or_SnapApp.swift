@@ -11,12 +11,13 @@ import Firebase
 @main
 struct Tap_Nap_Or_SnapApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State var stack = [LogInDestinations]()
+    @StateObject var stack = Router()
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $stack) {
-                LogInView(stack: $stack)
+            NavigationStack(path: $stack.stack) {
+                LogInView()
                     .navigationBarTitleDisplayMode(.inline)
+                    .environmentObject(stack)
             }
             .navigationViewStyle(.stack)
             .accentColor(ColorNames.text.color())
