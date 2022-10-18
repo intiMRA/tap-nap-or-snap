@@ -17,8 +17,6 @@ struct submissionCountsModel {
 @MainActor
 class SubmissionsViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
-    @Published var navigateToNewSub = false
-    @Published var navigateToSubmissionDetails = false
     @Published var submissionsDict = [String: submissionCountsModel]()
     var currentSubName = ""
     
@@ -26,13 +24,8 @@ class SubmissionsViewModel: ObservableObject {
         reloadState()
     }
     
-    func showNewSub() {
-        self.navigateToNewSub = true
-    }
-    
-    func showSubmissionDetails(for submissionName: String) async {
+    func setSubmissionDetails(for submissionName: String) async {
         self.currentSubName = submissionName
-        //self.navigateToSubmissionDetails = true
     }
     
     func reloadState() {

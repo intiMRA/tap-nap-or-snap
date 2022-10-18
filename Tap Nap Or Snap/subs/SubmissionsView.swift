@@ -28,7 +28,7 @@ struct SubmissionsView: View {
                     ForEach(viewModel.submissionsDict.sorted(by: { $0.1.total > $1.1.total }), id: \.0) { sub in
                         Button(action: {
                             Task {
-                                await viewModel.showSubmissionDetails(for: sub.key)
+                                await viewModel.setSubmissionDetails(for: sub.key)
                                 router.stack.append(SubmissionsDestinations.subDetails)
                             }
                         }) {
@@ -77,6 +77,7 @@ struct SubmissionsView: View {
                 switch destination {
                 case .subDetails:
                     SubmissionDetailsView(with: viewModel.createSubmissionDetailsViewModel())
+                        .environmentObject(router)
                 case .addNewSub:
                     AddNewSubView(viewModel: viewModel.createAddViewModel())
                 }

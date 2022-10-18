@@ -17,6 +17,10 @@ enum SubmissionsDestinations: String {
     case subDetails
 }
 
+enum SubmissionDetailsDestinations: String {
+    case subDescription 
+}
+
 class Router: ObservableObject {
     @Published var stack = NavigationPath()
 }

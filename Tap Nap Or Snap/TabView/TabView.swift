@@ -75,7 +75,11 @@ struct TabItemsView: View {
         .navigationTitle(Text(viewModel.title))
         .toolbar {
             Button("Log.Out".localized) {
-                viewModel.logOut()
+                Task {
+                    if await viewModel.logOut() {
+                        router.stack.removeLast()
+                    }
+                }
             }
         }
         .onReceive(viewModel.$shouldDismiss) { shouldDismiss in

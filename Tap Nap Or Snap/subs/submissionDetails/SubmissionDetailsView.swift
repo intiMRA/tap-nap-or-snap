@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SubmissionDetailsView: View {
     @StateObject var viewModel: SubmissionDetailsViewModel
+    @EnvironmentObject var router: Router
     
     init(with viewModel: SubmissionDetailsViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -17,14 +18,17 @@ struct SubmissionDetailsView: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading) {
-                NavigationLink(isActive: $viewModel.navigateToDescription, destination: { SubmissionDescriptionView(viewModel: viewModel.createDescriptionViewModel()) }, label: { EmptyView() })
-                
                 Text(viewModel.submissionName)
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ForEach(viewModel.submissionsList, id: \.personName) { sub in
-                    Button(action: { viewModel.showDescription(for: sub.personName) }) {
+                    Button(action: {
+                        Task {
+                            await viewModel.setDescription(for: sub.personName)
+                            router.stack.append(SubmissionDetailsDestinations.subDescription)
+                        }
+                    }) {
                         ZStack {
                             CustomRoundRectangle(color: .blue, opacity: 0.3)
                             VStack(alignment: .center) {
@@ -65,6 +69,13 @@ struct SubmissionDetailsView: View {
             }
             .frame(maxWidth: .infinity)
             .horizontalPadding()
+            .navigationDestination(for: SubmissionDetailsDestinations.self) { destination in
+                switch destination {
+                case .subDescription:
+                    SubmissionDescriptionView(viewModel: viewModel.createDescriptionViewModel())
+                        .environmentObject(router)
+                }
+            }
         }
     }
 }
