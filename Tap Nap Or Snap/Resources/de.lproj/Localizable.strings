@@ -28,6 +28,10 @@
 
 "Email" = "Email";
 
+"Empty.Details.Name.Title" = "falsche Details";
+
+"Empty.Details.Name.Message" = "Bitte tragen Sie gültige Details ein, um sich anzumelden";
+
 "Unkown.Error.Title" = "Etwas ist schief gelaufen";
 
 "Unkown.Error.Message" = "Ein unbekannter Fehler ist passiert, bitte versuchen Sie es später wieder";
