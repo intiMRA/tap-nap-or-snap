@@ -10,7 +10,7 @@ import SwiftUI
 struct SubmissionDescriptionView: View {
     @StateObject var viewModel: SubmissionDescriptionViewModel
     @FocusState private var focusedField: SubmissionDescriptionViewFocusField?
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var router: Router
     init(viewModel: SubmissionDescriptionViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -87,7 +87,7 @@ struct SubmissionDescriptionView: View {
         .padding(.vertical, length: .large)
         .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
             if shouldDismiss {
-                presentationMode.wrappedValue.dismiss()
+                router.stack.removeLast()
             }
         }
         .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {

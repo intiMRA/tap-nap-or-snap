@@ -11,7 +11,6 @@ import Foundation
 class SubmissionDetailsViewModel: ObservableObject {
     @Published var submissionsList: [Submission]
     @Published var submissionName: String = ""
-    @Published var navigateToDescription = false
     
     var currentPersonsName = ""
     
@@ -27,9 +26,8 @@ class SubmissionDetailsViewModel: ObservableObject {
         return SubmissionDescriptionViewModel(title: "\(currentPersonsName)s \(submissionName)s", subName: submissionName, personName: currentPersonsName, submission: sub)
     }
     
-    func showDescription(for name: String) {
+    func setDescription(for name: String) async {
         self.currentPersonsName = name
-        self.navigateToDescription = true
     }
     
     func getWinsCountCopy(for sub: Submission) -> String {

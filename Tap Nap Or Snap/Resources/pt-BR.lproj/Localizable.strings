@@ -28,13 +28,17 @@
 
 "Email" = "Email";
 
+"Empty.Details.Name.Title" = "Detalhes invalidos";
+
+"Empty.Details.Name.Message" = "Por favor digite detalhes corretos para inscrever-se";
+
 "Unkown.Error.Title" = "Algo Deu Errado";
 
 "Unkown.Error.Message" = "Um error ocorreu, tente de novo mais tarde";
 
 "Wrong.Credentials.Error.Title" = "Credenciais Errados";
 
-"Wrong.Credentials.Error.Message" = "Por favor entre um email valido";
+"Wrong.Credentials.Error.Message" = "Por favor digite um email valido";
 
 "Invalid.Email" = "Email Ivalido";
 
@@ -42,19 +46,19 @@
 
 "Invalid.Password" = "Senha Invalida";
 
-"Invalid.Password.Error" = "Entre uma senha valida por favor";
+"Invalid.Password.Error" = "Digite uma senha valida por favor";
 
-"No.Such.Email.Error" = "Este email não existe no nosso sistema, por favor entre um email correto";
+"No.Such.Email.Error" = "Este email não existe no nosso sistema, por favor digite um email correto";
 
 "Invalid.Credentials" = "Credenciais Invalidos";
 
-"Account.Exists.With.Different.Credential" = "Entre uma senha e um email validos";
+"Account.Exists.With.Different.Credential" = "Digite uma senha e um email validos";
 
 "Network.Error.Message" = "Por favor certifique que a sua internete está ligada";
 
 "Network.Error.Title" = "Erro Na Conexão";
 
-"Credential.Already.In.Use" = "Entre sua senha e email corretos por favor";
+"Credential.Already.In.Use" = "Digite sua senha e email corretos por favor";
 
 "Weak.Password" = "A senha precisa ter no mínimo um numero e tem que ter seis letras no mínimo";
 

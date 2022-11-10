@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LogInView: View {
     @StateObject var viewModel = LogInViewModel()
-    
+    @EnvironmentObject var router: Router
     var body: some View {
         VStack {
-            NavigationLink(destination: TabItemsView(), isActive: $viewModel.navigateToTabView) {
+            NavigationLink(value: LogInDestinations.tabView) {
                 EmptyView()
             }
             ScrollView {
@@ -33,7 +33,9 @@ struct LogInView: View {
                     
                     Button(action: {
                         Task {
-                            await viewModel.login()
+                            if await viewModel.login() {
+                                router.stack.append(LogInDestinations.tabView)
+                            }
                         }
                     }) {
                         Text("Log.In".localized)
@@ -44,7 +46,9 @@ struct LogInView: View {
                     Button(action:
                             {
                         Task {
-                            await viewModel.signup()
+                            if await viewModel.signup() {
+                                router.stack.append(LogInDestinations.tabView)
+                            }
                         }
                     }) {
                         Text("Sign.Up".localized)
@@ -62,11 +66,25 @@ struct LogInView: View {
                 }
             }
         }
+        .navigationDestination(for: LogInDestinations.self) { nextView in
+            switch nextView {
+            case .tabView:
+                TabItemsView()
+                    .environmentObject(router)
+            }
+        }
         .ignoresSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(ColorNames.background.color())
         .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
             Text(viewModel.error?.message ?? "")
+        }
+        .onAppear {
+            Task {
+                if await viewModel.logInUserAlreadySignedIn() {
+                    router.stack.append(LogInDestinations.tabView)
+                }
+            }
         }
     }
 }
@@ -125,11 +143,5 @@ struct CustomTextField: View {
             }
         }
         .standardHeightFillUp()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInView()
     }
 }

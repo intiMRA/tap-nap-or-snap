@@ -8,19 +8,14 @@
 import SwiftUI
 
 struct SubmissionsView: View {
-    @StateObject var viewModel: SubmissionsViewModel
-    init() {
-        self._viewModel = StateObject(wrappedValue: SubmissionsViewModel())
-    }
+    @StateObject var viewModel = SubmissionsViewModel()
+    @EnvironmentObject var router: Router
+
     var body: some View {
         VStack(alignment: .leading) {
-            NavigationLink(isActive: $viewModel.navigateToNewSub, destination: { AddNewSubView(viewModel: viewModel.createAddViewModel()) }, label: { EmptyView() })
-            
-            NavigationLink(isActive: $viewModel.navigateToSubmissionDetails, destination: { SubmissionDetailsView(with: viewModel.createSubmissionDetailsViewModel()) }, label: { EmptyView() })
-            
             HStack {
                 Spacer()
-                Button(action: { viewModel.showNewSub() }) {
+                Button(action: { router.stack.append(SubmissionsDestinations.addNewSub) }) {
                     VStack {
                         ImageNames.add.rawIcon()
                         Text("Add.New".localized)
@@ -31,7 +26,12 @@ struct SubmissionsView: View {
             ScrollView {
                 LazyVStack(alignment: .leading) {
                     ForEach(viewModel.submissionsDict.sorted(by: { $0.1.total > $1.1.total }), id: \.0) { sub in
-                        Button(action: { viewModel.showSubmissionDetails(for: sub.key) }) {
+                        Button(action: {
+                            Task {
+                                await viewModel.setSubmissionDetails(for: sub.key)
+                                router.stack.append(SubmissionsDestinations.subDetails)
+                            }
+                        }) {
                             ZStack {
                                 CustomRoundRectangle(color: .blue, opacity: 0.3)
                                 VStack(alignment: .center) {
@@ -73,6 +73,15 @@ struct SubmissionsView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .navigationDestination(for: SubmissionsDestinations.self) { destination in
+                switch destination {
+                case .subDetails:
+                    SubmissionDetailsView(with: viewModel.createSubmissionDetailsViewModel())
+                        .environmentObject(router)
+                case .addNewSub:
+                    AddNewSubView(viewModel: viewModel.createAddViewModel())
+                }
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.reloadNotification), perform: { output in
             guard output.name == NSNotification.reloadNotification else {

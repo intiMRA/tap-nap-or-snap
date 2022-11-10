@@ -10,6 +10,7 @@ import SwiftUI
 struct TabItemsView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = TabItemsViewModel()
+    @EnvironmentObject var router: Router
     
     init() {
         UITabBar.appearance().isTranslucent = false
@@ -17,60 +18,68 @@ struct TabItemsView: View {
     
     var body: some View {
         ZStack {
-            ColorNames.bar.color()
-            TabView(selection: $viewModel.selection) {
-                ZStack {
-                    ColorNames.background.color()
-                    VStack {
-                        
-                        SubmissionsView()
-                            .padding(.top, length: .small)
-                        
-                        Rectangle()
-                            .fill(ColorNames.text.color())
-                            .frame(height: 1)
-                            .opacity(0.3)
-                    }
+            ColorNames.background.color()
+            VStack(spacing: 0) {
+                switch viewModel.selection {
+                case .submissions:
+                    SubmissionsView()
+                        .padding(.top, length: .large)
+                        .environmentObject(router)
+                case .goals:
+                    GoalsView()
+                        .padding(.top, length: .large)
                 }
-                .tabItem {
-                    VStack {
-                        viewModel.selection == .submissions ? ImageNames.dead.image() : ImageNames.deadDisabled.image()
-                        
-                        Text("Submissions".localized)
-                    }
-                }
-                .tag(ViewSelection.submissions)
                 
                 ZStack {
-                    ColorNames.background.color()
-                    VStack {
+                    ColorNames.bar.color()
+                        .ignoresSafeArea(.all, edges: .bottom)
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                viewModel.selection = .submissions
+                            }
+                        }) {
+                            VStack {
+                                (viewModel.selection == .submissions ? ImageNames.dead.image() : ImageNames.deadDisabled.image())
+                                    .frame(size: 50)
+                                
+                                Text("Submissions".localized)
+                            }
+                        }
                         
-                        GoalsView()
-                            .padding(.top, length: .small)
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                viewModel.selection = .goals
+                            }
+                        }) {
+                            VStack {
+                                (viewModel.selection == .goals ? ImageNames.target.image() : ImageNames.targetDisabled.image())
+                                    .frame(size: 50)
+                                
+                                Text("Goals".localized)
+                            }
+                        }
                         
-                        Rectangle()
-                            .fill(ColorNames.text.color())
-                            .frame(height: 1)
-                            .opacity(0.3)
+                        Spacer()
                     }
+                    .padding(.top, length: .medium)
                 }
-                .tabItem {
-                    VStack {
-                        viewModel.selection == .goals ? ImageNames.target.image() : ImageNames.targetDisabled.image()
-                        
-                        Text("Goals".localized)
-                    }
-                }
-                .tag(ViewSelection.goals)
+                .frame(height: 80)
             }
             .accentColor(ColorNames.text.color())
         }
-        .edgesIgnoringSafeArea(.all)
+        .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(Text(viewModel.title))
         .toolbar {
             Button("Log.Out".localized) {
-                viewModel.logOut()
+                Task {
+                    if await viewModel.logOut() {
+                        router.stack.removeLast()
+                    }
+                }
             }
         }
         .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
@@ -81,11 +90,5 @@ struct TabItemsView: View {
         .alert(viewModel.error?.title ?? "", isPresented: $viewModel.showAlert, actions: { EmptyView() }) {
             Text(viewModel.error?.message ?? "")
         }
-    }
-}
-
-struct TabView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabItemsView()
     }
 }

@@ -20,6 +20,7 @@ protocol LogInAPIProtocol: AnyObject {
 
 struct CustomError: Error {
     static let unkownError = CustomError(title: "Unkown.Error.Title".localized, message: "Unkown.Error.Message".localized)
+    static let emptyDetailsName = CustomError(title: "Empty.Details.Name.Title".localized, message: "Empty.Details.Name.Message".localized)
     let title: String
     let message: String
     
@@ -126,7 +127,7 @@ class LogInAPI: LogInAPIProtocol {
             splitEmail[safe: 0] != nil,
             splitEmail[safe: 1] != nil
         else {
-            throw CustomError.unkownError
+            throw CustomError.emptyDetailsName
         }
         
         do {

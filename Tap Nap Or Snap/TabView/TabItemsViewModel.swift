@@ -35,23 +35,20 @@ class TabItemsViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func logOut() {
-        Task {
-            do {
-                try await logInApi.signOut()
-                await MainActor.run {
-                    self.shouldDismiss = true
-                }
-            } catch {
-                if let error = error as? CustomError {
-                    self.error = error
-                    await MainActor.run(body: {
-                        self.showAlert = true
-                    })
-                } else {
-                    print(error)
-                }
+    func logOut() async -> Bool {
+        do {
+            try await logInApi.signOut()
+            return true
+        } catch {
+            if let error = error as? CustomError {
+                self.error = error
+                await MainActor.run(body: {
+                    self.showAlert = true
+                })
+            } else {
+                print(error)
             }
+            return false
         }
     }
 }
